@@ -1,4 +1,19 @@
-.App {
-  text-align: center;
+:root {
+  --color-darkGreen: #013444;
+  --color-lightGreen: #51b64b;
+  --color-vggBlue: #2992d0;
+  --color--grey-text: #333;
 }
 
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 62.5%;
+  font-family: 'Poppins', sans-serif;
+}
