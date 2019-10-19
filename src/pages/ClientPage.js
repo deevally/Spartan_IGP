@@ -5,6 +5,7 @@ const Client = () => {
   return (
     <div>
       <Nav LogIn="LogIn" Blog="Blog" SignUp="SignUp" />
+      <p>Client Page</p>
     </div>
   );
 };

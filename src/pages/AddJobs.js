@@ -5,7 +5,7 @@ const AddJobs = () => {
     return (
         <div>
            <Nav ViewJobs="View_Jobs" AddJobs ='AddJobs' />
- 
+            <p>Add Jobs</p>
         </div>
     )
 }

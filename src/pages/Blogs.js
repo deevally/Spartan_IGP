@@ -6,7 +6,7 @@ const Blog = () => {
         <div>
 
 <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
-
+<p>Blog</p>
         </div>
     )
 }

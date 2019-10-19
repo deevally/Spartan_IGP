@@ -5,6 +5,7 @@ const SignUp = () => {
     return (
         <div>
             <Nav Jobs="Jobs" LogOut="Log Out" /> 
+            <p>Sign Up</p>
         </div>
     )
 }
