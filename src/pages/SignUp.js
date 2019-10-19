@@ -1,13 +1,12 @@
 import React from 'react'
 import Nav from "../components/Nav";
 
-const AdminPage = () => {
+const SignUp = () => {
     return (
         <div>
-            <Nav ViewJobs="View_Jobs" AddJobs ="AddJobs"  />
-
+            <Nav Jobs="Jobs" LogOut="Log Out" /> 
         </div>
     )
 }
 
-export default AdminPage
+export default SignUp
