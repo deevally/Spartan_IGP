@@ -5,7 +5,7 @@ const AdminPage = () => {
     return (
         <div>
             <Nav ViewJobs="View_Jobs" AddJobs ="AddJobs"  />
-<p>Admin page</p>
+            <p>Admin page</p>
         </div>
     )
 }

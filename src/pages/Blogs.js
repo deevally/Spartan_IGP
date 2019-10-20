@@ -1,14 +1,13 @@
-import React from 'react'
+import React from "react";
 import Nav from "../components/Nav";
 
 const Blog = () => {
-    return (
-        <div>
+  return (
+    <div>
+      <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
+      <p>Blog</p>
+    </div>
+  );
+};
 
-<Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
-<p>Blog</p>
-        </div>
-    )
-}
-
-export default Blog
+export default Blog;
