@@ -1,20 +1,34 @@
-import React from 'react'
+import React from 'react';
+import '../css/Header.css'
 
-const Header = ({headerClassName,headerSecParagraphClass,headerTitle,headerParagraph,headerSecParagraph,headerTitleClass,headerParagraphClass}) => {
+
+const Header = (props) => {
     return (
-        <div className = {`container-fluid ${headerClassName}`}>
-            <div>
-                <h1 className = {headerTitleClass}>{headerTitle}</h1>
-                <h1 className = {headerParagraphClass}>{headerParagraph}</h1>
-            </div>
-            <div>
+        <div>
 
-            </div>
-            <div  className = {headerSecParagraphClass}>
-                {headerSecParagraph}
-            </div>
+            <header className={props.className} >
+                <div className="overlay">
+                    <div className="container">
+                        <div className="row head">
+                            <div className={props.headerText}>
+                                <div className={props.headerBorder}>
+                                    <h3 className="headerText__first"  > {props.HeaderText__first} </h3>
+                                </div>
+                                <div className="container">
+                                    <div className="row my-5 justify-content-center">
+                                        <div className="col-md-7 text-center">
+                                            <h2 className="section-title"> {props.SubHeaderText}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
         </div>
-    )
+    );
 }
 
-export default Header
+export default Header;
