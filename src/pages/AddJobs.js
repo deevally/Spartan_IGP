@@ -1,129 +1,154 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
-import "../css/App.css"
-import "../css/AddJobs.css"
+import "../css/App.css";
+import "../css/AddJobs.css";
 
-const url = ``;
+const url = `https://jsonplaceholder.typicode.com/users`;
 
-const AddJobs = (props) => {
-  const [ formJob, setFormJob ] = useState({
-    job_title:'',
-    company_name:'',
+class AddJobs extends Component {
+  state = {
+    id: "",
+    job_title: "",
+    company_name: "",
     job_type: [],
-    location: [], 
+    location: [],
     salary: [],
     published: [],
-    deadline: '',
-    jobDesc: '',
-    responsibility: '',
-    job_req: ''
-  })
+    deadline: "",
+    jobDesc: "",
+    responsibility: "",
+    job_req: ""
+  };
 
-  const updateFormJob = (e)=> {
-    setFormJob ({
-      ...formJob, [e.target.name]: e.target.value
-    })
-  }
+  updateFormJob = e => {
+    e.persist();
 
-  const {
-  job_title, 
-  company_name,
-  job_type,
-  location, 
-  salary,
-  published,
-  deadline,
-  jobDesc,
-  responsibility,
-  job_req
-  } = formJob
+    this.setState({
+      ...this.state,
+      [e.target.name]: e.target.value
+    });
+  };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    const Data = {
+      ...this.state
+    };
 
-  // axios.post(url)
-  // .then(res => {
-  //   if ((res.status = 200)) {
-  //     console.log("Job created successful");
-  //   }
-  //   let jobId = { id: res.data.id };
-  //   const newJob = Object.assign({}, res.data.Data, jobId);
-  // });
+    axios
+      .post(url, Data)
+      .then(res => {
+        console.log(res);
+        console.log(res.data)
+        if ((res.status = 200)) {
+          console.log("Job created successfully");
+        }
+        let jobId = { id: res.data.id };
+        const newJob = Object.assign({}, res.data.job, jobId);
 
-  return (
-    <div>
-      <Nav ViewJobs="View_Jobs" AddJobs="AddJobs" />
-      <form>
-        <input 
-          type="text" 
-          onChange = {e => updateFormJob(e)}
-          value={job_title}
-          name="job_title"
-          placeholder="Software Developer"
-          required />
-        <input 
-          type="text" 
-          onChange = {e => updateFormJob(e)}
-          value={company_name}
-          name="company_name"
-          placeholder="Greenhouse Capital"
-          required />
-        <select  
-          onChange = {e => updateFormJob(e)}
-          value={job_type}
-          name="job_type"
-          required>
+        this.setState ({
+          ...Data
+        })
+
+        // this.setState(prevState => ({
+        //   Data: [...prevState.Data, newJob]
+        // }))
+      })
+      .catch(error => console.log(error));
+  };
+
+  render() {
+    return (
+      <div>
+        <Nav ViewJobs="View_Jobs" AddJobs="AddJobs" />
+
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            onChange={this.updateFormJob}
+            value={this.state.job_title}
+            name="job_title"
+            placeholder="Software Developer"
+            required
+          />
+          <input
+            type="text"
+            onChange={this.updateFormJob}
+            value={this.state.company_name}
+            name="company_name"
+            placeholder="Greenhouse Capital"
+            required
+          />
+          {/* <select
+            onChange={this.updateFormJob}
+            value={this.state.job_type}
+            name="job_type"
+            required
+          >
             <option>select Here</option>
           </select>
-        <select 
-          onChange = {e => updateFormJob(e)}
-          value={location}
-          name="location"
-          required />
-        <select 
-          onChange = {e => updateFormJob(e)}
-          value={salary}
-          name="salary"
-          required />
-        <input 
-          type="date" 
-          onChange = {e => updateFormJob(e)}
-          value={published}
-          name="published"
-          required />
-        <input 
-          type="date" 
-          onChange = {e => updateFormJob(e)}
-          value={deadline}
-          name="deadline"
-          required />
-        <textarea 
-          type="text" 
-          onChange = {e => updateFormJob(e)}
-          value={jobDesc}
-          name="jobDesc"
-          placeholder="Job Description"
-          required />
-        <textarea 
-          type="text" 
-          onChange = {e => updateFormJob(e)}
-          value={responsibility}
-          name="responsibility"
-          placeholder="Job Responsibilties"
-          required />
-        <textarea 
-          type="text" 
-          onChange = {e => updateFormJob(e)}
-          value={job_req}
-          name="job_req"
-          placeholder="Job Requirements"
-          required />
-         <button type="submit">Submit</button>
-      </form>
-      <Footer />
-    </div>
-  );
-};
+          <select
+            onChange={this.updateFormJob}
+            value={this.state.location}
+            name="location"
+            required
+          />
+          <select
+            onChange={this.updateFormJob}
+            value={this.state.salary}
+            name="salary"
+            required
+          /> */}
+          <input
+            type="date"
+            onChange={this.updateFormJob}
+            value={this.state.published}
+            name="published"
+            required
+          />
+          <input
+            type="date"
+            onChange={this.updateFormJob}
+            value={this.state.deadline}
+            name="deadline"
+            required
+          />
+          <textarea
+            type="text"
+            onChange={this.updateFormJob}
+            value={this.state.jobDesc}
+            name="jobDesc"
+            placeholder="Job Description"
+            required
+          />
+          <textarea
+            type="text"
+            onChange={this.updateFormJob}
+            value={this.state.responsibility}
+            name="responsibility"
+            placeholder="Job Responsibilties"
+            required
+          />
+          <textarea
+            type="text"
+            onChange={this.updateFormJob}
+            value={this.state.job_req}
+            name="job_req"
+            placeholder="Job Requirements"
+            required
+          />
+          <button type="submit">Submit</button>
+        </form>
+
+        <Footer />
+      </div>
+    );
+  }
+}
+
+
 
 export default AddJobs;
