@@ -24,7 +24,7 @@ class AddJobs extends Component {
   };
 
   updateFormJob = e => {
-    e.persist();
+    // e.persist();
 
     this.setState({
       ...this.state,
@@ -43,7 +43,7 @@ class AddJobs extends Component {
       .then(res => {
         console.log(res);
         console.log(res.data)
-        if ((res.status = 200)) {
+        if ((res.status = 201)) {
           console.log("Job created successfully");
         }
         let jobId = { id: res.data.id };
