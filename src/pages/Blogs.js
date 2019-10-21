@@ -2,6 +2,8 @@ import React from 'react'
 import Nav from "../components/Nav";
 import photo from '../Images/undraw_todo_list.png' ;
 import Button from '../components/Button';
+import Header from '../components/Header';
+
 import './Blogs.css';
 
 
@@ -10,6 +12,7 @@ const Blog = () => {
     <div>
 
 <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
+<Header className='headerBlog' headerText='blogHeaderText' headerText_first='Blog Posts'/>
 {/* <p>Blog</p> */}
 <div className="container">
 		<div className="row fullPage">
