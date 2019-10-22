@@ -1,13 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { NavLink,Link } from "react-router-dom";
-import '../css/App.css';
-import imglogo from "../Assets/images/logo.png"
-import '../css/Nav.css';
-=======
-=======
->>>>>>> styling adjustments
 import { NavLink, Link } from "react-router-dom";
 import "../css/App.css";
 import imglogo from "../Assets/images/logo.png";
