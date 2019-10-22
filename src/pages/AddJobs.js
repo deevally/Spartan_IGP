@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Nav from "../components/Nav";
+import JobForm from "../components/JobForm";
+import "../css/addJob.css";
 import Footer from "../components/Footer";
-
 import "../css/App.css";
-import "../css/AddJobs.css";
 
 const url = `https://jsonplaceholder.typicode.com/users`;
 
@@ -53,9 +53,6 @@ class AddJobs extends Component {
           ...Data
         })
 
-        // this.setState(prevState => ({
-        //   Data: [...prevState.Data, newJob]
-        // }))
       })
       .catch(error => console.log(error));
   };
@@ -151,4 +148,4 @@ class AddJobs extends Component {
 
 
 
-export default AddJobs;
+   
