@@ -3,7 +3,7 @@ import axios from "axios";
 import Nav from "../components/Nav";
 import Header from "../components/Header"
 
-// import Spinner from '../components/Spinner'
+import Spinner from '../components/Spinner.js'
 
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
@@ -13,11 +13,12 @@ import Header from "../components/Header"
 import "../css/App.css";
 import "../css/AddJobs.css";
 
-const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
+// const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
+const url = ``;
 
 class AddJobs extends Component {
   state = {
-    // loading: false,
+    loading: false,
     id: "",
     job_title: "",
     company_name: "",
@@ -33,7 +34,7 @@ class AddJobs extends Component {
 
   clearForm=()=>{
     this.setState({
-      id: "",
+    id: "",
     job_title: "",
     company_name: "",
     job_type: [],
@@ -99,11 +100,12 @@ class AddJobs extends Component {
   };
 
   render() {
-    
+    console.log(this.state.loading)
     return (
       <div>
         <Nav ViewJobs="View_Jobs" AddJobs="AddJobs" />
         {/* <GuardSpinner /> */}
+        { this.state.loading === true ? <Spinner /> :
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -180,9 +182,8 @@ class AddJobs extends Component {
             required
           />
           <button type="submit">Submit</button>
-        </form>
-          {/* <ToastContainer /> */}
-        {/* <Footer /> */}
+        </form>}
+         
       </div>
     );
   }
