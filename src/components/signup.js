@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Nav from "../components/Nav";
+import Nav from "./Nav";
+import Button from "../components/Button";
 import "../css/login-signup.css";
 const Signup = () => {
   return (
@@ -33,10 +34,12 @@ const Signup = () => {
                   placeholder="Password"
                 ></input>
               </label>
-              <button className="form-btn">Submit</button>
+              <Button myBtnClass="form-btn" btnType="">
+                Submit
+              </Button>
             </form>
             <p className="member">
-              Already a Member? <Link to="/login">Login</Link>
+              Already a Member? <Link to="/signup">Login</Link>
             </p>
           </div>
         </div>

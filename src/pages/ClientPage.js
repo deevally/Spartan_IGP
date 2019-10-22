@@ -8,8 +8,9 @@ let Search = <Filter/>
 const Client = () => {
   return (
     <div>
-      <Nav Blog="Blog" LogIn="LogIn" SignUp="SignUp" />
+      <Nav Blog="Blog" LogIn="Login" SignUp="SignUp" />
       <Header className="landingPageHeader" headerText='headerText'  searchForm={Search} HeaderText__first= "Search for your dream job" SubHeaderText="Job offers available"  headerBorder="clientsheaderBorder" />
+
       <p>Client Page</p>
     </div>
   );
