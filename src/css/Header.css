@@ -99,5 +99,18 @@ header {
   text-align: left;
   width: 700px;
   border-radius: .5rem;
+}
 
+.headerText {
+  width: 70vw;
+  position: absolute;
+  top: 65%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding-left: 10px;
+  font-size: 3rem;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
