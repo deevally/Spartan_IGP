@@ -12,8 +12,23 @@
   padding: 0;
   box-sizing: border-box;
 }
+html{
+  font-size: 62.5%;
+}
+
+html{
+  font-size: 62.5%;
+}
 
 body {
-  font-size: 62.5%;
+ background-color:#fcfcfe;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Montserrat', sans-serif;
+}
+
+p{
   font-family: 'Poppins', sans-serif;
 }
+

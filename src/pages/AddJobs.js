@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import Header from "../components/Header"
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import Spinner from '../components/Spinner'
 
-import { GuardSpinner } from 'react-spinners-kit'
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+
+// import { GuardSpinner } from 'react-spinners-kit'
 
 import "../css/App.css";
 import "../css/AddJobs.css";
 
-const url = `https://jsonplaceholder.typicode.com/users`;
+const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
 
 class AddJobs extends Component {
   state = {
-    loading: false,
+    // loading: false,
     id: "",
     job_title: "",
     company_name: "",
@@ -54,12 +56,12 @@ class AddJobs extends Component {
     });
   };
 
-  Notify=()=> {
-    toast("Job successfully created", {
-      position: "bottom-center",
-      autoClose: 2000
-    });
-  }
+  // Notify=()=> {
+  //   toast("Job successfully created", {
+  //     position: "bottom-center",
+  //     autoClose: 2000
+  //   });
+  // }
 
   handleSubmit = e => {
     this.setState ({ loading: true})
@@ -74,7 +76,7 @@ class AddJobs extends Component {
         console.log(res);
         console.log(res.data)
         if ((res.status = 201)) {
-          this.Notify()
+          // this.Notify()
           console.log("Job created successfully");
         }
         let jobId = { id: res.data.id };
@@ -179,11 +181,12 @@ class AddJobs extends Component {
           />
           <button type="submit">Submit</button>
         </form>
-          <ToastContainer />
-        <Footer />
+          {/* <ToastContainer /> */}
+        {/* <Footer /> */}
       </div>
     );
   }
+       
 }
 
 
