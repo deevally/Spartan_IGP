@@ -1,15 +1,17 @@
 import React from "react";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { NavLink,Link } from "react-router-dom";
 import '../css/App.css';
 import imglogo from "../Assets/images/logo.png"
 import '../css/Nav.css';
 =======
+=======
+>>>>>>> styling adjustments
 import { NavLink, Link } from "react-router-dom";
 import "../css/App.css";
 import imglogo from "../Assets/images/logo.png";
 import "../css/Nav.css";
->>>>>>> styling adjustment on Job Details
 
 const Nav = ({
   openLoginModal,
@@ -70,20 +72,20 @@ const Nav = ({
                 </NavLink>
               </li>
               <li className="nav-item">
-<<<<<<< HEAD
-                <NavLink to='/View_Jobs' className="nav-link" activeClassName="selectedLink" >
-=======
-                <NavLink to="/View_Jobs" className="nav-link">
->>>>>>> styling adjustment on Job Details
+                <NavLink
+                  to="/View_Jobs"
+                  className="nav-link"
+                  activeClassName="selectedLink"
+                >
                   {ViewJobs} <span className="sr-only">(current)</span>
                 </NavLink>
               </li>
               <li className="nav-item">
-<<<<<<< HEAD
-                <NavLink to='/Add_Jobs' className="nav-link" activeClassName="selectedLink">
-=======
-                <NavLink to="/Add_Jobs" className="nav-link">
->>>>>>> styling adjustment on Job Details
+                <NavLink
+                  to="/Add_Jobs"
+                  className="nav-link"
+                  activeClassName="selectedLink"
+                >
                   {AddJobs} <span className="sr-only">(current)</span>
                 </NavLink>
               </li>
