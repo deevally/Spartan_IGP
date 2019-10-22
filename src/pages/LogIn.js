@@ -7,7 +7,7 @@ class Login extends Component{
   state={
 LoginUser:{
   email:'',
-  passwoord:'',
+  password:'',
 
 },
 canLogin:false
