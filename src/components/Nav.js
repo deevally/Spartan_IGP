@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink,Link } from "react-router-dom";
 import '../css/App.css';
-import imglogo from "../Assets/images/logo.png"
+import imglogo from "../assets/images/logo.png"
 import '../css/Nav.css';
 
 const Nav = ({openLoginModal, Jobs, Blog, SignUp, LogOut, LogIn, Post, AddJobs, ViewJobs }) => {
@@ -62,12 +62,12 @@ const Nav = ({openLoginModal, Jobs, Blog, SignUp, LogOut, LogIn, Post, AddJobs, 
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to='/View_Jobs' className="nav-link" >
+                <NavLink to='/View_Jobs' className="nav-link" activeClassName="selectedLink" >
                   {ViewJobs} <span className="sr-only">(current)</span>
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to='/Add_Jobs' className="nav-link" >
+                <NavLink to='/Add_Jobs' className="nav-link" activeClassName="selectedLink">
                   {AddJobs} <span className="sr-only">(current)</span>
                 </NavLink>
               </li>

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Header.css'
+// import Filter from './Filter';
 
 
 const Header = (props) => {
@@ -12,8 +13,9 @@ const Header = (props) => {
                         <div className="row head">
                             <div className={props.headerText}>
                                 <div className={props.headerBorder}>
-                                    <h3 className="headerText__first"  > {props.HeaderText__first} </h3>
+                                    <h3 className="headerText__first" > {props.HeaderText__first} </h3>
                                 </div>
+                                {props.searchForm}
                                 <div className="container">
                                     <div className="row my-5 justify-content-center">
                                         <div className="col-md-7 text-center">
