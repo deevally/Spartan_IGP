@@ -3,6 +3,11 @@ import axios from "axios";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { GuardSpinner } from 'react-spinners-kit'
+
 import "../css/App.css";
 import "../css/AddJobs.css";
 
@@ -10,6 +15,7 @@ const url = `https://jsonplaceholder.typicode.com/users`;
 
 class AddJobs extends Component {
   state = {
+    loading: false,
     id: "",
     job_title: "",
     company_name: "",
@@ -23,6 +29,22 @@ class AddJobs extends Component {
     job_req: ""
   };
 
+  clearForm=()=>{
+    this.setState({
+      id: "",
+    job_title: "",
+    company_name: "",
+    job_type: [],
+    location: [],
+    salary: [],
+    published: [],
+    deadline: "",
+    jobDesc: "",
+    responsibility: "",
+    job_req: ""
+    })
+  }
+
   updateFormJob = e => {
     // e.persist();
 
@@ -32,18 +54,27 @@ class AddJobs extends Component {
     });
   };
 
+  Notify=()=> {
+    toast("Job successfully created", {
+      position: "bottom-center",
+      autoClose: 2000
+    });
+  }
+
   handleSubmit = e => {
+    this.setState ({ loading: true})
     e.preventDefault();
     const Data = {
       ...this.state
     };
-
+    // console.log(Data)
     axios
       .post(url, Data)
       .then(res => {
         console.log(res);
         console.log(res.data)
         if ((res.status = 201)) {
+          this.Notify()
           console.log("Job created successfully");
         }
         let jobId = { id: res.data.id };
@@ -53,18 +84,24 @@ class AddJobs extends Component {
           ...Data
         })
 
-        // this.setState(prevState => ({
-        //   Data: [...prevState.Data, newJob]
-        // }))
+        this.clearForm()
+
+    //     // this.setState(prevState => ({
+    //     //   Data: [...prevState.Data, newJob]
+    //     // }))
       })
-      .catch(error => console.log(error));
+     .catch(error => {
+      this.setState({loading: false}) 
+      console.log(error)});
+      
   };
 
   render() {
+    
     return (
       <div>
         <Nav ViewJobs="View_Jobs" AddJobs="AddJobs" />
-
+        {/* <GuardSpinner /> */}
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -142,7 +179,7 @@ class AddJobs extends Component {
           />
           <button type="submit">Submit</button>
         </form>
-
+          <ToastContainer />
         <Footer />
       </div>
     );
