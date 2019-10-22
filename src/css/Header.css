@@ -6,6 +6,29 @@ header {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+<<<<<<< HEAD
+=======
+
+.headerBlog {
+  background-image: url("../Assets/images/design-desk-eyewear-313690.jpg");
+  height: 50vh;
+}
+
+.landingPageHeader {
+  background-image: url("../Assets/images/open-workspace-2.jpg");
+  height: 100vh;
+}
+
+.adminHeader {
+  background-image: url("../Assets/images/img1.jpg");
+  height: 50vh;
+}
+
+.signUpPageHeader {
+  background-image: url("../Assets/images/open-workspace-2.jpg");
+  height: 50vh;
+}
+>>>>>>> style changes
 
 .headerBlog {
   background-image: url("../Assets/images/design-desk-eyewear-313690.jpg");
