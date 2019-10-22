@@ -1,11 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
-import Button from "./Button";
+// import Nav from "../components/Nav";
+import Button from "../components/Button";
+import "../css/App.css";
+import "../css/addJob.css";
+import Footer from "../components/Footer";
+
+
 const url = `https://jsonplaceholder.typicode.com/users`;
-class JobForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+
+class AddJobs extends Component {
+  state = {
       id: "",
       job_title: "",
       company_name: "",
@@ -16,12 +21,13 @@ class JobForm extends React.Component {
       deadline: "",
       jobDesc: "",
       responsibility: "",
-      job_req: ""
-    };
-  }
+      job_req: "",
+      isCorrect:true
+  };
 
   updateFormJob = e => {
-    e.persist();
+    // e.persist();
+
     this.setState({
       ...this.state,
       [e.target.name]: e.target.value
@@ -29,57 +35,65 @@ class JobForm extends React.Component {
   };
 
   validationLogic = (items)=>{
+    
     Object.keys(items).forEach((item)=>{
         if(items[item].length === 0){
         document.getElementById(item).style.border="1px solid #a83432";
+        this.setState({isCorrect:false})
+    }else{
+      this.setState({isCorrect:true})
     }
     })
   }
-
   handleSubmit = e => {
     e.preventDefault();
     let Data = {
       ...this.state
     };
+
     let items = {
-        job_title:Data.job_title,
-        company_name:Data.company_name,
-        job_nature:Data.job_nature,
-        location:Data.location,
-        salary:Data.salary,
-        published:Data.published,
-        deadline:Data.deadline,
-        jobDesc:Data.jobDesc,
-        responsibility:Data.responsibility,
-        job_req: Data.job_req
-    }
-    if(items){
-        this.validationLogic(items);
-    }
-}
-    // axios
-    //   .post(url, Data)
-    //   .then(res => {
-    //     console.log(res);
-    //     console.log(res.data);
-    //     if ((res.status = 200)) {
-    //       console.log("Job created successfully");
-    //     }
-    //     let jobId = { id: res.data.id };
-    //     const newJob = Object.assign({}, res.data.job, jobId);
-    //     this.setState({
-    //       ...Data
-    //     });
-    //     // this.setState(prevState => ({
-    //     //   Data: [...prevState.Data, newJob]
-    //     // }))
-    //   })
-    //   .catch(error => console.log(error));
-  
+      job_title:Data.job_title,
+      company_name:Data.company_name,
+      job_nature:Data.job_nature,
+      location:Data.location,
+      salary:Data.salary,
+      published:Data.published,
+      deadline:Data.deadline,
+      jobDesc:Data.jobDesc,
+      responsibility:Data.responsibility,
+      job_req: Data.job_req
+  }
+  if(items){
+      this.validationLogic(items);
+  }
+  if(this.state.isCorrect){
+    return;
+  }
+  delete Data.id;
+  delete Data.isCorrect;
+  axios
+      .post(url, Data)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        if ((res.status = 200)) {
+          console.log("Job created successfully");
+        }
+        let jobId = { id: res.data.id };
+        const newJob = Object.assign({}, res.data.job, jobId);
+        this.setState({
+          ...Data
+        });
+        
+      })
+      .catch(error => console.log(error));
+  };
 
   render() {
     return (
-      <Fragment>
+      <div>
+
+        <Fragment>
         <section class="jobListView">
           <div class="container">
             <div class="row">
@@ -94,7 +108,7 @@ class JobForm extends React.Component {
                       value={this.state.job_title}
                       id="job_title"
                       
-                      name="jobTitle"
+                      name="job_title"
                       placeholder="Software Engineer"
                     />
                   </div>
@@ -254,8 +268,12 @@ class JobForm extends React.Component {
           </div>
         </section>
       </Fragment>
+
+        <Footer />
+      </div>
     );
   }
 }
 
-export default JobForm;
+export default AddJobs
+   
