@@ -4,6 +4,7 @@ import photo from '../assets/images/undraw_todo_list.png' ;
 import Button from '../components/Button';
 import Header from '../components/Header';
 import './Blogs.css';
+import Footer from '../components/Footer'
 
 
 const Blog = () => {
@@ -52,7 +53,7 @@ const Blog = () => {
                 </div>
         </div>
             </div>
-   
+            <Footer/>
         </div>
         
     )
