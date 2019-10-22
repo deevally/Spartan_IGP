@@ -1,16 +1,19 @@
-import React from 'react'
+import React from "react";
 import Nav from "../components/Nav";
-import Header from "../components/Header"
+import Header from "../components/Header";
 
 const Blog = () => {
-    return (
+  return (
     <div>
-
-        <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
-        <Header className ='headerBlog' headerText="blogHeaderText" HeaderText__first= "Blog Posts" />
-        <p>Blog</p>
+      <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
+      <Header
+        className="headerBlog"
+        headerText="blogHeaderText"
+        HeaderText__first="Blog Posts"
+      />
+      <p>Blog</p>
     </div>
-    )
-}
+  );
+};
 
-export default Blog
+export default Blog;

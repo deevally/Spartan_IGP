@@ -6,6 +6,7 @@ header {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+<<<<<<< HEAD
 .headerBlog {
   background-image: url("../Assets/images/design-desk-eyewear-313690.jpg");
   height: 50vh;
@@ -23,6 +24,29 @@ header {
 .signUpPageHeader {
   background-image: url("../Assets/images/open-workspace-2.jpg");
   height: 50vh;
+=======
+
+.headerBlog {
+    background-image: url("../Assets/images/design-desk-eyewear-313690.jpg");
+    height: 50vh;
+
+}
+
+.landingPageHeader {
+    background-image: url("../Assets/images/open-workspace-2.jpg");
+    height: 100vh;
+
+}
+
+.adminHeader {
+    background-image: url("../Assets/images/img1.jpg");
+    height: 50vh;
+}
+
+.signUpPageHeader {
+    background-image: url("../Assets/images/open-workspace-2.jpg");
+    height: 50vh;
+>>>>>>> styling adjustment on Job Details
 }
 
 .overlay {
@@ -32,6 +56,7 @@ header {
   top: 0;
   background-color: rgba(3, 11, 14, 0.801);
 }
+<<<<<<< HEAD
 .homeHeaderText {
   width: 100%;
   text-align: center;
@@ -40,7 +65,20 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
+=======
+
+.homeHeaderText {
+
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+>>>>>>> styling adjustment on Job Details
 }
+
 .blogHeaderText {
   width: 100%;
   text-align: center;
@@ -53,6 +91,7 @@ header {
 }
 
 .signHeaderText {
+<<<<<<< HEAD
   width: 100%;
   text-align: center;
   position: absolute;
@@ -60,16 +99,46 @@ header {
   left: 10%;
   transform: translate(-50%, -50%);
   color: #fff;
+=======
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+>>>>>>> styling adjustment on Job Details
 }
+
 .headerText__first {
+<<<<<<< HEAD
   padding-left: 10px;
   font-size: 5rem;
   color: #fff;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   margin-bottom: 2rem;
+=======
+    padding-left: 10px;
+    font-size: 5rem;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-bottom: 2rem;
 }
+
+.jobDetails {
+    padding-left: 10px;
+    font-size: 1.4rem;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    margin-bottom: 2rem;
+>>>>>>> styling adjustment on Job Details
+}
+
 .section-title {
+<<<<<<< HEAD
   padding-left: 10px;
   font-size: 3rem;
   color: #fff;
@@ -92,4 +161,20 @@ header {
   left: 53%;
   transform: translate(-50%, -50%); 
   text-align:center;
+=======
+    padding-left: 10px;
+    font-size: 3rem;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.clientsheaderBorder {
+    border-left: .7rem solid rgba(12, 202, 21, 0.4);
+    margin: 0 auto;
+    text-align: left;
+    width: 700px;
+    border-radius: .5rem;
+
+>>>>>>> styling adjustment on Job Details
 }

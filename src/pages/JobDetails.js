@@ -1,12 +1,22 @@
 import React from "react";
 import Button from "../components/Button";
+import Nav from "../components/Nav";
+import Header from "../components/Header";
 
 import "../css/jobDetails.css";
 
 const JobDetails = () => {
   return (
     <div>
-      <div class="container">
+      <Nav Jobs="Jobs" SignUp="Signup" LogIn="Login" />
+      <Header
+        className="headerBlog"
+        headerText="blogHeaderText"
+        HeaderText__first="Job Details"
+        jobDetailsText="HOME / JOB DETAILs"
+        jobDetails="jobDetails"
+      />
+      <div class="container mt-5">
         <div class="row fullPage">
           <div class="col-md-9">
             <div class="data">
@@ -140,7 +150,7 @@ const JobDetails = () => {
               <Button
                 Children="Apply"
                 btnType="btn-primary"
-                myBtnClass="apply"
+                myBtnClass="ml-auto apply "
               />
             </div>
           </div>
