@@ -1,9 +1,8 @@
 import React from 'react'
 import Nav from "../components/Nav";
-import photo from '../Images/undraw_todo_list.png' ;
+import photo from '../Assets/images/undraw_todo_list.png' ;
 import Button from '../components/Button';
 import Header from '../components/Header';
-
 import './Blogs.css';
 
 
@@ -12,7 +11,7 @@ const Blog = () => {
     <div>
 
 <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
-<Header className='headerBlog' headerText='blogHeaderText' headerText_first='Blog Posts'/>
+<Header className='headerBlog' headerText='blogHeaderText' HeaderText_first='Blog Posts'/>
 {/* <p>Blog</p> */}
 <div className="container">
 		<div className="row fullPage">
@@ -43,7 +42,7 @@ const Blog = () => {
                     </p>
                     <p>by <span className="lorem">Lorem ipsum</span></p>
                     <p>October 9, 2019</p>
-                    <Button Children ="View More"  btnType="btn-primary" />
+                    <Button children ="View More"  btnType="btn-primary" />
                 </div>
                     <div id="image">
                         	<img src={photo} alt='cardphoto' className="indexImage" />
