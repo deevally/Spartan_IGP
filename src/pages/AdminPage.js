@@ -11,7 +11,6 @@ const AdminPage = () => {
             <Header className="adminHeader" headerText="signHeaderText" HeaderText__first= "Admin" SubHeaderText="Job offers available"   />
             <Dashboard />
             <Footer/>
-
         </div>
     )
 }
