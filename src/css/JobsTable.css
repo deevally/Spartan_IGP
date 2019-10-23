@@ -1,14 +1,27 @@
+body{
+  background-color: #faf9f9;
+}
+.tableBorder{
+  box-shadow: 5px 3px 5px 3px #888888;
+  margin: 5rem 2rem 0 0;
+  background-color: #ffffff;
+  width: 80%;
+  float: right;
+
+}
 #title {
     text-align: center;
     font-family: arial, sans-serif;
-    margin: 5rem 0 2rem 0;
+    padding: 2rem;
+    text-align: left;
   }
   
   #jobListing {
     text-align: center;
     border-collapse: collapse;
     border: 3px solid #ddd;
-    width: 80%;
+    width: 100%;
+    padding-bottom: 2rem;
   }
   
   #jobListing td, #jobListing th {
@@ -19,11 +32,30 @@
   #jobListing tr:nth-child(even){background-color: #f2f2f2;}
   
   #jobListing tr:hover {background-color: #ddd;}
-  
+  button{
+    border: none;
+    border-radius: 2px;
+    padding: .5em;
+    color: #fff;
+    background-color: #f06161;
+  }
   #jobListing th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
     background-color: rgb(76, 119, 175);
     color: white;
+  }
+  .adminSidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(76, 119, 175);
+    width: 20rem;
+    color: #fff;
+    position: fixed;
+    margin-top: 5rem;
+    font-size: 1.5rem;
+    box-shadow: 2px 3px 5px 0px #c4c4c4;
+
   }
