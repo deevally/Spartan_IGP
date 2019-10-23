@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
-// import Nav from "../components/Nav";
+// import Nav from "../components/Nav";`
 import Button from "../components/Button";
-
-import Spinner from '../components/Spinner'
+import BaseUrl from '../utils/baseUrl';
+import Spinner from '../components/spinner';
+import Toast from './Toast';
 import "../css/App.css";
 import "../css/addJob.css";
 import Footer from "../components/Footer";
@@ -24,7 +25,8 @@ class AddJobs extends Component {
     jobDesc: "",
     responsibility: "",
     job_req: "",
-    isCorrect: true
+    isCorrect: true,
+    toast: false
   };
 
   updateFormJob = e => {
@@ -47,9 +49,17 @@ class AddJobs extends Component {
     });
   };
 
+  showToast = ()=>{
+    let x = document.getElementById("toast")
+    x.className = "show";
+    setTimeout(function(){
+      x.className = x.className.replace("show", ""); 
+    }, 5000);
+  }
+
   handleSubmit = e => {
     this.setState ({ loading: true})
-    e.preventDefault();
+    e.preventDefault({toast:true});
     let Data = {
       ...this.state
     };
@@ -88,6 +98,7 @@ class AddJobs extends Component {
         this.setState({
           ...Data
         });
+        this.showToast();
       })
       .catch(error => {
         this.setState({loading: false}) 
@@ -102,6 +113,7 @@ class AddJobs extends Component {
             <div class="container">
               <div class="row">
                 <div class="col-md-10 mx-auto">
+                <Toast caption="Data Uploaded Successfully!"/>
                   { this.state.loading === true ? <Spinner />: 
                   <form id="addJob" onSubmit={this.handleSubmit}>
                   <div class="form-group">
@@ -249,6 +261,8 @@ class AddJobs extends Component {
                       rows="3"
                     ></textarea>
                   </div>
+                  <div id="toast"><div id="img">Icon</div><div id="desc">Data Uploaded Successfully...</div></div>
+
                   <Button
                     type="submit"
                     btnType="btn-primary"
