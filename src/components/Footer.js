@@ -17,19 +17,19 @@ const Footer = () => {
 
                 <div className="social_icon">
                   <i
-                    class="fab fa-facebook fa-2x"
+                    className="fab fa-facebook fa-2x"
                     style={{ cursor: "pointer" }}
                   ></i>
                   <i
-                    class="fab fa-twitter fa-2x ml-5"
+                    className="fab fa-twitter fa-2x ml-5"
                     style={{ cursor: "pointer" }}
                   ></i>
                   <i
-                    class="fab fa-linkedin fa-2x ml-5"
+                    className="fab fa-linkedin fa-2x ml-5"
                     style={{ cursor: "pointer" }}
                   ></i>
                   <i
-                    class="fab fa-instagram fa-2x ml-5"
+                    className="fab fa-instagram fa-2x ml-5"
                     style={{ cursor: "pointer" }}
                   ></i>
                 </div>
@@ -42,7 +42,7 @@ const Footer = () => {
                 <div>
                   <span>
                     {" "}
-                    <i class="fa fa-phone fa-2x mr-3"></i>{" "}
+                    <i className="fa fa-phone fa-2x mr-3"></i>{" "}
                   </span>{" "}
                   <span className="phoneNo">08134565753</span>
                 </div>

@@ -68,7 +68,7 @@ const {fullName, email, text}= this.state;
       amet laudantium harum cupiditate, enim aut optio ex est repellat excepturi magni eius cum sint nobis totam
         deserunt veniam. consectetur adipisicing elit. Quisquam a in mollitia expedita beatae eligendi ullam,
         deleniti iste nisi maiores ut, sed saepe magnam quos quaerat, labore nemo odio. Voluptates
-        deleniti iste nisi maiores ut, sed saepe magnam quos quaerat, labore nemo odio. Voluptates.<h6>Lorem Ipsum</h6><p>Lorem ipsum dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa natus tenetur
+        deleniti iste nisi maiores ut, sed saepe magnam quos quaerat, labore nemo odio. Voluptates.</p><p>Lorem ipsum dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa natus tenetur
         amet laudantium harum cupiditate, enim aut optio ex est repellat excepturi magni eius cum sint nobis totam
         deserunt veniam. consectetur adipisicing elit. Quisquam a in mollitia expedita beatae eligendi ullam,
         deleniti iste nisi maiores ut, sed saepe magnam quos quaerat, labore nemo odio. Lorem ipsum dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa natus teneturLorem ipsum dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa natus tenetur
@@ -79,7 +79,6 @@ const {fullName, email, text}= this.state;
         deserunt veniam. consectetur adipisicing elit. Quisquam a in mollitia expedita beatae eligendi ullam,
         deleniti iste nisi maiores ut,</p>
         <p className="Parag">By <strong>Immaculate</strong> on {value.datePosted} at {value.timePosted}</p>
-        </p>
 
         <div className="Comment-section">
       <p className="H">Comments</p>

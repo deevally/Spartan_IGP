@@ -4,9 +4,11 @@ import Header from "../components/Header";
 import Card from "../components/Card";
 import Filter from "../components/Filter";
 import Footer from "../components/Footer";
-
-import {BaseUrl}  from "../utils/baseUrl";
+import "../css/Card.css";
+import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
+import Spinner from "../components/Spinner";
+import JobSidebar from "../components/JobSidebar"
 
 let Search = <Filter />;
 
@@ -15,29 +17,63 @@ class Client extends Component {
     super();
     this.state = {
       Jobs: [],
-      allJob: null
+      allJob: null,
+      err: "",
+      loading: false
     };
   }
 
   componentDidMount() {
+    this.setState({ loading: true });
     let url = `${BaseUrl}/jobs`;
     Axios(url)
       .then(res => {
         this.showJob(res.data);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.setState({ err, loading: false });
+      });
   }
 
   showJob = data => {
     this.setState({
       Jobs: data.docs,
-      allJob: data.total
+      allJob: data.total,
+      loading: false
     });
   };
 
+  gotoJobDetails = (JobId) => {
+    const { history } = this.props;
+    history.push(`/jobdetails/${JobId}`);
+  };
+
+
+
   render() {
-    const { Jobs, allJob } = this.state;
-    console.log(Jobs);
+    const { Jobs, allJob, loading, err } = this.state;
+    
+    let fulltime=0 ,partTime = 0 ,remote = 0;
+
+    Jobs.map(Job=>{
+      switch (Job.JobType) {
+        case 'Full-time':
+            fulltime++
+            break;  
+        case 'Part-time':
+            partTime++
+            break;
+        case 'Remote':
+            remote++
+            break;
+        default:
+          break;}
+      
+    })
+
+ 
+
+    
     return (
       <div>
         <Nav Blog="Blog" LogIn="Login" SignUp="SignUp" />
@@ -54,7 +90,37 @@ class Client extends Component {
           }
           headerBorder="clientsheaderBorder"
         />
-<Card/>
+
+        {loading && <Spinner />}
+
+        {Jobs && (
+          <div className="container">
+            <div className="row single-post my-5 ">
+              <div className="details col-md-9">
+                {Jobs.map(Job => (
+                  <div key={Job._id}>
+                    <Card
+                      cardHeader={Job.JobTitle}
+                      cardHeaderSub={Job.jobResponsibilities}
+                      CardSubText={Job.JobType}
+                      CardSubText2={Job.salary}
+                      onClick={()=>this.gotoJobDetails(Job._id)}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className= {loading===true?'sidebarShow' : 'col-md-3 '}>
+                  <JobSidebar  FullTime ={'Full-Time'} FullTimeNumbers ={fulltime} PartTime ={'Part-Time'} PartTimeNumbers ={partTime} Remote={'Remote'} RemoteNumbers = {remote} />
+              </div>
+            </div>
+          </div>
+        )}
+        {err && (
+          <div className="container mx-auto">
+            <h1 className='font-weight-bolder mb-5 ml-5'>Check your Connection</h1>
+          </div>
+        )}
+
         <Footer />
       </div>
     );
