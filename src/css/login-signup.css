@@ -4,16 +4,14 @@
 }
 
 .login-img {
-  background-image: url("../Assets/images/design-desk-eyewear-313690.jpg");
+  background-image: url("../assets/images/design-desk-eyewear-313690.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 50%;
 }
 
-.container-parent {
-  /* height: 80vh; */
-}
+
 
 .login-container {
   width: 80%;
