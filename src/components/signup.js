@@ -1,8 +1,10 @@
-import React from "react";
+import React, {Component} from "react";
 import { Link } from "react-router-dom";
-import Nav from "../components/Nav";
+import Nav from "./Nav";
+import Button from "../components/Button";
 import "../css/login-signup.css";
-const Signup = () => {
+class Signup extends Component {
+    render(){
   return (
     <div className="container-parent">
       <Nav />
@@ -13,6 +15,7 @@ const Signup = () => {
             <p className="sign">Signup</p>
             <form className="forms" action="">
               <label htmlFor="">
+                <i class="fas fa-user"></i>
                 <input
                   className="fullname"
                   type="text"
@@ -33,16 +36,19 @@ const Signup = () => {
                   placeholder="Password"
                 ></input>
               </label>
-              <button className="form-btn">Submit</button>
+              <Button myBtnClass="form-btn" btnType="">
+                Submit
+              </Button>
             </form>
             <p className="member">
-              Already a Member? <Link to="/login">Login</Link>
+              Already a Member? <Link to="/signup">Login</Link>
             </p>
           </div>
         </div>
       </div>
     </div>
   );
+    }
 };
 
 export default Signup;
