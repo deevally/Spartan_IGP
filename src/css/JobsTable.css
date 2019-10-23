@@ -1,0 +1,29 @@
+#title {
+    text-align: center;
+    font-family: arial, sans-serif;
+    margin: 5rem 0 2rem 0;
+  }
+  
+  #jobListing {
+    text-align: center;
+    border-collapse: collapse;
+    border: 3px solid #ddd;
+    width: 80%;
+  }
+  
+  #jobListing td, #jobListing th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #jobListing tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #jobListing tr:hover {background-color: #ddd;}
+  
+  #jobListing th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: rgb(76, 119, 175);
+    color: white;
+  }

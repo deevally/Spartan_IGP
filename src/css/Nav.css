@@ -37,3 +37,7 @@ nav {
     letter-spacing: .3rem;
 
   }
+  
+.selectedLink{
+  border-bottom:2px solid #51b64b;
+}
