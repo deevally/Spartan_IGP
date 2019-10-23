@@ -13,7 +13,8 @@ class Client extends Component {
     super();
     this.state = {
       Jobs: [],
-      allJob: null
+      allJob: null,
+      err:''
     };
   }
 
@@ -23,7 +24,9 @@ class Client extends Component {
       .then(res => {
         this.showJob(res.data);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.setState({err})
+      });
   }
 
   showJob = data => {
