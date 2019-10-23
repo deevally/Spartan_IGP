@@ -1,9 +1,9 @@
 import React from 'react'
 import Nav from "../components/Nav";
-import photo from '../Assets/images/undraw_todo_list.png' ;
+import photo from '../assets/images/undraw_newspaper_k72w.png' ;
 import Button from '../components/Button';
 import Header from '../components/Header';
-import './Blogs.css';
+import '../css/Blogs.css';
 
 
 const Blog = () => {
@@ -11,7 +11,7 @@ const Blog = () => {
     <div>
 
 <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
-<Header className='headerBlog' headerText='blogHeaderText' HeaderText_first='Blog Posts'/>
+<Header className='headerBlog' headerText='blogHeaderText' HeaderText__first='Blog Posts'/>
 {/* <p>Blog</p> */}
 <div className="container">
 		<div className="row fullPage">
@@ -31,7 +31,7 @@ const Blog = () => {
         <div className="single-post">
             <div className="title" id="main-title">
                 <div className="blog-content">
-                    <h4>SUNT AUT FACERE REPELLAT PROVIDENT OCCAECATI EXCEPTURI OPTIO REPREHENDERIT
+                    <h4 className="blog-title"><b>SUNT AUT FACERE REPELLAT PROVIDENT OCCAECATI EXCEPTURI OPTIO REPREHENDERIT</b>
                     </h4>
                             <p>dolor sit amet consectetur adipisicing elit. Ipsa natus teneturLorem ipsum dolor sit amet Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa natus tenetur
                             amet laudantium harum cupiditate, enim aut optio ex est repellat excepturi magni eius cum sint nobis totam

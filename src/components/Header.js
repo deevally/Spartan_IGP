@@ -13,7 +13,7 @@ const Header = (props) => {
                         <div className="row head">
                             <div className={props.headerText}>
                                 <div className={props.headerBorder}>
-                                    <h3 className="headerText__first" > {props.HeaderText__first} </h3>
+                                    <h3 className="headerText__first"> {props.HeaderText__first} </h3>
                                 </div>
                                 {props.searchForm}
                                 <div className="container">
