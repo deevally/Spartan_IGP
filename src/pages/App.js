@@ -6,7 +6,7 @@ import SignUp from "./SignUp";
 import AdminPage from "./AdminPage";
 import AddJobs from "./AddJobs";
 import Blog from "./Blogs";
-import Post from "./Post";
+import Blogdetails from "./Blogdetails";
 import jobdetails from "./JobDetails";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
         <Route path="/View_Jobs" component={AdminPage} />
         <Route path="/Add_Jobs" component={AddJobs} />
         <Route path="/Blog" component={Blog} />
-        <Route path="/Blog/:Id" component={Post} />
+        <Route path="/Blogdetails" component={Blogdetails} />
         <Route path="/jobdetails/:JobId" component={jobdetails} />
       </Switch>
     </Router>
