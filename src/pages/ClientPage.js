@@ -55,7 +55,7 @@ class Client extends Component {
     
     let fulltime=0 ,partTime = 0 ,remote = 0;
 
-    Jobs.map(Job=>{
+    Jobs.map(Job => {
       switch (Job.JobType) {
         case 'Full-time':
             fulltime++
