@@ -54,8 +54,8 @@ class BlogDetails extends Component {
 const {fullName, email, text}= this.state;
   return (
     <div>
-{/* <Nav Jobs={'jobs'} SignUp ={'SignUp'} LogIn ={'Login'}/>
-<Header/> */}
+{ <Nav Jobs={'jobs'} SignUp ={'SignUp'} LogIn ={'Login'}/> }
+<Header/>
 
 
 <div className = "container">
