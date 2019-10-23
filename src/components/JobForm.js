@@ -2,51 +2,31 @@ import React, { Component, Fragment } from "react";
 import axios from "axios";
 // import Nav from "../components/Nav";`
 import Button from "../components/Button";
-import BaseUrl from '../utils/baseUrl';
-import Spinner from '../components/spinner';
+// import BaseUrl from '../utils/baseUrl';
+import {withRouter} from 'react-router-dom'
+import Spinner from '../components/Spinner';
 import Toast from './Toast';
+
 import "../css/App.css";
 import "../css/addJob.css";
-import Footer from "../components/Footer";
 
+// const url = `https://jsonplaceholder.typicode.com/posts`;
 const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
 
-class AddJobs extends Component {
+class JobForm extends Component {
   state = {
-    loading: false,
-    id: "",
-    job_title: "",
-    company_name: "",
-    job_nature: [],
-    location: [],
-    salary: [],
-    published: [],
-    deadline: "",
-    jobDesc: "",
-    responsibility: "",
-    job_req: "",
-    isCorrect: true,
-    toast: false
+    fields: {},
+    errors: {},
+    // loading: false
   };
 
   updateFormJob = e => {
-    // e.persist();
-
+    let fields = this.state.fields;
+    fields[e.target.name] = e.target.value;
     this.setState({
-      ...this.state,
-      [e.target.name]: e.target.value
+      fields
     });
-  };
-
-  validationLogic = items => {
-    Object.keys(items).forEach(item => {
-      if (items[item].length === 0) {
-        document.getElementById(item).style.border = "1px solid #a83432";
-        this.setState({ isCorrect: false });
-      } else {
-        this.setState({ isCorrect: true });
-      }
-    });
+    console.log( this.state.fields)
   };
 
   showToast = ()=>{
@@ -55,6 +35,8 @@ class AddJobs extends Component {
     setTimeout(function(){
       x.className = x.className.replace("show", ""); 
     }, 5000);
+    // push to a new page;
+    // this.props.history.push(this.props.callbackurl)
   }
 
   handleSubmit = e => {
@@ -63,226 +45,229 @@ class AddJobs extends Component {
     let Data = {
       ...this.state
     };
-
-    let items = {
-      job_title: Data.job_title,
-      company_name: Data.company_name,
-      job_nature: Data.job_nature,
-      location: Data.location,
-      salary: Data.salary,
-      published: Data.published,
-      deadline: Data.deadline,
-      jobDesc: Data.jobDesc,
-      responsibility: Data.responsibility,
-      job_req: Data.job_req
-    };
-
-    if (items) {
-      this.validationLogic(items);
-    }
-    if (this.state.isCorrect) {
-      return;
-    }
-    delete Data.id;
-    delete Data.isCorrect;
-    axios
-      .post(url, Data)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-        if ((res.status = 200)) {
-          console.log("Job created successfully");
-        }
-        // let jobId = { id: res.data.id };
-        // const newJob = Object.assign({}, res.data.job, jobId);
-        this.setState({
-          ...Data
+    let {fields} = this.state;
+    if (this.validateForm()) {
+     
+      console.log("fields-two", fields)
+      axios
+        .post(url, fields)
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+          if ((res.status = 201)) {
+            console.log("Job created successfully");
+            this.setState({
+              loading:false,
+              fields: fields
+            });
+            this.showToast();
+            
+          }
+        })
+        .catch(error => {
+          this.setState({ loading: false });
+          console.log(error);
         });
-        this.showToast();
-      })
-      .catch(error => {
-        this.setState({loading: false}) 
-        console.log(error)});
+    }else{
+      console.log("fields-two", fields)
+    }
+  };
+
+  validateForm = () => {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+  
+    if (!fields["JobTitle"]) {
+      formIsValid = false;
+      errors["JobTitle"] = "*Enter a job title";
+    }
+  
+    if (typeof fields["JobTitle"] !== "undefined") {
+      if (!fields["JobTitle"].match(/^[a-zA-Z ]*$/)) {
+        formIsValid = false;
+        errors["JobTitle"] = "*Enter alphabet characters only";
+      }
+    }
+
+    if (!fields["companyInformation"]) {
+      formIsValid = false;
+      errors["companyInformation"] = "*Enter a company info";
+    }
+    if (typeof fields["companyInformation"] !== "undefined") {
+      if (!fields["companyInformation"].match(/^[a-zA-Z ]*$/)) {
+        formIsValid = false;
+        errors["companyInformation"] = "*Enter alphabet characters only";
+      }
+    }
+
+    if (!fields["JobDescription"]) {
+      formIsValid = false;
+      errors["JobDescription"] = "*Enter a job description";
+    }
+    if (typeof fields["JobDescription"] !== "undefined") {
+      if (!fields["JobDescription"].match(/^[a-zA-Z ]*$/)) {
+        formIsValid = false;
+        errors["JobDescription"] = "*Enter alphabet characters only";
+      }
+    }
+
+    if (!fields["jobResponsibilities"]) {
+      formIsValid = false;
+      errors["jobResponsibilities"] = "*Enter job responsibilities";
+    }
+    if (typeof fields["jobResponsibilities"] !== "undefined") {
+      if (!fields["jobResponsibilities"].match(/^[a-zA-Z ]*$/)) {
+        formIsValid = false;
+        errors["jobResponsibilities"] = "*Enter alphabet characters only";
+      }
+    }
+
+    // if (!fields["salary"]) {
+    //   formIsValid = false;
+    //   errors["salary"] = "*Enter the salary range";
+    // }
+    // if (typeof fields["salary"] !== "undefined") {
+    //   if (!fields["salary"].match(/^[a-zA-Z ]*$/)) {
+    //     formIsValid = false;
+    //     errors["salary"] = "*Enter range only";
+    //   }
+    // }
+
+    this.setState({
+      errors: errors
+    });
+
+    return true;
   };
 
   render() {
     return (
       <div>
         <Fragment>
-          <section class="jobListView">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-10 mx-auto">
+          <section className="jobListView">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-10 mx-auto">
                 <Toast caption="Data Uploaded Successfully!"/>
-                  { this.state.loading === true ? <Spinner />: 
+                  { (this.state.loading === true) ? <Spinner />: 
                   <form id="addJob" onSubmit={this.handleSubmit}>
-                  <div class="form-group">
-                    <label for="job-title">Job Title</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      onChange={this.updateFormJob}
-                      value={this.state.job_title}
-                      id="job_title"
-                      name="job_title"
-                      placeholder="Software Engineer"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="job-title">Company Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      onChange={this.updateFormJob}
-                      id="company_name"
-                      name="company_name"
-                      placeholder="Venture Garden Group"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="job-nature">Job Nature</label>
-                    <select
-                      class="form-control"
-                      id="job_nature"
-                      name="jobNature"
-                    >
-                      <option selected disabled>
-                        Choose a Job type
-                      </option>
-                      <option>Full Time</option>
-                      <option>Part Time</option>
-                      <option>Intern</option>
-                      <option>Remote</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="location">Location</label>
-                    <select
-                      class="form-control"
-                      name="location"
-                      id="location"
-                    >
-                      <option selected disabled>
-                        Choose a Location
-                      </option>
-                      <option>Lagos</option>
-                      <option>Abuja </option>
-                      <option>PortHarcourt</option>
-                      <option>Ibadan</option>
-                      <option>Ilorin</option>
-                      <option>Crossriver</option>
-                      <option>Ondo</option>
-                      <option>Kano</option>
-                      <option>Jos</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="category">Category</label>
-                    <select
-                      class="form-control"
-                      name="category"
-                      id="category"
-                    >
-                      <option selected disabled>
-                        Choose a Category
-                      </option>
-                      <option>Technology</option>
-                      <option>Media & News</option>
-                      <option>Medical</option>
-                      <option>Business</option>
-                      <option>Management</option>
-                      <option>Legal</option>
-                      <option>Finance</option>
-                    </select>
-                  </div>
-                  <div class="floating-placeholder form-group">
-                    <label for="job-title">Salary</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="salary"
-                      name="salary"
-                      placeholder="500k-600k"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="job-title">Published on</label>
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="published"
-                      name="publishedOn"
-                      placeholder="Sept. 22, 2019"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="job-title">Application Deadline</label>
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="deadline"
-                      name="applicationDeadline"
-                      placeholder="Sept. 22, 2019"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="job-summary">Job Summary</label>
-                    <textarea
-                      class="form-control"
-                      id="jobSummary"
-                      name="jobSummary"
-                      rows="3"
-                    ></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="job-description">Job Description</label>
-                    <textarea
-                      class="form-control"
-                      id="jobDesc"
-                      name="jobDescription"
-                      rows="3"
-                    ></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="responsibilities">Responsibilities</label>
-                    <textarea
-                      class="form-control"
-                      id="responsibility"
-                      name="responsibilities"
-                      rows="3"
-                    ></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="job-description">Requirements</label>
-                    <textarea
-                      class="form-control"
-                      id="job_req"
-                      name="requirements"
-                      rows="3"
-                    ></textarea>
-                  </div>
-                  <div id="toast"><div id="img">Icon</div><div id="desc">Data Uploaded Successfully...</div></div>
+                    <div className="form-group">
+                      <label htmlFor="JobTitle">Job Title</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={this.updateFormJob}
+                        value={this.state.fields.JobTitle}
+                        name="JobTitle"
+                        placeholder="Software Engineer"
+                      />
+                      <div className="errorMsg">
+                        {this.state.errors.JobTitle}
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="companyInfo">Company Name</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={this.updateFormJob}
+                        value={this.state.fields.companyInformation} 
+                        name="companyInformation"
+                        placeholder="Venture Garden Group"
+                      />
+                      <div className="errorMsg">
+                        {this.state.errors.companyInformation}
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="JobType">Job Nature</label>
+                      <select
+                        className="form-control"
+                        value={this.state.fields.JobType}
+                        onChange={this.updateFormJob}
+                        name="JobType"
+                      >
+                        <option>Choose a Job type</option>
+                        <option>Full-time</option>
+                        <option>Part-time</option>
+                        <option>Internship</option>
+                        <option>Remote</option>
+                      </select>
+                    </div>
 
-                  <Button
-                    type="submit"
-                    btnType="btn-primary"
-                    id="submitJob"
-                    Children={"Add Job"}
-                  >
-                    Add Job
-                  </Button>
-                </form>
+                    <div className="floating-placeholder form-group">
+                      <label htmlFor="salary">Salary</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={this.state.fields.salary}
+                        onChange={this.updateFormJob}
+                        name="salary"
+                        placeholder="500k-600k"
+                      />
+                      <div className="errorMsg">
+                        {this.state.errors.salary}
+                      </div>
+                    </div>
+                    {/* <div className="form-group">
+                        <label htmlFor="Publish">Published on</label>
+                        <input
+                          type="date"
+                          className="form-control"
+                          id="published"
+                          name="publishedOn"
+                          placeholder="Sept. 22, 2019"
+                        />
+                      </div> */}
+
+                    <div className="form-group">
+                      <label htmlFor="JobDescription">Job Description</label>
+                      <textarea
+                        className="form-control"
+                        // id="jobDesc"
+                        type="text"
+                        onChange={this.updateFormJob}
+                        value={this.state.fields.JobDescription}
+                        name="JobDescription"
+                        rows="3"
+                      ></textarea>
+                      <div className="errorMsg">
+                        {this.state.errors.JobDescription}
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="jobResponsibilities">Responsibilities</label>
+                      <textarea
+                        className="form-control"
+                        onChange={this.updateFormJob}
+                        value={this.state.fields.jobResponsibilities}
+                        name="jobResponsibilities"
+                        rows="3"
+                      ></textarea>
+                      <div className="errorMsg">
+                        {this.state.errors.jobResponsibilities}
+                      </div>
+                    </div>
+                    
+                    <Button
+                      type="submit"
+                      btnType="btn-primary"
+                      id="submitJob"
+                      Children={"Add Job"}
+                    >
+                      Add Job
+                    </Button>
+                  </form>
                 }
-                </div>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
         </Fragment>
-
-        <Footer />
       </div>
     );
   }
 }
 
-export default AddJobs;
+export default withRouter(JobForm);
