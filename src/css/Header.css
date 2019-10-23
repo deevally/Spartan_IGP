@@ -93,3 +93,8 @@ header {
   transform: translate(-50%, -50%); 
   text-align:center;
 }
+.jobsAvailable{
+  font-size: 3rem;
+  color:#51b64b;
+  font-weight: 600;
+}
