@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
+import Card from "../components/Card";
 import Filter from "../components/Filter";
 import Footer from "../components/Footer";
+
 import {BaseUrl}  from "../utils/baseUrl";
 import Axios from "axios";
 
@@ -55,7 +57,7 @@ class Client extends Component {
           }
           headerBorder="clientsheaderBorder"
         />
-
+<Card/>
         <Footer />
       </div>
     );
