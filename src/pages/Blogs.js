@@ -1,9 +1,10 @@
 import React from "react";
 import Nav from "../components/Nav";
-import photo from "../Assets/images/undraw_todo_list.png";
+import photo from "../assets/images/undraw_todo_list.png";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import "./Blogs.css";
+import Footer from "../components/Footer";
 
 const Blog = () => {
   return (
@@ -59,6 +60,7 @@ const Blog = () => {
                 </div>
               </div>
             </div>
+            <Footer />
           </div>
         </div>
       </div>

@@ -19,18 +19,12 @@ const Header = props => {
                 {props.searchForm}
                 <div className="container">
                   <div className="row my-5 justify-content-center">
-                    <div className="col-md-7 text-center">
-                      <h2 className="section-title"> {props.SubHeaderText}</h2>
-                    </div>
-                  </div>
-                </div>
-                <div className="container">
-                  <div className="row my-5 justify-content-center">
-                    <div className="col-md-7 text-center">
-                      <h2 className={props.jobDetails}>
+                    <div className="col-md-7 text-center ">
+                      <span className="jobsAvailable">{props.noOfJob}</span>
+                      <span className="section-title">
                         {" "}
-                        {props.jobDetailsText}
-                      </h2>
+                        {props.SubHeaderText}
+                      </span>
                     </div>
                   </div>
                 </div>

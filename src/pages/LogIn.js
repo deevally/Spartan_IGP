@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import { Link } from "react-router-dom";
 import Nav from '../components/Nav';
 import Button from '../components/Button'
+import Footer from '../components/Footer'
 import '../css/login-signup.css';
 class Login extends Component{
   state={
@@ -45,6 +46,7 @@ canLogin:false
             </div>
           </div>
         </div>
+        {/* <Footer/> */}
       </div>
     );
 }
