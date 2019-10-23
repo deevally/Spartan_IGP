@@ -44,14 +44,14 @@ const Nav = ({openLoginModal, Jobs, Blog, SignUp, LogOut, LogIn, Post, AddJobs, 
                 </NavLink>
               </li>
               <li className="nav-item">
-                <Link to='/' 
+                <Link to='/login' 
 
-                  className="nav-link" onClick={openLoginModal} >
+                  className="nav-link" >
                   {LogIn} <span className="sr-only">(current)</span>
                 </Link>
               </li>
               <li className="nav-item">
-                <NavLink to='/Sign_Up' className="nav-link" >
+                <NavLink to='/signup' className="nav-link" >
                   {SignUp} <span className="sr-only">(current)</span>
                 </NavLink>
               </li>

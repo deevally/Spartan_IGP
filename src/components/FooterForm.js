@@ -58,7 +58,7 @@ class FooterForm extends Component {
             onClick={this.handleSubmit}
             disabled ={Email ===''?true:false}
           >
-            Send
+            Subscribe
           </Button>
           </div>
         </form>
