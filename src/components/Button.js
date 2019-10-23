@@ -4,7 +4,7 @@ const Button = ({ children, btnType, myBtnClass, disabled, onClick }) => {
   return (
     <div>
       <button
-        className={`btn ${btnType} ${myBtnClass}`}
+        className={`${btnType} ${myBtnClass}`}
         onClick={onClick}
         disabled={disabled}
       >

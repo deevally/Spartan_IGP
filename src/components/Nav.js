@@ -47,7 +47,7 @@ const Nav = ({
                 </NavLink>
               </li>
               <li className="nav-item">
-                <Link to="/" className="nav-link" onClick={openLoginModal}>
+                <Link to="/login" className="nav-link">
                   {LogIn} <span className="sr-only">(current)</span>
                 </Link>
               </li>

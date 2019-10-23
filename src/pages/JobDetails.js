@@ -20,7 +20,7 @@ const JobDetails = () => {
         <div class="row fullPage">
           <div class="col-md-9">
             <div class="data">
-              <div class="single-post d-flex flex-row">
+              <div class="singlePost d-flex flex-row">
                 <div class="details">
                   <div class="title d-flex flex-column justify-content-between">
                     <div class="titles">

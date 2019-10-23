@@ -1,4 +1,4 @@
-.single-post:hover {
+.singlePost:hover {
     box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -52,7 +52,7 @@ a.apply:hover {
     color: var(--color-vggBlue);
 }
 
-.single-post {
+.singlePost {
     padding: 20px;
     margin-bottom: 20px;
     border: 1px solid #eee;
