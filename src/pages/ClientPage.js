@@ -52,10 +52,11 @@ class Client extends Component {
 
   render() {
     const { Jobs, allJob, loading, err } = this.state;
-    
+    console.log(Jobs)
     let fulltime=0 ,partTime = 0 ,remote = 0;
 
     Jobs.map(Job=>{
+      
       switch (Job.JobType) {
         case 'Full-time':
             fulltime++
@@ -82,7 +83,7 @@ class Client extends Component {
           headerText="headerText"
           searchForm={Search}
           HeaderText__first="Search for your dream job"
-          noOfJob={allJob}
+          noOfJob={Jobs.length}
           SubHeaderText={
             allJob !== null
               ? `Job${allJob > 1 ? "s" : ""} offers available`
@@ -97,7 +98,7 @@ class Client extends Component {
           <div className="container">
             <div className="row single-post my-5 ">
               <div className="details col-md-9">
-                {Jobs.map(Job => (
+                {Jobs.reverse().map(Job => (
                   <div key={Job._id}>
                     <Card
                       cardHeader={Job.JobTitle}
