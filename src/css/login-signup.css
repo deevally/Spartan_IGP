@@ -1,0 +1,92 @@
+.login-parent-container {
+  margin-top: 15rem;
+  background: #fcfcfe;
+}
+
+.login-img {
+  background-image: url("../assets/images/design-desk-eyewear-313690.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50%;
+}
+
+
+
+.login-container {
+  width: 80%;
+  box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+  border-radius: 5rem;
+}
+
+.login-img {
+  height: 60vh;
+  box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+  border-radius: 5rem 0rem 0rem 0rem;
+}
+
+.login-info {
+  text-align: center;
+  width: 50%;
+  color: rgb(56, 54, 54);
+}
+.sign {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.fullname {
+  padding: 1rem;
+  font-size: 1.5rem;
+  width: 30rem;
+  outline: none;
+  margin-bottom: 2rem;
+
+  border-style: none none groove none;
+}
+.name {
+  
+ padding: 1rem;
+  font-size: 1.5rem;
+  width: 30rem;
+  outline: none;
+  margin-bottom: 2rem;
+
+  border-style: none none groove none;
+}
+.password {
+ padding: 1rem;
+  font-size: 1.5rem;
+  width: 30rem;
+  outline: none;
+  margin-bottom: 2rem;
+
+  border-style: none none groove none;
+}
+.form-btn {
+  width: 15rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: .7rem 2rem;
+  background: var( --color-lightGreen);
+  border-radius: 2rem;
+  transition:all 0.5s
+}
+
+.forms {
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-btn:hover{
+    font-size: 2rem;
+ color: #fff;   
+ transition: all .5s ease-out;
+ background: var(--color-darkGreen);
+}
+
+.member{
+    font-size: 1.5rem;
+    margin-top: 3rem;
+}

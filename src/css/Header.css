@@ -15,9 +15,9 @@ header {
   height: 100vh;
 }
 
-.adminHeader {
-  background-image: url("../assets/images/img1.jpg");
-  height: 50vh;
+.adminHeader{
+    background-image:  url("../assets/images/img1.jpg");
+    height: 30vh;
 }
 
 .signUpPageHeader {
@@ -61,14 +61,14 @@ header {
   -o-transform: translate(-50%, -50%);
 }
 
-.signHeaderText {
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  top: 80%;
-  left: 10%;
-  transform: translate(-50%, -50%);
-  color: #fff;
+.signHeaderText{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
 }
 .headerText__first {
   padding-left: 10px;
@@ -101,4 +101,9 @@ header {
   left: 50%;
   transform: translate(-50%, -50%); 
   text-align:center;
+}
+.jobsAvailable{
+  font-size: 3rem;
+  color:#51b64b;
+  font-weight: 600;
 }
