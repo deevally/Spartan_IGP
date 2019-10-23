@@ -15,15 +15,9 @@ header {
   height: 100vh;
 }
 
-<<<<<<< HEAD
-.adminHeader{
-    background-image:  url("../assets/images/img1.jpg");
-    height: 30vh;
-=======
 .adminHeader {
   background-image: url("../assets/images/img1.jpg");
   height: 50vh;
->>>>>>> login redirect fix
 }
 
 .signUpPageHeader {
