@@ -1,21 +1,62 @@
-import React from "react";
+import React, { Component } from "react";
 import Nav from "../components/Nav";
-import Header from  "../components/Header";
-import Filter from '../components/Filter'
+import Header from "../components/Header";
+import Filter from "../components/Filter";
 import Footer from "../components/Footer";
+import {BaseUrl}  from "../utils/baseUrl";
+import Axios from "axios";
 
-let Search = <Filter/>
+let Search = <Filter />;
 
-const Client = () => {
-  return (
-    <div>
-      <Nav Blog="Blog" LogIn="Login" SignUp="SignUp" />
-      <Header className="landingPageHeader" headerText='headerText'  searchForm={Search} HeaderText__first= "Search for your dream job" SubHeaderText="Job offers available"  headerBorder="clientsheaderBorder" />
+class Client extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      Jobs: [],
+      allJob: null
+    };
+  }
 
-      <p>Client Page</p>
-      <Footer/>
-    </div>
-  );
-};
+  componentDidMount() {
+    let url = `${BaseUrl}/jobs`;
+    Axios(url)
+      .then(res => {
+        this.showJob(res.data);
+      })
+      .catch(err => console.log(err));
+  }
+
+  showJob = data => {
+    this.setState({
+      Jobs: data.docs,
+      allJob: data.total
+    });
+  };
+
+  render() {
+    const { Jobs, allJob } = this.state;
+    console.log(Jobs);
+    return (
+      <div>
+        <Nav Blog="Blog" LogIn="Login" SignUp="SignUp" />
+        <Header
+          className="landingPageHeader"
+          headerText="headerText"
+          searchForm={Search}
+          HeaderText__first="Search for your dream job"
+          noOfJob={allJob}
+          SubHeaderText={
+            allJob !== null
+              ? `Job${allJob > 1 ? "s" : ""} offers available`
+              : ""
+          }
+          headerBorder="clientsheaderBorder"
+        />
+
+        <Footer />
+      </div>
+    );
+  }
+}
 
 export default Client;
