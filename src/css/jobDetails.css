@@ -1,4 +1,4 @@
-.singlePost:hover {
+.singleJob:hover {
     box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -6,21 +6,21 @@
     width: 100%;
 }
 
-.title {
+.jobTitle {
     border-bottom: 1px solid #eee;
 }
 
-.titles h4 {
+.jobTitles h4 {
     font-size: 2rem;
     color: var(--color-vggBlue);
 }
 
-.titles h6 {
+.jobTitles h6 {
     font-size: 1.4rem;
     color: var(--color--grey-text);
 }
 
-.title a.view:hover,
+.jobTitle a.view:hover,
 a.apply:hover {
     background-color: var(--color-vggBlue);
     color: #fef;
@@ -52,7 +52,7 @@ a.apply:hover {
     color: var(--color-vggBlue);
 }
 
-.singlePost {
+.singleJob {
     padding: 20px;
     margin-bottom: 20px;
     border: 1px solid #eee;

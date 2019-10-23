@@ -4,6 +4,8 @@ import Nav from "../components/Nav";
 import Header from "../components/Header";
 import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
+import Spinner from "../components/Spinner";
+import JobSidebar from "../components/JobSidebar";
 
 import "../css/jobDetails.css";
 
@@ -11,7 +13,11 @@ class JobDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      singleJob: {}
+      singleJob: {},
+      Jobs: [],
+      allJob: null,
+      err: "",
+      loading: false
     };
   }
 
@@ -32,8 +38,37 @@ class JobDetails extends Component {
     this.getSingleJob();
   }
 
+  showJob = data => {
+    this.setState({
+      Jobs: data.docs,
+      allJob: data.total,
+      loading: false
+    });
+  };
+
   render() {
     const value = this.state.singleJob;
+    const { Jobs, allJob, loading, err } = this.state;
+
+    let fulltime = 0,
+      partTime = 0,
+      remote = 0;
+
+    Jobs.map(Job => {
+      switch (Job.JobType) {
+        case "Full-time":
+          fulltime++;
+          break;
+        case "Part-time":
+          partTime++;
+          break;
+        case "Remote":
+          remote++;
+          break;
+        default:
+          break;
+      }
+    });
     return (
       <div>
         <Nav Jobs="Jobs" SignUp="Signup" LogIn="Login" />
@@ -44,13 +79,15 @@ class JobDetails extends Component {
           jobDetailsText="HOME / JOB DETAILs"
           jobDetails="jobDetails"
         />
+
+        {loading && <Spinner />}
         <div class="container mt-5">
           <div class="row fullPage">
             <div class="col-md-9">
               <div class="data">
-                <div class="singlePost d-flex flex-row">
+                <div class="singleJob d-flex flex-row">
                   <div class="details">
-                    <div class="title d-flex flex-column justify-content-between">
+                    <div class="jobTitle d-flex flex-column justify-content-between">
                       <div class="titles">
                         <a href="singleJob.html">
                           <h4>{value.JobTitle}</h4>
@@ -63,11 +100,11 @@ class JobDetails extends Component {
                           <i class="fas fa-map-marker-alt"></i> Dhaka
                         </p>
                         <p className="mr-5 job-type">
-                          <i class="fas fa-suitcase"></i>
+                          <i class="fas fa-suitcase"></i> &nbsp;
                           {value.JobType}
                         </p>
                         <p class="salary mr-5">
-                          <i class="far fa-money-bill-alt"></i>
+                          <i class="far fa-money-bill-alt"></i> &nbsp;
                           {value.salary}
                         </p>
                         <Button
@@ -189,6 +226,16 @@ class JobDetails extends Component {
                   Apply
                 </Button>
               </div>
+            </div>
+            <div className={loading === true ? "sidebarShow" : "col-md-3 "}>
+              <JobSidebar
+                FullTime={"Full-Time"}
+                FullTimeNumbers={fulltime}
+                PartTime={"Part-Time"}
+                PartTimeNumbers={partTime}
+                Remote={"Remote"}
+                RemoteNumbers={remote}
+              />
             </div>
           </div>
         </div>
