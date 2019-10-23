@@ -11,7 +11,7 @@ const Header = props => {
             <div className="row head">
               <div className={props.headerText}>
                 <div className={props.headerBorder}>
-                  <h3 className="headerText__first">
+                  <h3 className="headerText__first header_first">
                     {" "}
                     {props.HeaderText__first}{" "}
                   </h3>

@@ -34,7 +34,7 @@ img {
 
 .news-and-articles{
     text-align: center;
-    margin-top: 35px;
+    margin-top: 45px;
     margin-bottom: 15px;
 
 }
@@ -44,7 +44,7 @@ img {
     flex-direction: column;
     position: fixed;
     top: 40%;
-    left: -25px;
+    left: -30px;
     height: 400px;
     transition: all 0.3s ease 0s;
   }
@@ -65,7 +65,7 @@ img {
   }
   
   .icon:hover {
-    width: 130px;
+    width: 80px;
     cursor: pointer;
     border-radius: 5px;
     left: -10px;
@@ -93,11 +93,15 @@ img {
   
   .icon-6 {
     background-color: red;
-<<<<<<< HEAD
-  }
-=======
   }
 
+  /* .blog-title{
+      font-weight: bold;
+  } */
+
+  .single-post{
+    margin-bottom: 50px;
+  }
   
   
->>>>>>> adf203f1326c9d40e21cf3374233ece3cdfbf53c
+
