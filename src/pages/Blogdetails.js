@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Nav from "../components/Nav";
-import Header from "../components/Nav";
+import Header from "../components/Header";
+import Footer from '../components/Footer';
 import Photo from '../assets/images/img1.jpg'
 import Button from '../components/Button.js';
 import  { BaseUrl } from "../utils/baseUrl.js";
@@ -37,10 +38,11 @@ class BlogDetails extends Component {
       this.viewBlogs()
     }
     viewBlogs(){
-      let url = `${BaseUrl}/blog/5db02152aae7c200446f81ce`;
+
+      const{BlogId} = this.props.match.params
+      let url = `${BaseUrl}/blog/${BlogId}`;
       Axios.get(url)
       .then(res =>{
-        console.log(res.data)
         this.setState({ blogAndComment:res.data });
       })
       .catch(error =>{
@@ -54,8 +56,8 @@ class BlogDetails extends Component {
 const {fullName, email, text}= this.state;
   return (
     <div>
-{ <Nav Jobs={'jobs'} SignUp ={'SignUp'} LogIn ={'Login'}/> }
-<Header/>
+ <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn"/>
+<Header className='headerBlog header_first' headerText='blogHeaderText' HeaderText__first='Blog Posts'/>
 
 
 <div className = "container">
@@ -120,7 +122,7 @@ const {fullName, email, text}= this.state;
 );
 }
 }
-
+<Footer />
   
     </div>
   );
