@@ -1,9 +1,9 @@
 import React from "react";
 import Nav from "../components/Nav";
-import photo from "../Assets/images/undraw_todo_list.png";
+// import photo from "../Assets/images/undraw_newspaper_k72w";
 import Button from "../components/Button";
 import Header from "../components/Header";
-import "./Blogs.css";
+// import "./Blogs.css";
 
 const Blog = () => {
   return (
@@ -55,7 +55,7 @@ const Blog = () => {
                   <Button children="View More" btnType="btn-primary" />
                 </div>
                 <div id="image">
-                  <img src={photo} alt="cardphoto" className="indexImage" />
+                  {/* <img src={photo} alt="cardphoto" className="indexImage" /> */}
                 </div>
               </div>
             </div>

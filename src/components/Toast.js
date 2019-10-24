@@ -2,23 +2,22 @@ import React from "react";
 import "../css/addJob.css";
 class Toast extends React.Component {
   constructor(props) {
-      super(props);
-      this.state={
-          caption:this.props.caption,
-          display:true
-      }
+    super(props);
+    this.state = {
+      caption: this.props.caption,
+      display: true
+    };
   }
 
-  componentDidMount(){
-      let {display} = this.state.display;
-      if(display){
-          this.showToast();
-      }
-      
+  componentDidMount() {
+    let { display } = this.state.display;
+    if (display) {
+      this.showToast();
+    }
   }
 
   render() {
-      let {caption} = this.state;
+    let { caption } = this.state;
     return (
       <div id="toast">
         <div id="img">Done!</div>

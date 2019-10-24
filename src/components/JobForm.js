@@ -10,14 +10,14 @@ import Toast from './Toast';
 import "../css/App.css";
 import "../css/addJob.css";
 
-// const url = `https://jsonplaceholder.typicode.com/posts`;
-const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
+const url = `https://jsonplaceholder.typicode.com/posts`;
+// const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
 
 class JobForm extends Component {
   state = {
     fields: {},
     errors: {},
-    // loading: false
+    loading: false
   };
 
   updateFormJob = e => {
@@ -65,8 +65,8 @@ class JobForm extends Component {
           }
         })
         .catch(error => {
-          this.setState({ loading: false });
-          console.log(error);
+          this.setState({ loading: false, toast: false });
+         ( console.log(error));
         });
     }else{
       console.log("fields-two", fields)
@@ -149,7 +149,7 @@ class JobForm extends Component {
             <div className="container">
               <div className="row">
                 <div className="col-md-10 mx-auto">
-                <Toast caption="Data Uploaded Successfully!"/>
+                <Toast caption="Job Successfully Created!"/>
                   { (this.state.loading === true) ? <Spinner />: 
                   <form id="addJob" onSubmit={this.handleSubmit}>
                     <div className="form-group">
@@ -204,7 +204,7 @@ class JobForm extends Component {
                         value={this.state.fields.salary}
                         onChange={this.updateFormJob}
                         name="salary"
-                        placeholder="500k-600k"
+                        placeholder="600,000"
                       />
                       <div className="errorMsg">
                         {this.state.errors.salary}
