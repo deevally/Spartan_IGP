@@ -59,3 +59,6 @@
 .viewbutton:hover{
     background: #0a3650;
 }
+.displayNaira{
+    display: none;
+}

@@ -101,3 +101,10 @@ header {
   transform: translate(-50%, -50%); 
   text-align:center;
 }
+.jobIndex{
+  display: inline-block;
+  color: white;
+  font-size: 4rem;
+  font-weight: bolder;
+  color: #51b64b;
+}

@@ -8,9 +8,9 @@ import "../css/Card.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
 import Spinner from "../components/Spinner";
-import JobSidebar from "../components/JobSidebar"
+import JobSidebar from "../components/JobSidebar";
 
-let Search = <Filter />;
+//let Search = <Filter />;
 
 class Client extends Component {
   constructor(props) {
@@ -43,47 +43,52 @@ class Client extends Component {
     });
   };
 
-  gotoJobDetails = (JobId) => {
+  gotoJobDetails = JobId => {
     const { history } = this.props;
     history.push(`/jobdetails/${JobId}`);
   };
-
-
-
+  numberWithCommas = x => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   render() {
     const { Jobs, allJob, loading, err } = this.state;
-    console.log(Jobs)
-    let fulltime=0 ,partTime = 0 ,remote = 0;
+    let fulltime = 0,
+      partTime = 0,
+      remote = 0;
 
-    Jobs.map(Job=>{
-      
+    Jobs.map(Job => {
       switch (Job.JobType) {
-        case 'Full-time':
-            fulltime++
-            break;  
-        case 'Part-time':
-            partTime++
-            break;
-        case 'Remote':
-            remote++
-            break;
+        case "Full-time":
+          fulltime++;
+          break;
+        case "Part-time":
+          partTime++;
+          break;
+        case "Remote":
+          remote++;
+          break;
         default:
-          break;}
-      
-    })
+          break;
+      }
+    });
 
- 
-
-    
     return (
       <div>
         <Nav Blog="Blog" LogIn="Login" SignUp="SignUp" />
         <Header
           className="landingPageHeader"
           headerText="headerText"
-          searchForm={Search}
+          searchForm={<Filter {...this.props} />}
           HeaderText__first="Search for your dream job"
-          noOfJob={Jobs.length}
+          noOfJob={
+            Jobs.length >= 1 ? (
+              Jobs.length
+            ) : (
+              <h3 className="text-white font-weight-bolder">
+                CHECK BACK FOR AVAILABLE JOBS
+              </h3>
+            )
+          }
           SubHeaderText={
             allJob !== null
               ? `Job${allJob > 1 ? "s" : ""} offers available`
@@ -97,28 +102,50 @@ class Client extends Component {
         {Jobs && (
           <div className="container">
             <div className="row single-post my-5 ">
-              <div className="details col-md-9">
+              <div className={`details col-md-9`}>
                 {Jobs.reverse().map(Job => (
-                  <div key={Job._id}>
+                  <div
+                    key={Job._id}
+                    className={
+                      !Job.jobResponsibilities &&
+                      !Job.JobTitle &&
+                      !Job.JobType &&
+                      !Job.salary
+                        ? "sidebarShow"
+                        : ""
+                    }
+                  >
                     <Card
                       cardHeader={Job.JobTitle}
                       cardHeaderSub={Job.jobResponsibilities}
                       CardSubText={Job.JobType}
-                      CardSubText2={Job.salary}
-                      onClick={()=>this.gotoJobDetails(Job._id)}
+                      CardSubText2={this.numberWithCommas(Job.salary || 3000)}
+                      displayNaira={Job.salary ? "" : "displayNaira"}
+                      onClick={() => this.gotoJobDetails(Job._id)}
                     />
                   </div>
                 ))}
               </div>
-              <div className= {loading===true?'sidebarShow' : 'col-md-3 '}>
-                  <JobSidebar  FullTime ={'Full-Time'} FullTimeNumbers ={fulltime} PartTime ={'Part-Time'} PartTimeNumbers ={partTime} Remote={'Remote'} RemoteNumbers = {remote} />
-              </div>
+              {!err && (
+                <div className={loading === true ? "sidebarShow" : "col-md-3 "}>
+                  <JobSidebar
+                    FullTime={"Full-Time"}
+                    FullTimeNumbers={fulltime}
+                    PartTime={"Part-Time"}
+                    PartTimeNumbers={partTime}
+                    Remote={"Remote"}
+                    RemoteNumbers={remote}
+                  />
+                </div>
+              )}
             </div>
           </div>
         )}
         {err && (
-          <div className="container mx-auto">
-            <h1 className='font-weight-bolder mb-5 ml-5'>Check your Connection</h1>
+          <div className="container mx-auto text-center mb-5">
+            <h1 className="font-weight-bolder mb-5 ml-5 mx-auto pb-5">
+              Check your Connection
+            </h1>
           </div>
         )}
 

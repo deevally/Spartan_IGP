@@ -1,4 +1,3 @@
-
 import React from "react";
 import "../css/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -7,10 +6,12 @@ import SignUp from "./SignUp";
 import Login from "./LogIn";
 import AdminPage from "./AdminPage";
 import AddJobs from "./AddJobs";
+import Alljobs from "./AllJobs";
 import Blog from "./Blogs";
 import Post from "./Post";
 import jobdetails from "./JobDetails";
 
+//`/allJobs/${title}/${type}
 function App() {
   return (
     <Router>
@@ -21,6 +22,7 @@ function App() {
         <Route path="/Admin" component={AdminPage} />
         <Route path="/View_Jobs" component={AdminPage} />
         <Route path="/Add_Jobs" component={AddJobs} />
+        <Route path="/allJobs" component={Alljobs} />
         <Route path="/Blog" component={Blog} />
         <Route path="/Blog/:Id" component={Post} />
         <Route path="/jobdetails/:JobId" component={jobdetails} />
