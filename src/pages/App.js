@@ -7,8 +7,9 @@ import Login from "./LogIn";
 import AdminPage from "./AdminPage";
 import AddJobs from "./AddJobs";
 import Blog from "./Blogs";
-import Blogdetails from "./Blogdetails";
-import Jobdetails from "./JobDetails";
+import Post from "./Post";
+import jobdetails from "./JobDetails";
+import Apply from "./Apply";
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
         <Route path="/View_Jobs" component={AdminPage} />
         <Route path="/Add_Jobs" component={AddJobs} />
         <Route path="/Blog" component={Blog} />
-        <Route path="/Blog:PostId" component={Blogdetails} />
-        <Route path="/jobdetails/:JobId" component={Jobdetails} />
+        <Route path="/Blog:PostId" component={Post} />
+        <Route path="/jobdetails/:JobId" component={jobdetails} />
+        <Route path="/Apply" component={Apply} />
       </Switch>
     </Router>
   );

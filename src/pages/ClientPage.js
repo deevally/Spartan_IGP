@@ -46,6 +46,7 @@ class Client extends Component {
   gotoJobDetails = JobId => {
     const { history } = this.props;
     history.push(`/jobdetails/${JobId}`);
+    console.log(history);
   };
 
   render() {
