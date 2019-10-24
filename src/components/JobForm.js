@@ -1,27 +1,22 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
+// import Nav from "../components/Nav";`
 import Button from "../components/Button";
 // import BaseUrl from '../utils/baseUrl';
 import { withRouter } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import Toast from "./Toast";
-
 import "../css/App.css";
 import "../css/addJob.css";
-
-const url = `https://jsonplaceholder.typicode.com/posts`;
-// const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
-// data == docs
-
+// const url = `https://jsonplaceholder.typicode.com/posts`;
+const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
 class JobForm extends Component {
   state = {
     fields: {},
     errors: {},
     loading: false,
-    formIsValid: false,
     canSubmit: true,
     callerror: {}
-    // toast: false
   };
 
   updateFormJob = e => {
@@ -58,33 +53,35 @@ class JobForm extends Component {
 
   handleSubmit = e => {
     this.setState({ loading: true });
-
     e.preventDefault({ toast: true });
-    
-    let { fields } = this.state;
 
+    let { fields } = this.state;
     if (this.validateForm()) {
-   
       axios
         .post(url, fields)
         .then(res => {
           console.log(res);
           if ((res.status = 201)) {
-
             this.setState({
               loading: false,
               fields: fields
             });
             this.showToast();
-            this.clearFields()
+            this.clearFields();
           }
         })
-        .catch(err=> {
-          this.setState({ 
-            loading: false, toast: false, callerror:err, canCreate:true 
-          })
+        .catch(err => {
+          this.setState({
+            loading: false,
+            toast: false,
+            callerror: err,
+            canCreate: true
+          });
         });
     } else {
+      this.setState({
+        loading: false
+      });
       console.log("fields-two", fields);
     }
   };
@@ -141,13 +138,13 @@ class JobForm extends Component {
     this.setState({
       errors: errors
     });
-
     return formIsValid;
   };
 
   render() {
-    const {callerror,canCreate} = this.state
-    console.log(callerror)
+    const { callerror, canCreate } = this.state;
+    console.log(callerror);
+
     return (
       <div>
         <Fragment>
@@ -156,7 +153,7 @@ class JobForm extends Component {
               <div className="row">
                 <div className="col-md-10 mx-auto">
                   <Toast caption="Job Successfully Created!" />
-                  {(this.state.loading === true) ? (
+                  {this.state.loading === true ? (
                     <Spinner />
                   ) : (
                     <form id="addJob" onSubmit={this.handleSubmit}>
@@ -203,7 +200,6 @@ class JobForm extends Component {
                           <option>Remote</option>
                         </select>
                       </div>
-
                       <div className="floating-placeholder form-group">
                         <label htmlFor="salary">Salary</label>
                         <input
@@ -218,17 +214,7 @@ class JobForm extends Component {
                           {this.state.errors.salary}
                         </div>
                       </div>
-                      {/* <div className="form-group">
-                        <label htmlFor="Publish">Published on</label>
-                        <input
-                          type="date"
-                          className="form-control"
-                          id="published"
-                          name="publishedOn"
-                          placeholder="Sept. 22, 2019"
-                        />
-                      </div> */}
-
+                    
                       <div className="form-group">
                         <label htmlFor="JobDescription">Job Description</label>
                         <textarea
@@ -239,6 +225,7 @@ class JobForm extends Component {
                           value={this.state.fields.JobDescription}
                           name="JobDescription"
                           rows="3"
+                          placeholder="Write the job description..."
                         ></textarea>
                         <div className="errorMsg">
                           {this.state.errors.JobDescription}
@@ -254,6 +241,7 @@ class JobForm extends Component {
                           value={this.state.fields.jobResponsibilities}
                           name="jobResponsibilities"
                           rows="3"
+                          placeholder=""
                         ></textarea>
                         <div className="errorMsg">
                           {this.state.errors.jobResponsibilities}
@@ -262,13 +250,17 @@ class JobForm extends Component {
 
                       <Button
                         type="submit"
-                        btnType="btn-primary"
+                        btnType="btn btn-primary"
                         id="submitJob"
                         Children={"Add Job"}
                       >
                         Add Job
                       </Button>
-                      {canCreate ===true && callerror && <p className='text-danger text-center font-weight-bolder'>{'Check Connect'}</p>}
+                      {canCreate === true && callerror && (
+                        <p className="text-danger text-center font-weight-bolder">
+                          {"Check Connect"}
+                        </p>
+                      )}
                     </form>
                   )}
                 </div>
@@ -280,5 +272,4 @@ class JobForm extends Component {
     );
   }
 }
-
 export default withRouter(JobForm);
