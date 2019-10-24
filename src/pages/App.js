@@ -21,13 +21,8 @@ function App() {
         <Route path="/View_Jobs" component={AdminPage} />
         <Route path="/Add_Jobs" component={AddJobs} />
         <Route path="/Blog" component={Blog} />
-<<<<<<< HEAD
-        <Route path="/Blogdetails/:BlogId" component={Blogdetails} />
-        <Route path="/jobdetails/:JobId" component={Jobdetails} />
-=======
         <Route path="/Blog:PostId" component={Post} />
         <Route path="/jobdetails" component={jobdetails} />
->>>>>>> feb3e65ea998d9c3ef104d3b10abcd8e0c25a4d3
       </Switch>
     </Router>
   );
