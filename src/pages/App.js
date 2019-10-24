@@ -8,7 +8,7 @@ import AdminPage from "./AdminPage";
 import AddJobs from "./AddJobs";
 import Alljobs from "./AllJobs";
 import Blog from "./Blogs";
-import Post from "./Post";
+import Blogdetails from "./Blogdetails";
 import jobdetails from "./JobDetails";
 
 //`/allJobs/${title}/${type}
@@ -24,7 +24,7 @@ function App() {
         <Route path="/Add_Jobs" component={AddJobs} />
         <Route path="/allJobs" component={Alljobs} />
         <Route path="/Blog" component={Blog} />
-        <Route path="/Blog/:Id" component={Post} />
+        <Route path="/Blog:PostId" component={Blogdetails} />
         <Route path="/jobdetails/:JobId" component={jobdetails} />
       </Switch>
     </Router>
