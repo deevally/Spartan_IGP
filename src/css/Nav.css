@@ -7,7 +7,7 @@
   }
   
 nav {
-    background-color: #020607af;
+    background-color: #020607af !important;
 }
 .navbar {
     padding: 0 1rem !important;

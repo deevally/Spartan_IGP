@@ -1,4 +1,7 @@
 import React from 'react'
+import '../css/Button.css';
+
+
 
 const Button = ({children,btnType,myBtnClass,disabled,onClick}) => {
     return (

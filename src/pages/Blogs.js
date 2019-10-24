@@ -75,10 +75,11 @@ class Blog extends Component {
                                              deleniti iste nisi maiores ut, sed saepe magnam quos quaerat, labore nemo odio. Voluptates
                                              amet laudantium harum cupiditate, enim a
                                              amet laudanti
-                    </p>
+                                          </p>
                                             {/* <p>by <span className="lorem">Lorem ipsum</span></p> */}
                                             <p><em>Posted {blog.datePosted} at {blog.timePosted}</em></p>
-                                            <Button btnType="btn-primary" onClick={()=>this.viewmore(blog._id)} >View More</Button>
+                                            
+                                            <Button btnType="btn-primary px-2 py-2" children="View More" onClick={()=>this.viewmore(blog._id)} />
                                         </div>
                                         <div id="image">
                                             <img src={photo} alt='cardphoto' className="indexImage" />
