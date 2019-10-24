@@ -8,7 +8,7 @@ import Spinner from "../components/Spinner";
 import Toast from "./Toast";
 import "../css/App.css";
 import "../css/addJob.css";
-// const url = `https://jsonplaceholder.typicode.com/posts`;
+
 const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
 class JobForm extends Component {
   state = {
