@@ -11,7 +11,7 @@ const JobSidebar = ({
   return (
     <div className="row ">
       <div className="col-lg-12 card jobSideBar">
-        <h4 className=" p-4 text-center card-title font-weight-bolder typetitle">
+        <h4 className=" p-4 text-center card-title font-weight-bolder typetitle alljobSideSub">
           JOB BY TYPE
         </h4>
 
