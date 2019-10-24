@@ -35,7 +35,8 @@ class Blog extends Component {
 
   viewmore = BlogId => {
     const { history } = this.props;
-    history.push(`/Blog/${BlogId}`);
+    history.push(`/Blogdetails/${BlogId}`);
+    console.log(history);
   };
 
   render() {
