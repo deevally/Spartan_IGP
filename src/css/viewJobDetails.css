@@ -1,0 +1,74 @@
+.singleJob:hover {
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+.details {
+    width: 100%;
+}
+
+.jobTitle {
+    border-bottom: 1px solid #eee;
+}
+
+.jobTitles h4 {
+    font-size: 2rem;
+    color: var(--color-vggBlue);
+}
+
+.jobTitles h6 {
+    font-size: 1.4rem;
+    color: var(--color--grey-text);
+}
+
+.jobTitle a.view:hover,
+a.apply:hover {
+    background-color: var(--color-vggBlue);
+    color: #fef;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: var(--color--grey-text);
+}
+
+.details h5 {
+    font-size: 1.2rem;
+    color: var(--color--grey-text);
+}
+
+.address,
+.salary,
+.published-on,
+.application-deadline,
+.job-type {
+    font-size: 12px;
+    color: var(--color--grey-text);
+}
+
+
+.address .fas,
+.salary .far,
+.job-type .fas {
+    color: var(--color-vggBlue);
+}
+
+.singleJob {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    background-color: white;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.apply {
+    color: white;
+    font-size: 16px;
+    margin-left: auto;
+}
