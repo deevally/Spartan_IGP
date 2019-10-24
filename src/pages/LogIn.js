@@ -13,9 +13,9 @@ class Login extends Component {
     email: "",
     password: "",
     formErrors: { fullname: "", email: "", password: "" },
-    userExists: {
-      status:false,
-      message:''
+    inValidLoginCredentials: {
+      status: false,
+      message: ""
     },
     emailValid: false,
     passwordValid: false,
@@ -47,17 +47,13 @@ class Login extends Component {
       email,
       password
     };
-    
-try {
-     const loginAdmin = await Axios.post(url, user);
 
-     console.log(loginAdmin.data);
-     window.isAuthenticated = true;
-     window.user = loginAdmin.data;
-} catch (error) {
-  
-}
- 
+    try {
+      const loginAdmin = await Axios.post(url, user);
+      console.log(loginAdmin.data);
+    } catch (error) {
+      console.log(error.message);
+    }
 
     this.setState({
       Redirect: true
@@ -103,7 +99,13 @@ try {
   }
 
   render() {
-    const { email, password, formErrors, formValid , userExists} = this.state;
+    const {
+      email,
+      password,
+      formErrors,
+      formValid,
+      inValidLoginCredentials
+    } = this.state;
 
     return (
       <div className="container-parent">
@@ -111,7 +113,9 @@ try {
         <Nav Blog="Blog" Jobs="Jobs" />
         <FormErrors formErrors={formErrors} />
         <div className="container-fluid login-parent-container">
-          {(userExists.status) && <div>{userExists.message}</div>}
+          {inValidLoginCredentials.status && (
+            <div className="errordesign">{inValidLoginCredentials.message}</div>
+          )}
           <div className="row ml-auto mr-auto login-container">
             <div className="login-img"></div>
             <div className="login-info">
@@ -143,7 +147,7 @@ try {
                   ></input>
                 </label>
                 <Button
-                  onClick={this.setRedirect}
+                  // onClick={this.setRedirect}
                   myBtnClass="form-btn"
                   btnType=""
                   disabled={!formValid}

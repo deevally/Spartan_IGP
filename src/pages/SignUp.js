@@ -64,15 +64,7 @@ class Signup extends Component {
           }
         );
       });
-    // console.log("cr",createAdmin)
-    // createAdmin
-    // .then(()=>{
-    //     console.log("ok")
-    // })
-    // .catch((err)=>{
-    //     console.log("error", err.response.data)
-    // })
-    // console.log(createAdmin.data);
+  
   };
   validateField(fieldName, value) {
     const { fullnameValid, emailValid, passwordValid, formErrors } = this.state;
@@ -142,7 +134,9 @@ class Signup extends Component {
         <FormErrors formErrors={formErrors} />
         {loading && <Spinner />}
         <div className="container-fluid login-parent-container">
-          {userExists.status && <div>{userExists.message}</div>}
+          {userExists.status && (
+            <div className="errordesign">{userExists.message}</div>
+          )}
 
           <div className="row ml-auto mr-auto login-container">
             <div className="login-img"></div>
