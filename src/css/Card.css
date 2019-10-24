@@ -10,7 +10,7 @@
 }
 
 .title:hover {
-    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 7px 7px rgba(0, 0, 0, 0.1);
     border-left: 0.7rem solid #2992d0;
     border-radius: 0.5rem;
 }
@@ -51,4 +51,9 @@
 .typetitle {
     letter-spacing: 3px;
     font-size: 2rem;
+}
+
+.jobSideBar p,
+.jobSideBar span {
+    font-size: 14px;
 }

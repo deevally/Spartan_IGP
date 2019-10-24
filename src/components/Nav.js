@@ -3,7 +3,6 @@ import { NavLink, Link } from "react-router-dom";
 import "../css/App.css";
 import imglogo from "../assets/images/logo.png";
 import "../css/Nav.css";
-
 const Nav = ({
   openLoginModal,
   Jobs,
@@ -18,9 +17,9 @@ const Nav = ({
   return (
     <div>
       <nav className="navbar navbar-expand-sm navbar-light fixed-top ">
-        <div className="container">
+        <div className="container mt-2">
           <NavLink to="/" className="navbar-brand">
-            <img src={imglogo} alt="" style={{ width: "250px" }} />
+            <img src={imglogo} alt="" style={{ width: "200px" }} />
           </NavLink>
           <button
             className="navbar-toggler"
@@ -33,7 +32,6 @@ const Nav = ({
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
@@ -56,7 +54,6 @@ const Nav = ({
                   {SignUp} <span className="sr-only">(current)</span>
                 </NavLink>
               </li>
-
               <li className="nav-item">
                 <NavLink to="/" className="nav-link">
                   {LogOut} <span className="sr-only">(current)</span>
@@ -87,5 +84,4 @@ const Nav = ({
     </div>
   );
 };
-
 export default Nav;
