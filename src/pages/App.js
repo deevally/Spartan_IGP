@@ -1,4 +1,3 @@
-
 import React from "react";
 import "../css/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -22,8 +21,8 @@ function App() {
         <Route path="/View_Jobs" component={AdminPage} />
         <Route path="/Add_Jobs" component={AddJobs} />
         <Route path="/Blog" component={Blog} />
-        <Route path="/Blog/:Id" component={Post} />
-        <Route path="/jobdetails/:JobId" component={jobdetails} />
+        <Route path="/Blog:PostId" component={Post} />
+        <Route path="/jobdetails" component={jobdetails} />
       </Switch>
     </Router>
   );

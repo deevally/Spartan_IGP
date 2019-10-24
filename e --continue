@@ -1,0 +1,154 @@
+[33mcommit 41aa13c24d1988597dc6a43b46b0d2afe4b60078[m[33m ([m[1;36mHEAD -> [m[1;32mjoezelle[m[33m)[m
+Merge: 58f0abe 6dad3ec
+Author: joezelle <51567424+joezelle@users.noreply.github.com>
+Date:   Tue Oct 22 10:55:54 2019 +0100
+
+    changes
+
+[33mcommit 58f0abecb547605ee37432807e426d5ac0e6c1e8[m
+Author: joezelle <51567424+joezelle@users.noreply.github.com>
+Date:   Tue Oct 22 10:50:07 2019 +0100
+
+    styling adjustments
+
+[33mcommit f0f38017aa82bdb1dafc3f7bb218bf8443e4c39d[m
+Author: joezelle <51567424+joezelle@users.noreply.github.com>
+Date:   Tue Oct 22 08:51:50 2019 +0100
+
+    styling adjustment on Job Details
+
+[33mcommit 6dad3ec8a3016146f218ab48b58518e06055aee9[m[33m ([m[1;31morigin/develop[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: geraldanosike <geraldanosike.javhse@gmail.com>
+Date:   Tue Oct 22 08:58:23 2019 +0100
+
+    image folder renamed
+
+[33mcommit d5cc62efc8b23e23bf35eabbfeb68e9a41fc5b54[m
+Author: joezelle <51567424+joezelle@users.noreply.github.com>
+Date:   Mon Oct 21 16:47:03 2019 +0100
+
+    Job details page created
+
+[33mcommit 2ff98fca4cfc4793a47cea6fecaaf350730176cd[m
+Merge: 6d9e82d a123541
+Author: geraldanosike <35518052+geraldanosike@users.noreply.github.com>
+Date:   Tue Oct 22 08:36:03 2019 +0100
+
+    Merge pull request #5 from geraldanosike/Omosehin
+    
+    Omosehin
+
+[33mcommit a1235411e305628c24f1b0d2b07d17c9e2222857[m
+Author: Abayomi <omosehin14@gmail.com>
+Date:   Mon Oct 21 23:48:37 2019 +0100
+
+    reduces form background opacity
+
+[33mcommit cb778b06ec4e3e8036333c8e0b25c47b8ff4dd59[m
+Merge: cded8dc 6d9e82d
+Author: Abayomi <omosehin14@gmail.com>
+Date:   Mon Oct 21 17:49:55 2019 +0100
+
+    Merge branch 'develop' of https://github.com/geraldanosike/Spartan_IGP into Omosehin
+
+[33mcommit cded8dc44c146ca45ae681129832206a17fe843f[m
+Author: Abayomi <omosehin14@gmail.com>
+Date:   Mon Oct 21 17:24:21 2019 +0100
+
+    implementing filter
+
+[33mcommit 6d9e82d9c0c89355a8f8a2da0577fd45439b1e68[m
+Merge: b97d875 5277744
+Author: geraldanosike <35518052+geraldanosike@users.noreply.github.com>
+Date:   Mon Oct 21 16:44:14 2019 +0100
+
+    Merge pull request #4 from geraldanosike/oluwakemi
+    
+    Header and navbar for all pages
+
+[33mcommit 5277744fff4a4c5ed50e9eab8f045cab1f01fd46[m
+Author: Oluwakemi <oluwakemi.idowu@venturegardengroup.com>
+Date:   Mon Oct 21 16:34:25 2019 +0100
+
+    Header and navbar for all pages
+
+[33mcommit b97d875cbab0712ec0b34fee69c20d29ce21bb65[m
+Merge: 1f4b5b4 23921e4
+Author: geraldanosike <35518052+geraldanosike@users.noreply.github.com>
+Date:   Sun Oct 20 08:55:35 2019 +0100
+
+    Merge pull request #3 from geraldanosike/Omosehin
+    
+    implement header,button and card component
+
+[33mcommit 23921e4b9587b05e111238c732f0403b76236261[m
+Author: Abayomi <omosehin14@gmail.com>
+Date:   Sat Oct 19 15:45:04 2019 +0100
+
+    implement header,button and card component
+
+[33mcommit 1f4b5b420de2fb85db43fa3801467420ba543bdb[m
+Merge: 1a90810 63b4926
+Author: geraldanosike <35518052+geraldanosike@users.noreply.github.com>
+Date:   Sat Oct 19 11:42:34 2019 +0100
+
+    Merge pull request #2 from geraldanosike/joezelle
+    
+    added general css styling
+
+[33mcommit 63b4926b0ba7dcc6dfe6cd22c4b74b650f818568[m
+Author: joezelle <51567424+joezelle@users.noreply.github.com>
+Date:   Sat Oct 19 11:02:16 2019 +0100
+
+    added general css styling
+
+[33mcommit 1a908103eee6bdddd0d82740f8bf3b0321d64e16[m[33m ([m[1;32mdevelop[m[33m)[m
+Merge: 85fc23d ccbeec4
+Author: geraldanosike <35518052+geraldanosike@users.noreply.github.com>
+Date:   Sat Oct 19 10:05:55 2019 +0100
+
+    Merge pull request #1 from geraldanosike/Omosehin
+    
+    Omosehin
+
+[33mcommit ccbeec4f699e6f7b21d263b9aa6465e22610a95f[m[33m ([m[1;31morigin/Omosehin[m[33m)[m
+Author: Abayomi <omosehin14@gmail.com>
+Date:   Sat Oct 19 03:10:27 2019 +0100
+
+    Describe each pages witha paragraph text
+
+[33mcommit bdd65cf00a8590c28f211e434b515e3ad5f153fc[m
+Author: Abayomi <omosehin14@gmail.com>
+Date:   Sat Oct 19 03:01:51 2019 +0100
+
+    Routing Set up
+
+[33mcommit 093804a9521a1e7b69e426e8a0e999027b10476d[m
+Author: Abayomi <omosehin14@gmail.com>
+Date:   Sat Oct 19 01:07:18 2019 +0100
+
+    folder structure layout
+
+[33mcommit 85fc23d112daf3651870571d8b5c15b265072b6d[m
+Author: geraldanosike <geraldanosike.javhse@gmail.com>
+Date:   Fri Oct 18 23:34:31 2019 +0100
+
+    Create-react-app
+
+[33mcommit 603e7a2cd9c5b8b6d4b272a89ee24abbde5085b0[m
+Author: geraldanosike <geraldanosike.javhse@gmail.com>
+Date:   Fri Oct 18 22:48:28 2019 +0100
+
+    Initial commit from Create React App
+
+[33mcommit c40a9fe0ce0690ab3478abe68ece2faab9805a5b[m
+Author: geraldanosike <35518052+geraldanosike@users.noreply.github.com>
+Date:   Fri Oct 18 20:34:50 2019 +0100
+
+    Delete README.md
+
+[33mcommit 18f5dbf9e69d88a733139a5987981cf44a5c7837[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: geraldanosike <35518052+geraldanosike@users.noreply.github.com>
+Date:   Fri Oct 18 19:34:48 2019 +0100
+
+    Create ReadMe
