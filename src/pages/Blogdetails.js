@@ -29,7 +29,7 @@ class BlogDetails extends Component {
   }
   handleSubmit = (e)=> {
     const {fullName, email, text}= this.state;
-    // alert('A name was submitted: ' + this.state.value);
+    alert('Posted: ' + this.state.value);
     e.preventDefault();
     this.setState({fullName:'', email: '', text: ''});
   }
