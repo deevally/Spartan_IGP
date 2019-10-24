@@ -52,7 +52,16 @@
     letter-spacing: 3px;
     font-size: 2rem;
 }
-
+.viewbutton{
+    border:none;
+    background: #2992d0;
+}
+.viewbutton:hover{
+    background: #0a3650;
+}
+.displayNaira{
+    display: none;
+}
 .jobSideBar p,
 .jobSideBar span {
     font-size: 14px;

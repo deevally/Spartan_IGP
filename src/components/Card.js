@@ -8,7 +8,8 @@ const Card = ({
   cardHeaderSub,
   CardSubText,
   CardSubText2,
-  onClick
+  onClick,
+  displayNaira
 }) => {
   return (
     <div>
@@ -28,7 +29,7 @@ const Card = ({
         <h5> {CardSubText}</h5>
 
         <p className="address">
-          <span className="mr-2">&#8358;</span>
+          <span className={`mr-2 ${displayNaira}`}>&#8358;</span>
           {CardSubText2}
         </p>
 

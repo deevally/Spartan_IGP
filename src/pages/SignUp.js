@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import FormErrors from "../components/formErrors";
 import "../css/login-signup.css";
 import { BaseUrl } from "../utils/baseUrl";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/spinner";
 
 const url = `${BaseUrl}/createadmin`;
 

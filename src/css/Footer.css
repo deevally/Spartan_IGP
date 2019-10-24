@@ -27,42 +27,35 @@ footer {
 .social_icon {
   display: flex;
 }
-
-.myBtnClassFooter {
-  width: 70px;
-  height: 26px;
-  background-color: #2992d0;
-  border: none;
-  border: 0;
-  box-shadow: none;
-  outline: none;
-  margin-top: -1px !important;
+.myBtnClassFooter{
+    width: 70px;
+    height: 26px;
+    background-color:  #2992d0;
+    border:none;
+border:0;
+box-shadow:none;
+outline:none;
+margin-top: -1px !important;
 }
-
-.footerSec {
-  border-top: .2px solid gray;
+.footerSec{
+    border-top: .2px solid gray;
 }
-
-.subscribeEmail {
-  height: 25px;
-  width: 200px;
-  margin-top: -1px !important;
+.subscribeEmail{
+    height: 26px;
+    width: 200px;
+    margin-top: -1px !important;
 }
-
-.labelHeader {
-  font-size: 1.5rem;
+.labelHeader{
+font-size: 1.5rem;
 }
-
-.footerHeaderText {
-  color: #51b64b;
-  letter-spacing: .2rem;
+.footerHeaderText{
+    color:#51b64b;
+    letter-spacing: .2rem;
 }
-
-.labelHeaderText {
-  letter-spacing: .2rem;
+.labelHeaderText{
+    letter-spacing: .2rem; 
 }
-
-.phoneNo {
-  letter-spacing: .2rem;
-  font-size: 1.2rem;
+.phoneNo{
+    letter-spacing: .2rem;
+    font-size: 1.2rem;
 }
