@@ -10,6 +10,7 @@ import Alljobs from "./AllJobs";
 import Blog from "./Blogs";
 import Blogdetails from "./Blogdetails";
 import jobdetails from "./JobDetails";
+import Apply from './Apply'
 
 //`/allJobs/${title}/${type}
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/Blog" component={Blog} />
         <Route path="/Blog:PostId" component={Blogdetails} />
         <Route path="/jobdetails/:JobId" component={jobdetails} />
+        <Route path="/Apply" component={Apply}/>
       </Switch>
     </Router>
   );

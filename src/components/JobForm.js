@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "../components/Button";
 // import BaseUrl from '../utils/baseUrl';
 import { withRouter } from "react-router-dom";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/spinner";
 import Toast from "./Toast";
 import "../css/App.css";
 import "../css/addJob.css";

@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import "../css/Blogs.css";
 import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/spinner";
 
 class Blog extends Component {
   constructor(props) {

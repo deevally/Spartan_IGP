@@ -7,8 +7,9 @@ import Footer from "../components/Footer";
 import "../css/Card.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/spinner";
 import JobSidebar from "../components/JobSidebar";
+import {numberWithCommas} from '../components/searchedOptions'
 
 //let Search = <Filter />;
 
@@ -48,9 +49,7 @@ class Client extends Component {
     history.push(`/jobdetails/${JobId}`);
     console.log(history);
   };
-  numberWithCommas = x => {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
+  
   render() {
     const { Jobs, allJob, loading, err } = this.state;
     let fulltime = 0,
@@ -120,7 +119,7 @@ class Client extends Component {
                       cardHeader={Job.JobTitle}
                       cardHeaderSub={Job.jobResponsibilities}
                       CardSubText={Job.JobType}
-                      CardSubText2={this.numberWithCommas(Job.salary || 3000)}
+                      CardSubText2={numberWithCommas(Job.salary || 3000)}
                       displayNaira={Job.salary ? "" : "displayNaira"}
                       onClick={() => this.gotoJobDetails(Job._id)}
                     />

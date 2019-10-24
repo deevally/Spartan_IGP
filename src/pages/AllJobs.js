@@ -5,10 +5,10 @@ import Footer from "../components/Footer";
 import "../css/Card.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/spinner";
 import Button from "../components/Button";
 import JobSidebar from "../components/JobSidebar";
-import { Options, Options2 } from "../components/searchedOptions";
+import { Options, Options2,numberWithCommas } from "../components/searchedOptions";
 
 class AllJob extends Component {
   constructor(props) {
@@ -256,7 +256,7 @@ e.preventDefault()
                       cardHeader={Job.JobTitle}
                       cardHeaderSub={Job.jobResponsibilities}
                       CardSubText={Job.JobType}
-                      CardSubText2={Job.salary}
+                      CardSubText2={numberWithCommas(Job.salary || 3000)}
                       displayNaira={Job.salary ? "" : "displayNaira"}
                       onClick={() => this.gotoJobDetails(Job._id)}
                     />
