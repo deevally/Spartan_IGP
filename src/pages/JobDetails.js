@@ -8,7 +8,7 @@ import Spinner from "../components/Spinner";
 import JobSidebar from "../components/JobSidebar";
 import Footer from "../components/Footer";
 
-import "../css/jobDetails.css";
+import "../css/viewJobDetails.css";
 
 class JobDetails extends Component {
   constructor(props) {
