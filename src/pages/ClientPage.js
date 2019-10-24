@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import "../css/Card.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
-import Spinner from "../components/spinner";
+import Spinner from "../components/Spinner";
 import JobSidebar from "../components/JobSidebar";
 
 let Search = <Filter />;
