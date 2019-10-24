@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
 
-const Button = ({children,btnType,myBtnClass,disabled,onClick}) => {
-    return (
-        <div>
-            <button className = {`${btnType} ${myBtnClass}`} onClick={onClick} disabled={disabled}>
-                {children}
-            </button>
-        </div>
-    )
-}
+const Button = ({ children, btnType, myBtnClass, disabled, onClick }) => {
+  return (
+    <div>
+      <button
+        className={`${btnType} ${myBtnClass}`}
+        onClick={onClick}
+        disabled={disabled}
+      >
+        {children}
+      </button>
+    </div>
+  );
+};
 
-export default Button
+export default Button;
