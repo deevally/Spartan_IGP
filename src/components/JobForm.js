@@ -4,20 +4,22 @@ import axios from "axios";
 import Button from "../components/Button";
 // import BaseUrl from '../utils/baseUrl';
 import {withRouter} from 'react-router-dom'
-import Spinner from '../components/Spinner';
+import Spinner from '../components/spinner';
 import Toast from './Toast';
 
 import "../css/App.css";
 import "../css/addJob.css";
 
-const url = `https://jsonplaceholder.typicode.com/posts`;
-// const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
+// const url = `https://jsonplaceholder.typicode.com/posts`;
+const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
 
 class JobForm extends Component {
   state = {
     fields: {},
     errors: {},
-    loading: false
+    loading: false,
+    canSubmit:true,
+    callerror:{}
   };
 
   updateFormJob = e => {
@@ -39,38 +41,53 @@ class JobForm extends Component {
     // this.props.history.push(this.props.callbackurl)
   }
 
+
+  clearFields =() =>{
+
+    this.setState({
+      fields:{
+        JobDescription :'',
+        JobTitle :'',
+        salary :'',
+        jobResponsibilities:'',
+        companyInformation:''
+        
+      },
+      canCreate:false,
+    })
+  }
+
   handleSubmit = e => {
     this.setState ({ loading: true})
     e.preventDefault({toast:true});
-    let Data = {
-      ...this.state
-    };
+    
     let {fields} = this.state;
     if (this.validateForm()) {
      
-      console.log("fields-two", fields)
       axios
         .post(url, fields)
         .then(res => {
-          console.log(res);
-          console.log(res.data);
+          console.log(res)
           if ((res.status = 201)) {
-            console.log("Job created successfully");
             this.setState({
               loading:false,
               fields: fields
             });
             this.showToast();
+            this.clearFields()
             
           }
         })
-        .catch(error => {
-          this.setState({ loading: false, toast: false });
-         ( console.log(error));
+        .catch(err => {
+          this.setState({ loading: false, toast: false,callerror:err,canCreate:true});
         });
     }else{
+      this.setState({
+        loading:false,
+      });
       console.log("fields-two", fields)
     }
+   
   };
 
   validateForm = () => {
@@ -81,76 +98,89 @@ class JobForm extends Component {
     if (!fields["JobTitle"]) {
       formIsValid = false;
       errors["JobTitle"] = "*Enter a job title";
+      
     }
   
     if (typeof fields["JobTitle"] !== "undefined") {
       if (!fields["JobTitle"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
         errors["JobTitle"] = "*Enter alphabet characters only";
+        
+
       }
     }
 
     if (!fields["companyInformation"]) {
       formIsValid = false;
       errors["companyInformation"] = "*Enter a company info";
+      
+
     }
     if (typeof fields["companyInformation"] !== "undefined") {
       if (!fields["companyInformation"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
         errors["companyInformation"] = "*Enter alphabet characters only";
+        
+
       }
     }
 
     if (!fields["JobDescription"]) {
       formIsValid = false;
       errors["JobDescription"] = "*Enter a job description";
+      
+
     }
     if (typeof fields["JobDescription"] !== "undefined") {
       if (!fields["JobDescription"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
         errors["JobDescription"] = "*Enter alphabet characters only";
+        
+
       }
     }
 
     if (!fields["jobResponsibilities"]) {
       formIsValid = false;
       errors["jobResponsibilities"] = "*Enter job responsibilities";
+      
+
     }
     if (typeof fields["jobResponsibilities"] !== "undefined") {
       if (!fields["jobResponsibilities"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
         errors["jobResponsibilities"] = "*Enter alphabet characters only";
+        
+
       }
     }
 
-    // if (!fields["salary"]) {
-    //   formIsValid = false;
-    //   errors["salary"] = "*Enter the salary range";
-    // }
-    // if (typeof fields["salary"] !== "undefined") {
-    //   if (!fields["salary"].match(/^[a-zA-Z ]*$/)) {
-    //     formIsValid = false;
-    //     errors["salary"] = "*Enter range only";
-    //   }
-    // }
-
+   
     this.setState({
       errors: errors
     });
 
-    return true;
+    return formIsValid
+
   };
 
   render() {
+
+    const {callerror,canCreate} = this.state
+    console.log(callerror)
     return (
       <div>
         <Fragment>
           <section className="jobListView">
+          
             <div className="container">
               <div className="row">
                 <div className="col-md-10 mx-auto">
+               
                 <Toast caption="Job Successfully Created!"/>
                   { (this.state.loading === true) ? <Spinner />: 
+
+                 
                   <form id="addJob" onSubmit={this.handleSubmit}>
                     <div className="form-group">
                       <label htmlFor="JobTitle">Job Title</label>
@@ -252,12 +282,13 @@ class JobForm extends Component {
                     
                     <Button
                       type="submit"
-                      btnType="btn-primary"
+                      btnType="btn btn-primary"
                       id="submitJob"
                       Children={"Add Job"}
                     >
                       Add Job
                     </Button>
+                    {canCreate ===true &&  callerror && <p  className='text-danger text-center font-weight-bolder'>{'Check Connect'}</p>}
                   </form>
                 }
               </div>
