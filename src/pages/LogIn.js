@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import FormErrors from "../components/formErrors";
 import "../css/login-signup.css";
 import { BaseUrl } from "../utils/baseUrl";
+// import Spinner from "../components/Spinner";
 
 const url = `${BaseUrl}/loginadmin`;
 class Login extends Component {
@@ -20,7 +21,8 @@ class Login extends Component {
     emailValid: false,
     passwordValid: false,
     formValid: false,
-    Redirect: false
+    Redirect: false,
+    loading: false
   };
 
   handleUserInput = event => {
@@ -30,19 +32,20 @@ class Login extends Component {
       this.validateField(name, value);
     });
   };
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    });
-  };
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to="/Admin" />;
-    }
-  };
+  // setRedirect = () => {
+  //   this.setState({
+  //     redirect: true
+  //   });
+  // };
+  // renderRedirect = () => {
+  //   if (this.state.redirect) {
+  //     return <Redirect to="/Admin" />;
+  //   }
+  // };
   handleSubmit = async event => {
     event.preventDefault();
     const { email, password } = this.state;
+    this.setState({ loading: true });
     const user = {
       email,
       password
@@ -51,8 +54,23 @@ class Login extends Component {
     try {
       const loginAdmin = await Axios.post(url, user);
       console.log(loginAdmin.data);
+      this.setState({
+        // loading: false,
+        Redirect: true
+      });
+      // if (this.state.Redirect === true) {
+      //   return <Redirect to="/Admin" />;
+      // }
+      this.props.history.push("/Admin");
     } catch (error) {
-      console.log(error.message);
+      this.setState({
+        inValidLoginCredentials: {
+          ...this.state.inValidLoginCredentials,
+          status: true,
+          message: error.response.data.error
+        },
+        loading: false
+      });
     }
 
     this.setState({
@@ -104,15 +122,17 @@ class Login extends Component {
       password,
       formErrors,
       formValid,
-      inValidLoginCredentials
+      inValidLoginCredentials,
+      // loading
     } = this.state;
 
     return (
       <div className="container-parent">
-        {this.renderRedirect()}
+        {/* {this.renderRedirect()} */}
         <Nav Blog="Blog" Jobs="Jobs" />
         <FormErrors formErrors={formErrors} />
         <div className="container-fluid login-parent-container">
+          {/* {loading === true ? <Spinner spin="spinning" /> : false} */}
           {inValidLoginCredentials.status && (
             <div className="errordesign">{inValidLoginCredentials.message}</div>
           )}
