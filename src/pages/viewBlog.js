@@ -7,7 +7,8 @@ const BlogDetails = () => {
     <div>
       <Nav Jobs={'jobs'} SignUp ={'SignUp'} LogIn ={'Login'}/>
       <Header/>
-      <p>Blog</p>
+     
+     
     </div>
   );
 };
