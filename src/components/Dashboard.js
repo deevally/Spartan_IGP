@@ -100,6 +100,4 @@ class JobsTable extends React.Component {
   }
 }
 
- 
-
 export default JobsTable;

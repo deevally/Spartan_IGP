@@ -1,10 +1,10 @@
 .login-parent-container {
-  margin-top: 15rem;
+  margin-top: 10rem;
   background: #fcfcfe;
 }
 
 .login-img {
-  background-image: url("../Assets/images/design-desk-eyewear-313690.jpg");
+  background-image: url("../assets/images/design-desk-eyewear-313690.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,7 +12,7 @@
 }
 
 .container-parent {
-  /* height: 80vh; */
+position: relative;
 }
 
 .login-container {
@@ -33,10 +33,15 @@
   color: rgb(56, 54, 54);
 }
 .sign {
-  font-size: 3rem;
-  font-weight: 500;
+ font-size: 3rem;
+  font-weight: 500; 
+  margin-bottom: 7rem;
 }
-
+.log{
+  font-size: 3rem;
+  font-weight: 500; 
+  margin-bottom: 5rem;
+}
 .fullname {
   padding: 1rem;
   font-size: 1.5rem;
@@ -72,7 +77,9 @@
   padding: .7rem 2rem;
   background: var( --color-lightGreen);
   border-radius: 2rem;
-  transition:all 0.5s
+  transition:all 0.5s;
+  border: none;
+  outline: none;
 }
 
 .forms {
@@ -91,4 +98,18 @@
 .member{
     font-size: 1.5rem;
     margin-top: 3rem;
+}
+
+.errordesign{
+    width: 50%;
+    /* margin: 6.5rem auto; */
+    position: absolute;
+
+    left: 45%;
+    top: 4.5rem;
+    font-size: 1rem;
+    transition: all .5s ease-in-out;
+    text-align: center;
+    color: red;
+    /* border-bottom: 2px solid green; */
 }
