@@ -25,7 +25,7 @@ function App() {
         <Route path="/Add_Jobs" component={AddJobs} />
         <Route path="/allJobs" component={Alljobs} />
         <Route path="/Blog" component={Blog} />
-        <Route path="/Blog:PostId" component={Blogdetails} />
+        <Route path="/Blogdetails/:PostId" component={Blogdetails} />
         <Route path="/jobdetails/:JobId" component={jobdetails} />
         <Route path="/Apply" component={Apply}/>
       </Switch>
