@@ -7,8 +7,8 @@ import Login from "./LogIn";
 import AdminPage from "./AdminPage";
 import AddJobs from "./AddJobs";
 import Blog from "./Blogs";
-import Post from "./Post";
-import jobdetails from "./JobDetails";
+import Blogdetails from "./Blogdetails";
+import Jobdetails from "./JobDetails";
 
 function App() {
   return (
