@@ -118,6 +118,7 @@ class Client extends Component {
                     <Card
                       cardHeader={Job.JobTitle}
                       cardHeaderSub={Job.jobResponsibilities}
+                      CardSubText1 ={Job.location}
                       CardSubText={Job.JobType}
                       CardSubText2={numberWithCommas(Job.salary || 3000)}
                       displayNaira={Job.salary ? "" : "displayNaira"}
