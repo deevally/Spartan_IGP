@@ -33,10 +33,7 @@ class JobForm extends Component {
     x.className = "show";
     setTimeout(function() {
       x.className = x.className.replace("show", "");
-    }, 5000);
-    // push to a new page;
-    // this.props.history.push(this.props.callbackurl)
-  };
+    }, 5000)};
 
   clearFields = () => {
     this.setState({
@@ -68,6 +65,11 @@ class JobForm extends Component {
             });
             this.showToast();
             this.clearFields();
+
+            setTimeout(() => {
+              this.props.history.push(this.props.callbackurl)
+            },3000);
+            
           }
         })
         .catch(err => {
