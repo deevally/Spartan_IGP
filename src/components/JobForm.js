@@ -1,23 +1,27 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
-// import Nav from "../components/Nav";`
 import Button from "../components/Button";
 // import BaseUrl from '../utils/baseUrl';
-import {withRouter} from 'react-router-dom'
-import Spinner from '../components/Spinner';
-import Toast from './Toast';
+import { withRouter } from "react-router-dom";
+import Spinner from "../components/Spinner";
+import Toast from "./Toast";
 
 import "../css/App.css";
 import "../css/addJob.css";
 
 const url = `https://jsonplaceholder.typicode.com/posts`;
 // const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
+// data == docs
 
 class JobForm extends Component {
   state = {
     fields: {},
     errors: {},
-    loading: false
+    loading: false,
+    formIsValid: false,
+    canSubmit: true,
+    callerror: {}
+    // toast: false
   };
 
   updateFormJob = e => {
@@ -26,50 +30,62 @@ class JobForm extends Component {
     this.setState({
       fields
     });
-    console.log( this.state.fields)
+    console.log(this.state.fields);
   };
 
-  showToast = ()=>{
-    let x = document.getElementById("toast")
+  showToast = () => {
+    let x = document.getElementById("toast");
     x.className = "show";
-    setTimeout(function(){
-      x.className = x.className.replace("show", ""); 
+    setTimeout(function() {
+      x.className = x.className.replace("show", "");
     }, 5000);
     // push to a new page;
     // this.props.history.push(this.props.callbackurl)
-  }
+  };
+
+  clearFields = () => {
+    this.setState({
+      fields: {
+        JobDescription: "",
+        JobTitle: "",
+        salary: "",
+        jobResponsibilities: "",
+        companyInformation: ""
+      },
+      canCreate: false
+    });
+  };
 
   handleSubmit = e => {
-    this.setState ({ loading: true})
-    e.preventDefault({toast:true});
-    let Data = {
-      ...this.state
-    };
-    let {fields} = this.state;
+    this.setState({ loading: true });
+
+    e.preventDefault({ toast: true });
+    
+    let { fields } = this.state;
+
     if (this.validateForm()) {
-     
-      console.log("fields-two", fields)
+   
       axios
         .post(url, fields)
         .then(res => {
           console.log(res);
-          console.log(res.data);
           if ((res.status = 201)) {
-            console.log("Job created successfully");
+
             this.setState({
-              loading:false,
+              loading: false,
               fields: fields
             });
             this.showToast();
-            
+            this.clearFields()
           }
         })
-        .catch(error => {
-          this.setState({ loading: false, toast: false });
-         ( console.log(error));
+        .catch(err=> {
+          this.setState({ 
+            loading: false, toast: false, callerror:err, canCreate:true 
+          })
         });
-    }else{
-      console.log("fields-two", fields)
+    } else {
+      console.log("fields-two", fields);
     }
   };
 
@@ -77,12 +93,11 @@ class JobForm extends Component {
     let fields = this.state.fields;
     let errors = {};
     let formIsValid = true;
-  
+
     if (!fields["JobTitle"]) {
       formIsValid = false;
       errors["JobTitle"] = "*Enter a job title";
     }
-  
     if (typeof fields["JobTitle"] !== "undefined") {
       if (!fields["JobTitle"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
@@ -123,25 +138,16 @@ class JobForm extends Component {
       }
     }
 
-    // if (!fields["salary"]) {
-    //   formIsValid = false;
-    //   errors["salary"] = "*Enter the salary range";
-    // }
-    // if (typeof fields["salary"] !== "undefined") {
-    //   if (!fields["salary"].match(/^[a-zA-Z ]*$/)) {
-    //     formIsValid = false;
-    //     errors["salary"] = "*Enter range only";
-    //   }
-    // }
-
     this.setState({
       errors: errors
     });
 
-    return true;
+    return formIsValid;
   };
 
   render() {
+    const {callerror,canCreate} = this.state
+    console.log(callerror)
     return (
       <div>
         <Fragment>
@@ -149,68 +155,70 @@ class JobForm extends Component {
             <div className="container">
               <div className="row">
                 <div className="col-md-10 mx-auto">
-                <Toast caption="Job Successfully Created!"/>
-                  { (this.state.loading === true) ? <Spinner />: 
-                  <form id="addJob" onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                      <label htmlFor="JobTitle">Job Title</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        onChange={this.updateFormJob}
-                        value={this.state.fields.JobTitle}
-                        name="JobTitle"
-                        placeholder="Software Engineer"
-                      />
-                      <div className="errorMsg">
-                        {this.state.errors.JobTitle}
+                  <Toast caption="Job Successfully Created!" />
+                  {(this.state.loading === true) ? (
+                    <Spinner />
+                  ) : (
+                    <form id="addJob" onSubmit={this.handleSubmit}>
+                      <div className="form-group">
+                        <label htmlFor="JobTitle">Job Title</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          onChange={this.updateFormJob}
+                          value={this.state.fields.JobTitle}
+                          name="JobTitle"
+                          placeholder="Software Engineer"
+                        />
+                        <div className="errorMsg">
+                          {this.state.errors.JobTitle}
+                        </div>
                       </div>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="companyInfo">Company Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        onChange={this.updateFormJob}
-                        value={this.state.fields.companyInformation} 
-                        name="companyInformation"
-                        placeholder="Venture Garden Group"
-                      />
-                      <div className="errorMsg">
-                        {this.state.errors.companyInformation}
+                      <div className="form-group">
+                        <label htmlFor="companyInfo">Company Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          onChange={this.updateFormJob}
+                          value={this.state.fields.companyInformation}
+                          name="companyInformation"
+                          placeholder="Venture Garden Group"
+                        />
+                        <div className="errorMsg">
+                          {this.state.errors.companyInformation}
+                        </div>
                       </div>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="JobType">Job Nature</label>
-                      <select
-                        className="form-control"
-                        value={this.state.fields.JobType}
-                        onChange={this.updateFormJob}
-                        name="JobType"
-                      >
-                        <option>Choose a Job type</option>
-                        <option>Full-time</option>
-                        <option>Part-time</option>
-                        <option>Internship</option>
-                        <option>Remote</option>
-                      </select>
-                    </div>
+                      <div className="form-group">
+                        <label htmlFor="JobType">Job Nature</label>
+                        <select
+                          className="form-control"
+                          value={this.state.fields.JobType}
+                          onChange={this.updateFormJob}
+                          name="JobType"
+                        >
+                          <option>Choose a Job type</option>
+                          <option>Full-time</option>
+                          <option>Part-time</option>
+                          <option>Internship</option>
+                          <option>Remote</option>
+                        </select>
+                      </div>
 
-                    <div className="floating-placeholder form-group">
-                      <label htmlFor="salary">Salary</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={this.state.fields.salary}
-                        onChange={this.updateFormJob}
-                        name="salary"
-                        placeholder="600,000"
-                      />
-                      <div className="errorMsg">
-                        {this.state.errors.salary}
+                      <div className="floating-placeholder form-group">
+                        <label htmlFor="salary">Salary</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={this.state.fields.salary}
+                          onChange={this.updateFormJob}
+                          name="salary"
+                          placeholder="600,000"
+                        />
+                        <div className="errorMsg">
+                          {this.state.errors.salary}
+                        </div>
                       </div>
-                    </div>
-                    {/* <div className="form-group">
+                      {/* <div className="form-group">
                         <label htmlFor="Publish">Published on</label>
                         <input
                           type="date"
@@ -221,49 +229,52 @@ class JobForm extends Component {
                         />
                       </div> */}
 
-                    <div className="form-group">
-                      <label htmlFor="JobDescription">Job Description</label>
-                      <textarea
-                        className="form-control"
-                        // id="jobDesc"
-                        type="text"
-                        onChange={this.updateFormJob}
-                        value={this.state.fields.JobDescription}
-                        name="JobDescription"
-                        rows="3"
-                      ></textarea>
-                      <div className="errorMsg">
-                        {this.state.errors.JobDescription}
+                      <div className="form-group">
+                        <label htmlFor="JobDescription">Job Description</label>
+                        <textarea
+                          className="form-control"
+                          // id="jobDesc"
+                          type="text"
+                          onChange={this.updateFormJob}
+                          value={this.state.fields.JobDescription}
+                          name="JobDescription"
+                          rows="3"
+                        ></textarea>
+                        <div className="errorMsg">
+                          {this.state.errors.JobDescription}
+                        </div>
                       </div>
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="jobResponsibilities">Responsibilities</label>
-                      <textarea
-                        className="form-control"
-                        onChange={this.updateFormJob}
-                        value={this.state.fields.jobResponsibilities}
-                        name="jobResponsibilities"
-                        rows="3"
-                      ></textarea>
-                      <div className="errorMsg">
-                        {this.state.errors.jobResponsibilities}
+                      <div className="form-group">
+                        <label htmlFor="jobResponsibilities">
+                          Responsibilities
+                        </label>
+                        <textarea
+                          className="form-control"
+                          onChange={this.updateFormJob}
+                          value={this.state.fields.jobResponsibilities}
+                          name="jobResponsibilities"
+                          rows="3"
+                        ></textarea>
+                        <div className="errorMsg">
+                          {this.state.errors.jobResponsibilities}
+                        </div>
                       </div>
-                    </div>
-                    
-                    <Button
-                      type="submit"
-                      btnType="btn-primary"
-                      id="submitJob"
-                      Children={"Add Job"}
-                    >
-                      Add Job
-                    </Button>
-                  </form>
-                }
+
+                      <Button
+                        type="submit"
+                        btnType="btn-primary"
+                        id="submitJob"
+                        Children={"Add Job"}
+                      >
+                        Add Job
+                      </Button>
+                      {canCreate ===true && callerror && <p className='text-danger text-center font-weight-bolder'>{'Check Connect'}</p>}
+                    </form>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
         </Fragment>
       </div>
     );
