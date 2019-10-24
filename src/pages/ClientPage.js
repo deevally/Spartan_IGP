@@ -8,7 +8,7 @@ import "../css/Card.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
 import Spinner from "../components/Spinner";
-import JobSidebar from "../components/JobSidebar"
+import JobSidebar from "../components/JobSidebar";
 
 let Search = <Filter />;
 
@@ -43,37 +43,34 @@ class Client extends Component {
     });
   };
 
-  gotoJobDetails = (JobId) => {
+  gotoJobDetails = JobId => {
     const { history } = this.props;
     history.push(`/jobdetails/${JobId}`);
   };
 
-
-
   render() {
     const { Jobs, allJob, loading, err } = this.state;
-    
-    let fulltime=0 ,partTime = 0 ,remote = 0;
+
+    let fulltime = 0,
+      partTime = 0,
+      remote = 0;
 
     Jobs.map(Job => {
       switch (Job.JobType) {
-        case 'Full-time':
-            fulltime++
-            break;  
-        case 'Part-time':
-            partTime++
-            break;
-        case 'Remote':
-            remote++
-            break;
+        case "Full-time":
+          fulltime++;
+          break;
+        case "Part-time":
+          partTime++;
+          break;
+        case "Remote":
+          remote++;
+          break;
         default:
-          break;}
-      
-    })
+          break;
+      }
+    });
 
- 
-
-    
     return (
       <div>
         <Nav Blog="Blog" LogIn="Login" SignUp="SignUp" />
@@ -104,20 +101,29 @@ class Client extends Component {
                       cardHeaderSub={Job.jobResponsibilities}
                       CardSubText={Job.JobType}
                       CardSubText2={Job.salary}
-                      onClick={()=>this.gotoJobDetails(Job._id)}
+                      onClick={() => this.gotoJobDetails(Job._id)}
                     />
                   </div>
                 ))}
               </div>
-              <div className= {loading===true?'sidebarShow' : 'col-md-3 '}>
-                  <JobSidebar  FullTime ={'Full-Time'} FullTimeNumbers ={fulltime} PartTime ={'Part-Time'} PartTimeNumbers ={partTime} Remote={'Remote'} RemoteNumbers = {remote} />
+              <div className={loading === true ? "sidebarShow" : "col-md-3 "}>
+                <JobSidebar
+                  FullTime={"Full-Time"}
+                  FullTimeNumbers={fulltime}
+                  PartTime={"Part-Time"}
+                  PartTimeNumbers={partTime}
+                  Remote={"Remote"}
+                  RemoteNumbers={remote}
+                />
               </div>
             </div>
           </div>
         )}
         {err && (
           <div className="container mx-auto">
-            <h1 className='font-weight-bolder mb-5 ml-5'>Check your Connection</h1>
+            <h1 className="font-weight-bolder mb-5 ml-5">
+              Check your Connection
+            </h1>
           </div>
         )}
 
