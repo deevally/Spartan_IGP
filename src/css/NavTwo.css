@@ -1,0 +1,44 @@
+:root {
+    --color-darkGreen: #013444;
+    --color-lightGreen: #51b64b;
+    --color-vggBlue: #2992d0;
+    --color--grey-text: #333;
+}
+
+nav {
+    background-color: #020607af;
+}
+
+.navbar {
+    padding: 0 1rem !important;
+}
+
+.navbar li.nav-item a.nav-link:active,
+.navbar li.nav-item a.nav-link:visited,
+.navbar li.nav-item a.nav-link:link {
+    font-size: 20px;
+    color: #fff;
+
+}
+
+.navbar li.nav-item a.nav-link:hover {
+    color: var(--color-lightGreen);
+}
+
+
+.navbar li.nav-item.active a.nav-link {
+    color: var(--color-lightGreen)
+}
+
+.nav-item {
+    margin-left: 1rem;
+}
+
+.nav-link {
+    letter-spacing: .3rem;
+
+}
+
+.selectedLink {
+    border-bottom: 2px solid #51b64b;
+}

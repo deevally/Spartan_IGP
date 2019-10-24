@@ -9,6 +9,7 @@ import AddJobs from "./AddJobs";
 import Blog from "./Blogs";
 import Post from "./Post";
 import jobdetails from "./JobDetails";
+import Apply from "./Apply";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Route path="/Add_Jobs" component={AddJobs} />
         <Route path="/Blog" component={Blog} />
         <Route path="/Blog:PostId" component={Post} />
-        <Route path="/jobdetails" component={jobdetails} />
+        <Route path="/jobdetails/:JobId" component={jobdetails} />
+        <Route path="/Apply" component={Apply} />
       </Switch>
     </Router>
   );

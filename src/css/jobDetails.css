@@ -11,7 +11,7 @@
 }
 
 .jobTitles h4 {
-    font-size: 2rem;
+    font-size: 2.4rem;
     color: var(--color-vggBlue);
 }
 
@@ -69,5 +69,6 @@ a:hover {
 
 .apply {
     color: white;
-    font-size: 16px;
+    font-size: 20px;
+    padding: 3px 16px 6px;
 }
