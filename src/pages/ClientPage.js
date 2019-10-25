@@ -34,7 +34,7 @@ class Client extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    let url = `${BaseUrl}/jobs?limit=${4}&page=${1}`;
+    let url = `${BaseUrl}/jobs?limit=${4}&page=${4}`;
 
     Axios(url)
       .then(res => {
@@ -60,7 +60,6 @@ class Client extends Component {
   gotoJobDetails = JobId => {
     const { history } = this.props;
     history.push(`/jobdetails/${JobId}`);
-    console.log(history);
   };
 
   gotoAllJobs = () => {
@@ -78,16 +77,25 @@ class Client extends Component {
       allJob,
       loading,
       err,
-      pageOfItems,
-      allJobLength
+      allJobLength,
+      pageOfItems
     } = this.state;
     console.log(pageOfItems);
     console.log(Jobs);
     let fulltime = 0,
       partTime = 0,
-      remote = 0;
+      remote = 0,
+      Lagos = 0,
+      Abuja = 0,
+      Imo = 0,
+      Delta = 0,
+      Edo = 0,
+      Ekiti = 0,
+      Ogun = 0,
+      Ondo = 0,
+      Oyo = 0;
 
-    Jobs.map(Job => {
+    Jobs.forEach(Job => {
       switch (Job.JobType) {
         case "Full-time":
           fulltime++;
@@ -102,6 +110,39 @@ class Client extends Component {
           break;
       }
     });
+    Jobs.forEach(Job => {
+      switch (Job.location) {
+        case "Lagos":
+          Lagos++;
+          break;
+        case "Abuja":
+          Abuja++;
+          break;
+        case "Imo":
+          Imo++;
+          break;
+        case "Delta":
+          Delta++;
+          break;
+        case "Edo":
+          Edo++;
+          break;
+        case "Ekiti":
+          Ekiti++;
+          break;
+        case "Ogun":
+          Ogun++;
+          break;
+        case "Ondo":
+          Ondo++;
+          break;
+        case "Oyo":
+          Oyo++;
+          break;
+        default:
+          break;
+      }
+    });
 
     return (
       <div>
@@ -110,7 +151,7 @@ class Client extends Component {
           className="landingPageHeader"
           headerText="headerText"
           searchForm={<Filter {...this.props} />}
-          HeaderText__first="Search for your dream job"
+          HeaderText__first="Search your dream job"
           noOfJob={
             Jobs.length >= 1 ? (
               allJobLength
@@ -121,9 +162,7 @@ class Client extends Component {
             )
           }
           SubHeaderText={
-            allJob !== null
-              ? `Job${allJob > 1 ? "s" : ""} offers available`
-              : ""
+            allJob !== null ? `Job${allJob > 1 ? "s" : ""} Available` : ""
           }
           headerBorder="clientsheaderBorder"
         />
@@ -174,7 +213,15 @@ class Client extends Component {
                     table={
                       <JobSummartTable
                         {...this.props}
-                        States={JStates && JStates}
+                        LagosNo={Lagos || ""}
+                        OndoNo={Ondo || ""}
+                        EdoNo={Edo || ""}
+                        AbujaNo={Abuja || ""}
+                        EkitiNo={Ekiti || ""}
+                        OyoNo={Oyo || ""}
+                        DeltaNo={Delta || ""}
+                        OgunNo={Ogun || ""}
+                        ImoNo={Imo || ""}
                       />
                     }
                   />

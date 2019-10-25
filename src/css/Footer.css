@@ -22,23 +22,24 @@ footer {
 .footerList_coopyright {
   letter-spacing: 0.2rem;
   font-size: 1.3rem;
+  padding: 2rem;
 }
 
 .social_icon {
   display: flex;
 }
 .myBtnClassFooter{
-    width: 70px;
-    height: 26px;
-    background-color:  #2992d0;
-    border:none;
-border:0;
-box-shadow:none;
-outline:none;
-margin-top: -1px !important;
+  width: 70px;
+  height: 26px;
+  background-color:  #2992d0;
+  border:none;
+  border:0;
+  box-shadow:none;
+  outline:none;
+  margin-top: -1px !important;
 }
 .footerSec{
-    border-top: .2px solid gray;
+  border-top: .2px solid gray;
 }
 .subscribeEmail{
     height: 26px;
@@ -46,7 +47,7 @@ margin-top: -1px !important;
     margin-top: -1px !important;
 }
 .labelHeader{
-font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 .footerHeaderText{
     color:#51b64b;
