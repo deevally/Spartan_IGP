@@ -7,11 +7,12 @@ import Footer from "../components/Footer";
 import "../css/Card.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
-import Spinner from "../components/spinner";
+import Spinner from "../components/Spinner";
 import JobSidebar from "../components/JobSidebar";
-import {numberWithCommas} from '../components/searchedOptions'
+import { numberWithCommas } from "../components/searchedOptions";
 import JobSummartTable from "../components/JobSummaryTable";
-import {AllStates as JStates} from '../components/searchedOptions'
+import { AllStates as JStates } from "../components/searchedOptions";
+import Button from "../components/Button";
 //let Search = <Filter />;
 
 class Client extends Component {
@@ -21,13 +22,15 @@ class Client extends Component {
       Jobs: [],
       allJob: null,
       err: "",
-      loading: false
+      loading: false,
+      allJobLength: null
     };
   }
 
   componentDidMount() {
     this.setState({ loading: true });
-    let url = `${BaseUrl}/jobs`;
+    let url = `${BaseUrl}/jobs?limit=${4}&page=${1}`;
+
     Axios(url)
       .then(res => {
         this.showJob(res.data);
@@ -39,6 +42,7 @@ class Client extends Component {
 
   showJob = data => {
     this.setState({
+      allJobLength: data.total,
       Jobs: data.docs,
       allJob: data.total,
       loading: false
@@ -50,10 +54,19 @@ class Client extends Component {
     history.push(`/jobdetails/${JobId}`);
     console.log(history);
   };
-  
+
+  gotoAllJobs =()=>{
+    const {history} =this.props;
+   let SearchForm= {
+      title: "",
+      location: "",
+      type: ""
+    }
+    history.push({ pathname: "/allJobs", state: SearchForm });
+  }
   render() {
-    const { Jobs, allJob, loading, err } = this.state;
-    console.log(Jobs)
+    const { Jobs, allJob, loading, err, allJobLength } = this.state;
+    console.log(Jobs);
     let fulltime = 0,
       partTime = 0,
       remote = 0;
@@ -84,7 +97,7 @@ class Client extends Component {
           HeaderText__first="Search for your dream job"
           noOfJob={
             Jobs.length >= 1 ? (
-              Jobs.length
+              allJobLength
             ) : (
               <h3 className="text-white font-weight-bolder">
                 CHECK BACK FOR AVAILABLE JOBS
@@ -105,7 +118,7 @@ class Client extends Component {
           <div className="container">
             <div className="row single-post my-5 ">
               <div className={`details col-md-9`}>
-                {Jobs.reverse().map(Job => (
+                {Jobs.map(Job => (
                   <div
                     key={Job._id}
                     className={
@@ -120,7 +133,7 @@ class Client extends Component {
                     <Card
                       cardHeader={Job.JobTitle}
                       cardHeaderSub={Job.jobResponsibilities}
-                      CardSubText1 ={Job.location}
+                      CardSubText1={Job.location}
                       CardSubText={Job.JobType}
                       CardSubText2={numberWithCommas(Job.salary || 3000)}
                       displayNaira={Job.salary ? "" : "displayNaira"}
@@ -132,7 +145,7 @@ class Client extends Component {
               {!err && (
                 <div className={loading === true ? "sidebarShow" : "col-md-3 "}>
                   <JobSidebar
-                  typeTitle='Job By Type'
+                    typeTitle="Job By Type"
                     FullTime={"Full-Time"}
                     FullTimeNumbers={fulltime}
                     PartTime={"Part-Time"}
@@ -141,12 +154,24 @@ class Client extends Component {
                     RemoteNumbers={remote}
                   />
                   <JobSidebar
-                   typeTitle='Job By Location'
-                   table= {<JobSummartTable {...this.props} States={JStates && JStates}/>}
+                    typeTitle="Job By Location"
+                    table={
+                      <JobSummartTable
+                        {...this.props}
+                        States={JStates && JStates}
+                      />
+                    }
                   />
                 </div>
               )}
             </div>
+          </div>
+        )}
+        {Jobs && (
+          <div className="container ml-auto pb-5 text-center">
+            <Button btnType="btn-primary" myBtnClass="viewbutton" onClick ={this.gotoAllJobs}>
+              View More Job Openings <i className="fas fa-chevron-right py-2"></i> <i className="fas fa-chevron-right"></i>
+            </Button>
           </div>
         )}
         {err && (

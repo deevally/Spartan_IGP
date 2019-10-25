@@ -7,7 +7,7 @@ const JobSummartTable = ({States}) => {
         <div>
             <ul className = 'stateList'>
                 {States.map((state,i)=>
-                    <li className ='py-3 my-3 ml-4'>
+                    <li className ='py-3 my-3 mr-5'>
                         {state}<span className ='font-weight-bolder ml-3'>{9}</span>
                     </li>
                 )}
