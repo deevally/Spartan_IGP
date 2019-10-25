@@ -64,7 +64,7 @@ class JobsTable extends React.Component {
   renderTableData() {
      
      let i = 1;
-     return this.state.jobListing.map(job => {
+     return this.state.jobListing.reverse().map(job => {
         const {_id, JobTitle, JobType, location, salary} = job
         return (
            <tr key={_id}>

@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import FormErrors from "../components/formErrors";
 import "../css/login-signup.css";
 import { BaseUrl } from "../utils/baseUrl";
+// import Spinner from "../components/Spinner";
 
 const url = `${BaseUrl}/loginadmin`;
 class Login extends Component {
@@ -13,14 +14,15 @@ class Login extends Component {
     email: "",
     password: "",
     formErrors: { fullname: "", email: "", password: "" },
-    userExists: {
-      status:false,
-      message:''
+    inValidLoginCredentials: {
+      status: false,
+      message: ""
     },
     emailValid: false,
     passwordValid: false,
     formValid: false,
-    Redirect: false
+    Redirect: false,
+    loading: false
   };
 
   handleUserInput = event => {
@@ -30,34 +32,48 @@ class Login extends Component {
       this.validateField(name, value);
     });
   };
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    });
-  };
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to="/Admin" />;
-    }
-  };
+  // setRedirect = () => {
+  //   this.setState({
+  //     redirect: true
+  //   });
+  // };
+  // renderRedirect = () => {
+  //   if (this.state.redirect) {
+  //     return <Redirect to="/Admin" />;
+  //   }
+  // };
   handleSubmit = async event => {
     event.preventDefault();
     const { email, password } = this.state;
+    this.setState({ loading: true });
     const user = {
       email,
       password
     };
-    
-try {
-     const loginAdmin = await Axios.post(url, user);
 
-     console.log(loginAdmin.data);
-     window.isAuthenticated = true;
-     window.user = loginAdmin.data;
-} catch (error) {
-  
-}
- 
+    try {
+      const loginAdmin = await Axios.post(url, user);
+      console.log(loginAdmin.data);
+      let token = loginAdmin.data.token;
+      localStorage.setItem('token', JSON.stringify(token))
+      this.setState({
+        // loading: false,
+        Redirect: true
+      });
+      // if (this.state.Redirect === true) {
+      //   return <Redirect to="/Admin" />;
+      // }
+      this.props.history.push("/Admin");
+    } catch (error) {
+      this.setState({
+        inValidLoginCredentials: {
+          ...this.state.inValidLoginCredentials,
+          status: true,
+          message: error.response.data.error
+        },
+        loading: false
+      });
+    }
 
     this.setState({
       Redirect: true
@@ -103,15 +119,25 @@ try {
   }
 
   render() {
-    const { email, password, formErrors, formValid , userExists} = this.state;
+    const {
+      email,
+      password,
+      formErrors,
+      formValid,
+      inValidLoginCredentials,
+      // loading
+    } = this.state;
 
     return (
       <div className="container-parent">
-        {this.renderRedirect()}
+        {/* {this.renderRedirect()} */}
         <Nav Blog="Blog" Jobs="Jobs" />
         <FormErrors formErrors={formErrors} />
         <div className="container-fluid login-parent-container">
-          {(userExists.status) && <div>{userExists.message}</div>}
+          {/* {loading === true ? <Spinner spin="spinning" /> : false} */}
+          {inValidLoginCredentials.status && (
+            <div className="errordesign">{inValidLoginCredentials.message}</div>
+          )}
           <div className="row ml-auto mr-auto login-container">
             <div className="login-img"></div>
             <div className="login-info">
@@ -143,7 +169,7 @@ try {
                   ></input>
                 </label>
                 <Button
-                  onClick={this.setRedirect}
+                  // onClick={this.setRedirect}
                   myBtnClass="form-btn"
                   btnType=""
                   disabled={!formValid}
@@ -164,3 +190,6 @@ try {
 }
 
 export default Login;
+
+//Geraldmcqwean10@gmail.com
+//Wednesday2019

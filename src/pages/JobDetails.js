@@ -4,10 +4,11 @@ import Nav from "../components/Nav";
 import Header from "../components/Header";
 import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/spinner";
 import JobSidebar from "../components/JobSidebar";
+import Footer from "../components/Footer";
 
-import "../css/jobDetails.css";
+import "../css/viewJobDetails.css";
 
 class JobDetails extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class JobDetails extends Component {
   getSingleJob() {
     const { JobId } = this.props.match.params;
     let url = `${BaseUrl}/job/${JobId}`;
+    console.log(url);
     Axios.get(url)
       .then(res => {
         const singleJob = res.data;
@@ -44,6 +46,11 @@ class JobDetails extends Component {
       allJob: data.total,
       loading: false
     });
+  };
+
+  gotoApply = () => {
+    const { history } = this.props;
+    history.push("/Apply");
   };
 
   render() {
@@ -88,10 +95,8 @@ class JobDetails extends Component {
                 <div class="singleJob d-flex flex-row">
                   <div class="details">
                     <div class="jobTitle d-flex flex-column justify-content-between">
-                      <div class="titles">
-                        <a href="singleJob.html">
-                          <h4>{value.JobTitle}</h4>
-                        </a>
+                      <div class="jobTitles">
+                        <h4>{value.JobTitle}</h4>
                         <h6>Premium Labels Limited</h6>
                       </div>
 
@@ -107,12 +112,15 @@ class JobDetails extends Component {
                           <i class="far fa-money-bill-alt"></i> &nbsp;
                           {value.salary}
                         </p>
-                        <Button
-                          btnType=" btn btn-primary"
-                          myBtnClass="apply ml-auto"
-                        >
-                          Apply
-                        </Button>
+                        <div class="ml-auto">
+                          <Button
+                            btnType=" btn btn-primary"
+                            myBtnClass="apply"
+                            onClick={this.gotoApply}
+                          >
+                            Apply
+                          </Button>
+                        </div>
                       </div>
                     </div>
 
@@ -120,16 +128,15 @@ class JobDetails extends Component {
                       <h3>DESCRIPTION</h3>
 
                       <p class="description">
-                        {value.description}
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Suscipit ea officia, obcaecati odio, minus maxime
-                        incidunt atque, nihil esse expedita repellat dolores
-                        voluptatem! Modi nihil rerum, maiores consectetur
-                        perspiciatis debitis. Doloremque id non provident odit
-                        impedit vero eveniet nemo quos fugiat libero, et el,
-                        blanditiis, earum ab nemo ducimus modi doloremque
-                        aliquam nam, per, beatae nihil, dicta velit magni
-                        repudiandae eum nostrum ducimus! Assumenda, quas!
+                        {value.JobDescription} &nbsp; Lorem, ipsum dolor sit
+                        amet consectetur adipisicing elit. Suscipit ea officia,
+                        obcaecati odio, minus maxime incidunt atque, nihil esse
+                        expedita repellat dolores voluptatem! Modi nihil rerum,
+                        maiores consectetur perspiciatis debitis. Doloremque id
+                        non provident odit impedit vero eveniet nemo quos fugiat
+                        libero, et el, blanditiis, earum ab nemo ducimus modi
+                        doloremque aliquam nam, per, beatae nihil, dicta velit
+                        magni repudiandae eum nostrum ducimus! Assumenda, quas!
                         Architecto recusandae velit sed consequatur voluptates.
                         Eaque impedit voluptas deleniti blanditiis possimus
                         earum adipisci, necessitatibus commodi facilis quidem
@@ -181,23 +188,24 @@ class JobDetails extends Component {
                         suscipit voluptatibus quia.
                       </p>
                     </div>
-                    <div class="job-details mt-4">
+                    <div class="job-details my-5">
                       <h3>RESPONSIBILITIES</h3>
 
                       <p class="description">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Suscipit ea officia, obcaecati odio, minus maxime
-                        incidunt atque, nihil esse expedita repellat dolores
-                        voluptatem! Modi nihil rerum, maiores consectetur
-                        perspiciatis debitis. Doloremque id non provident odit
-                        impedit vero eveniet nemo quos fugiat libero, et el,
-                        blanditiis, earum ab nemo ducimus modi doloremque
-                        aliquam nam, per, beatae nihil, dicta velit magni
-                        repudiandae eum nostrum ducimus! Assumenda, quas!
-                        Architecto recusandae velit sed consequatur voluptates.
-                        Eaque impedit voluptas deleniti blanditiis possimus
-                        earum adipisci, necessitatibus commodi facilis quidem
-                        aliquid numquam suscipit voluptatibus quia.
+                        {value.jobResponsibilities} &nbsp; Lorem, ipsum dolor
+                        sit amet consectetur adipisicing elit. Suscipit ea
+                        officia, obcaecati odio, minus maxime incidunt atque,
+                        nihil esse expedita repellat dolores voluptatem! Modi
+                        nihil rerum, maiores consectetur perspiciatis debitis.
+                        Doloremque id non provident odit impedit vero eveniet
+                        nemo quos fugiat libero, et el, blanditiis, earum ab
+                        nemo ducimus modi doloremque aliquam nam, per, beatae
+                        nihil, dicta velit magni repudiandae eum nostrum
+                        ducimus! Assumenda, quas! Architecto recusandae velit
+                        sed consequatur voluptates. Eaque impedit voluptas
+                        deleniti blanditiis possimus earum adipisci,
+                        necessitatibus commodi facilis quidem aliquid numquam
+                        suscipit voluptatibus quia.
                       </p>
                       <p class="description">
                         Lorem, ipsum dolor sit amet consectetur adipisicing
@@ -214,7 +222,7 @@ class JobDetails extends Component {
                       </p>
                     </div>
                     <p class="published-on mr-5 d-inline">
-                      Published on: Jul., 11, 2019
+                      Published on: {value.datePosted} at {value.timePosted}
                     </p>
                     <p class="application-deadline d-inline">
                       Application Deadline: Dec., 11, 2019
@@ -222,7 +230,11 @@ class JobDetails extends Component {
                   </div>
                 </div>
 
-                <Button btnType=" btn btn-primary" myBtnClass="apply ml-auto">
+                <Button
+                  btnType=" btn btn-primary"
+                  myBtnClass="apply mb-5"
+                  onClick={this.gotoApply}
+                >
                   Apply
                 </Button>
               </div>
@@ -239,6 +251,8 @@ class JobDetails extends Component {
             </div>
           </div>
         </div>
+
+        <Footer />
       </div>
     );
   }

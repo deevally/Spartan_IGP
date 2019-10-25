@@ -7,12 +7,15 @@ import Footer from "../components/Footer";
 import "../css/Blogs.css";
 import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
+import Spinner from "../components/spinner";
 
 class Blog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      blogs: []
+      blogs: [],
+      err: "",
+      loading: false
     };
   }
 
@@ -21,24 +24,25 @@ class Blog extends Component {
     Axios.get(url)
       .then(res => {
         const blogs = res.data.docs;
-        console.log(blogs);
-        this.setState({ blogs });
+        this.setState({ blogs, loading:false });
       })
       .catch(error => {
-        console.log(error);
+        this.setState({ err:error });
       });
   }
 
   componentDidMount() {
+    this.setState({ loading:true });
     this.getBlog();
   }
 
   viewmore = BlogId => {
     const { history } = this.props;
-    history.push(`/Blog/${BlogId}`);
+    history.push(`/Blogdetails/${BlogId}`);
   };
 
   render() {
+      const {blogs,err,loading} =this.state
     return (
       <div>
         <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
@@ -47,7 +51,7 @@ class Blog extends Component {
           headerText="blogHeaderText"
           HeaderText__first="Blog Posts"
         />
-        {/* <p>Blog</p> */}
+    
         <div className="container">
           <div className="row fullPage">
             <div className=" col-md-12">
@@ -61,7 +65,8 @@ class Blog extends Component {
                 <i className="fab fa-google-plus-g icon-6 icon"></i>
               </div>
 
-              {this.state.blogs.map(blog => (
+                {loading && <Spinner/>}
+              {blogs.map(blog => (
                 <div className="single-post">
                   <div className="main-title" id="main-title">
                     <div className="blog-content">
@@ -103,6 +108,13 @@ class Blog extends Component {
             </div>
           </div>
         </div>
+        {err && (
+          <div className="container mx-auto text-center mb-5">
+            <h1 className="font-weight-bolder mb-5 ml-5 mx-auto pb-5">
+              Check your Connection
+            </h1>
+          </div>
+        )}
         <Footer />
       </div>
     );

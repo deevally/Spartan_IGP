@@ -44,6 +44,10 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
 
 .blogHeaderText {
@@ -54,7 +58,12 @@ header {
   left: 45%;
   transform: translate(-50%, -50%);
   color: #fff;
-  /* height: 100%; */
+  /*height: 100%;
+   */
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
 
 .signHeaderText {
@@ -113,6 +122,13 @@ header {
   position: absolute;
   top: 65%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  transform: translate(-50%, -50%); 
+  text-align:center;
+}
+.jobIndex{
+  display: inline-block;
+  color: white;
+  font-size: 4rem;
+  font-weight: bolder;
+  color: #51b64b;
 }

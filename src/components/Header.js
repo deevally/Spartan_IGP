@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/Header.css";
-import Filter from "./Filter";
+// import Filter from './Filter';
 
 const Header = props => {
   return (
@@ -20,7 +20,9 @@ const Header = props => {
                 <div className="container">
                   <div className="row my-5 justify-content-center">
                     <div className="col-md-7 text-center ">
-                      <span className="jobsAvailable">{props.noOfJob}</span>
+                      <span className="jobsAvailable jobIndex">
+                        {props.noOfJob}
+                      </span>
                       <span className="section-title">
                         {" "}
                         {props.SubHeaderText}

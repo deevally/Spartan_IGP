@@ -1,26 +1,30 @@
-footer{
+footer {
   background-color: black;
   color: white;
   width: 90%;
   margin: auto;
+  font-family: 'Montserat', sans-serif;
 }
 
 .footerList {
   list-style: none;
 }
+
 .footerList li {
   font-size: 1.2rem;
-  letter-spacing: 1px;
 }
+
 .footerName {
   color: #51b64b;
   font-weight: 500;
 }
+
 .footerList_coopyright {
   letter-spacing: 0.2rem;
   font-size: 1.3rem;
   padding: 2rem;
 }
+
 .social_icon {
   display: flex;
 }
@@ -38,7 +42,7 @@ footer{
   border-top: .2px solid gray;
 }
 .subscribeEmail{
-    height: 25px;
+    height: 26px;
     width: 200px;
     margin-top: -1px !important;
 }
