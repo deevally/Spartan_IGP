@@ -7,12 +7,14 @@ import Footer from "../components/Footer";
 import "../css/Blogs.css";
 import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
+import Pagination from "../components/Pagination";
 import Spinner from "../components/spinner";
 
 class Blog extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      pageOfItems: [],
       blogs: [],
       err: "",
       loading: false
@@ -24,15 +26,19 @@ class Blog extends Component {
     Axios.get(url)
       .then(res => {
         const blogs = res.data.docs;
-        this.setState({ blogs, loading:false });
+        this.setState({ blogs, loading: false });
       })
       .catch(error => {
-        this.setState({ err:error });
+        this.setState({ err: error });
       });
   }
 
+  onChangePage(pageOfItems, pager) {
+    this.setState({ pageOfItems, pager });
+  }
+
   componentDidMount() {
-    this.setState({ loading:true });
+    this.setState({ loading: true });
     this.getBlog();
   }
 
@@ -42,7 +48,9 @@ class Blog extends Component {
   };
 
   render() {
-      const {blogs,err,loading} =this.state
+    const { blogs, pageOfItems, err, loading } = this.state;
+    console.log(pageOfItems);
+
     return (
       <div>
         <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
@@ -51,7 +59,7 @@ class Blog extends Component {
           headerText="blogHeaderText"
           HeaderText__first="Blog Posts"
         />
-    
+
         <div className="container">
           <div className="row fullPage">
             <div className=" col-md-12">
@@ -65,8 +73,8 @@ class Blog extends Component {
                 <i className="fab fa-google-plus-g icon-6 icon"></i>
               </div>
 
-                {loading && <Spinner/>}
-              {blogs.map(blog => (
+              {loading && <Spinner />}
+              {this.state.pageOfItems.map(blog => (
                 <div className="single-post">
                   <div className="main-title" id="main-title">
                     <div className="blog-content">
@@ -105,9 +113,14 @@ class Blog extends Component {
                   </div>
                 </div>
               ))}
+              <Pagination
+                items={blogs}
+                onChangePage={this.onChangePage.bind(this)}
+              />
             </div>
           </div>
         </div>
+
         {err && (
           <div className="container mx-auto text-center mb-5">
             <h1 className="font-weight-bolder mb-5 ml-5 mx-auto pb-5">

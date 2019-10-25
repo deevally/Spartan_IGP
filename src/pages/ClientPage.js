@@ -5,14 +5,18 @@ import Card from "../components/Card";
 import Filter from "../components/Filter";
 import Footer from "../components/Footer";
 import "../css/Card.css";
+import "../css/Pagination.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
 import Spinner from "../components/spinner";
 import JobSidebar from "../components/JobSidebar";
+import Pagination from "../components/Pagination";
 import { numberWithCommas } from "../components/searchedOptions";
 import JobSummartTable from "../components/JobSummaryTable";
 import { AllStates as JStates } from "../components/searchedOptions";
 import Button from "../components/Button";
+
+let Search = <Filter />;
 //let Search = <Filter />;
 
 class Client extends Component {
@@ -23,13 +27,14 @@ class Client extends Component {
       allJob: null,
       err: "",
       loading: false,
+      pageOfItems: [],
       allJobLength: null
     };
   }
 
   componentDidMount() {
     this.setState({ loading: true });
-    let url = `${BaseUrl}/jobs?limit=${4}&page=${1}`;
+    let url = `${BaseUrl}/jobs?limit=${4}&page=${4}`;
 
     Axios(url)
       .then(res => {
@@ -48,11 +53,13 @@ class Client extends Component {
       loading: false
     });
   };
+  onChangePage(pageOfItems, pager) {
+    this.setState({ pageOfItems, pager });
+  }
 
   gotoJobDetails = JobId => {
     const { history } = this.props;
     history.push(`/jobdetails/${JobId}`);
-    console.log(history);
   };
 
   gotoAllJobs = () => {
@@ -65,20 +72,28 @@ class Client extends Component {
     history.push({ pathname: "/allJobs", state: SearchForm });
   };
   render() {
-    const { Jobs, allJob, loading, err, allJobLength } = this.state;
+    const {
+      Jobs,
+      allJob,
+      loading,
+      err,
+      allJobLength,
+      pageOfItems
+    } = this.state;
+    console.log(pageOfItems);
+    console.log(Jobs);
     let fulltime = 0,
       partTime = 0,
       remote = 0,
       Lagos = 0,
       Abuja = 0,
-      Bayelsa = 0,
+      Imo = 0,
       Delta = 0,
       Edo = 0,
       Ekiti = 0,
       Ogun = 0,
       Ondo = 0,
       Oyo = 0;
-      
 
     Jobs.forEach(Job => {
       switch (Job.JobType) {
@@ -103,8 +118,8 @@ class Client extends Component {
         case "Abuja":
           Abuja++;
           break;
-        case "Bayelsa":
-          Bayelsa++;
+        case "Imo":
+          Imo++;
           break;
         case "Delta":
           Delta++;
@@ -123,7 +138,7 @@ class Client extends Component {
           break;
         case "Oyo":
           Oyo++;
-          break;  
+          break;
         default:
           break;
       }
@@ -136,7 +151,7 @@ class Client extends Component {
           className="landingPageHeader"
           headerText="headerText"
           searchForm={<Filter {...this.props} />}
-          HeaderText__first="Search for your dream job"
+          HeaderText__first="Search your dream job"
           noOfJob={
             Jobs.length >= 1 ? (
               allJobLength
@@ -198,8 +213,15 @@ class Client extends Component {
                     table={
                       <JobSummartTable
                         {...this.props}
-                        // States={JStates && JStates}
-                        // StateNo={Lagos}
+                        LagosNo={Lagos || ""}
+                        OndoNo={Ondo || ""}
+                        EdoNo={Edo || ""}
+                        AbujaNo={Abuja || ""}
+                        EkitiNo={Ekiti || ""}
+                        OyoNo={Oyo || ""}
+                        DeltaNo={Delta || ""}
+                        OgunNo={Ogun || ""}
+                        ImoNo={Imo || ""}
                       />
                     }
                   />
@@ -228,6 +250,8 @@ class Client extends Component {
             </h1>
           </div>
         )}
+
+        <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />
 
         <Footer />
       </div>
