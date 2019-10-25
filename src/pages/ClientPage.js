@@ -55,23 +55,32 @@ class Client extends Component {
     console.log(history);
   };
 
-  gotoAllJobs =()=>{
-    const {history} =this.props;
-   let SearchForm= {
+  gotoAllJobs = () => {
+    const { history } = this.props;
+    let SearchForm = {
       title: "",
       location: "",
       type: ""
-    }
+    };
     history.push({ pathname: "/allJobs", state: SearchForm });
-  }
+  };
   render() {
     const { Jobs, allJob, loading, err, allJobLength } = this.state;
-    console.log(Jobs);
     let fulltime = 0,
       partTime = 0,
-      remote = 0;
+      remote = 0,
+      Lagos = 0,
+      Abuja = 0,
+      Bayelsa = 0,
+      Delta = 0,
+      Edo = 0,
+      Ekiti = 0,
+      Ogun = 0,
+      Ondo = 0,
+      Oyo = 0;
+      
 
-    Jobs.map(Job => {
+    Jobs.forEach(Job => {
       switch (Job.JobType) {
         case "Full-time":
           fulltime++;
@@ -82,6 +91,39 @@ class Client extends Component {
         case "Remote":
           remote++;
           break;
+        default:
+          break;
+      }
+    });
+    Jobs.forEach(Job => {
+      switch (Job.location) {
+        case "Lagos":
+          Lagos++;
+          break;
+        case "Abuja":
+          Abuja++;
+          break;
+        case "Bayelsa":
+          Bayelsa++;
+          break;
+        case "Delta":
+          Delta++;
+          break;
+        case "Edo":
+          Edo++;
+          break;
+        case "Ekiti":
+          Ekiti++;
+          break;
+        case "Ogun":
+          Ogun++;
+          break;
+        case "Ondo":
+          Ondo++;
+          break;
+        case "Oyo":
+          Oyo++;
+          break;  
         default:
           break;
       }
@@ -105,9 +147,7 @@ class Client extends Component {
             )
           }
           SubHeaderText={
-            allJob !== null
-              ? `Job${allJob > 1 ? "s" : ""} offers available`
-              : ""
+            allJob !== null ? `Job${allJob > 1 ? "s" : ""} Available` : ""
           }
           headerBorder="clientsheaderBorder"
         />
@@ -158,7 +198,8 @@ class Client extends Component {
                     table={
                       <JobSummartTable
                         {...this.props}
-                        States={JStates && JStates}
+                        // States={JStates && JStates}
+                        // StateNo={Lagos}
                       />
                     }
                   />
@@ -169,8 +210,14 @@ class Client extends Component {
         )}
         {Jobs && (
           <div className="container ml-auto pb-5 text-center">
-            <Button btnType="btn-primary" myBtnClass="viewbutton" onClick ={this.gotoAllJobs}>
-              View More Job Openings <i className="fas fa-chevron-right py-2"></i> <i className="fas fa-chevron-right"></i>
+            <Button
+              btnType="btn-primary"
+              myBtnClass="viewbutton"
+              onClick={this.gotoAllJobs}
+            >
+              View More Job Openings{" "}
+              <i className="fas fa-chevron-right py-2"></i>{" "}
+              <i className="fas fa-chevron-right"></i>
             </Button>
           </div>
         )}
