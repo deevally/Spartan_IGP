@@ -3,10 +3,14 @@ body{
 }
 .tableBorder{
   box-shadow: 5px 3px 5px 3px #888888;
-  margin: 5rem 2rem 20rem 0;
+  /* margin: 5rem 2rem 10rem 0; */
   background-color: #ffffff;
-  width: 80%;
-  float: right;
+  /* width: 100%; */
+  /* float: right; */
+  margin-left: 20rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+
 
 }
 #title {
@@ -52,12 +56,11 @@ body{
     justify-content: space-evenly;
     background-color: rgb(76, 119, 175);
     width: 20rem;
-    height: 45rem;
-    color: #000000;
-    position: absolute;
-    margin-top: 5rem;
+    height: 100vh;
+    position: fixed;
+    top: 5rem;
+    margin-right: 5rem;
     font-size: 3rem;
-    box-shadow: 2px 3px 5px 0px #c4c4c4;
     text-decoration: none;
 
   }
