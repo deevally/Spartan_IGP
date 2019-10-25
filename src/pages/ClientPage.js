@@ -8,7 +8,7 @@ import "../css/Card.css";
 import "../css/Pagination.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/spinner";
 import JobSidebar from "../components/JobSidebar";
 import Pagination from "../components/Pagination";
 import { numberWithCommas } from "../components/searchedOptions";

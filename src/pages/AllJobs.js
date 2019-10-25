@@ -5,10 +5,14 @@ import Footer from "../components/Footer";
 import "../css/Card.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/spinner";
 import Button from "../components/Button";
 import JobSidebar from "../components/JobSidebar";
-import { Options, Options2,numberWithCommas } from "../components/searchedOptions";
+import {
+  Options,
+  Options2,
+  numberWithCommas
+} from "../components/searchedOptions";
 
 class AllJob extends Component {
   constructor(props) {
@@ -22,8 +26,8 @@ class AllJob extends Component {
       SearchForm: {
         location: "",
         type: "",
-        title: "",
-      },
+        title: ""
+      }
     };
   }
 
@@ -60,7 +64,6 @@ class AllJob extends Component {
           this.showJob(res.data);
         })
         .catch(err => {
-          
           if (err.response === undefined) {
             this.setState({
               err: "Check Your Network Connection",
@@ -84,10 +87,12 @@ class AllJob extends Component {
     // this.setState({loading: false });
   }
 
-  handleSubmit = (e) => {
-e.preventDefault()
+  handleSubmit = e => {
+    e.preventDefault();
     this.setState({ loading: true });
-    const { SearchForm:{location, title, type} } = this.state;
+    const {
+      SearchForm: { location, title, type }
+    } = this.state;
     if (location === "" && title === "" && type === "") {
       let url = `${BaseUrl}/jobs`;
       Axios(url)
@@ -119,7 +124,6 @@ e.preventDefault()
           this.showJob(res.data);
         })
         .catch(err => {
-          
           if (err.response === undefined) {
             this.setState({
               err: "Check Your Network Connection",
@@ -136,8 +140,6 @@ e.preventDefault()
     }
   };
 
- 
-
   showJob = data => {
     this.setState({
       Jobs: data.total ? data.docs : data,
@@ -151,15 +153,13 @@ e.preventDefault()
     history.push(`/jobdetails/${JobId}`);
   };
 
-
-  
   handleChange = e => {
     const SearchForm = this.state.SearchForm;
     SearchForm[e.target.name] = e.target.value;
     this.setState({ SearchForm });
   };
   render() {
-    const { location, type,title } = this.state.SearchForm;
+    const { location, type, title } = this.state.SearchForm;
 
     const { Jobs, loading, err, searchJob } = this.state;
     let fulltime = 0,
@@ -185,57 +185,55 @@ e.preventDefault()
       <div>
         <Nav Blog="Blog" LogIn="Login" SignUp="SignUp" />
         <div className="container-fluid mt-5 pt-5 allJobFormstyle">
-        <form className="form-row filterRow p-5 align-items-center allJobformtext">
-          <div className=" col-md-1 col-sm-6 font-weight-bolder">
-            FIND A JOB
-          </div>
-          <div className=" col-md-3 col-sm-6 ">
-          {/* <AllFilter  titleInput ={title} typeInput ={type}/> */}
+          <form className="form-row filterRow p-5 align-items-center allJobformtext">
+            <div className=" col-md-1 col-sm-6 font-weight-bolder">
+              FIND A JOB
+            </div>
+            <div className=" col-md-3 col-sm-6 ">
+              {/* <AllFilter  titleInput ={title} typeInput ={type}/> */}
 
-          <input
-            type="text"
-            name="title"
-            value={title}
-            onChange={this.handleChange}
-            className="form-control my-3 searchInput"
-            placeholder="Job title, keywords..."
-          />
-        </div>
-          <div className=" col-md-3 col-sm-6">
-            <select
-              className="form-control searchInput my-3"
-              onChange={this.handleChange}
-              name="location"
-              value={location}
+              <input
+                type="text"
+                name="title"
+                value={title}
+                onChange={this.handleChange}
+                className="form-control my-3 searchInput"
+                placeholder="Job title, keywords..."
+              />
+            </div>
+            <div className=" col-md-3 col-sm-6">
+              <select
+                className="form-control searchInput my-3"
+                onChange={this.handleChange}
+                name="location"
+                value={location}
+              >
+                {Options.map((option, i) => (
+                  <option key={i}>{option}</option>
+                ))}
+              </select>
+            </div>
+            <div className="col-md-3 col-sm-6">
+              <select
+                className="form-control form-control-lg my-3 searchInput"
+                name="type"
+                value={type}
+                onChange={this.handleChange}
+              >
+                {Options2.map((option, i) => (
+                  <option key={i}>{option}</option>
+                ))}
+              </select>
+            </div>
+            <Button
+              type="submit"
+              onClick={this.handleSubmit}
+              btnType="btn-primary form-control my-3"
+              myBtnClass="myBtnClass"
             >
-              
-              {Options.map((option, i) => (
-                <option key={i}>{option}</option>
-              ))}
-            </select>
-          </div>
-          <div className="col-md-3 col-sm-6">
-            <select
-              className="form-control form-control-lg my-3 searchInput"
-              name="type"
-              value={type}
-              onChange={this.handleChange}
-            >
-              
-              {Options2.map((option, i) => (
-                <option key={i}>{option}</option>
-              ))}
-            </select>
-          </div>
-          <Button
-            type="submit"
-            onClick={this.handleSubmit}
-            btnType="btn-primary form-control my-3"
-            myBtnClass="myBtnClass"
-          >
-            Search Job
-          </Button>
-        </form>
+              Search Job
+            </Button>
+          </form>
         </div>
 
         {loading && <Spinner />}
@@ -254,7 +252,7 @@ e.preventDefault()
                       cardHeader={Job.JobTitle}
                       cardHeaderSub={Job.jobResponsibilities}
                       CardSubText={Job.JobType}
-                      CardSubText1 ={Job.location}
+                      CardSubText1={Job.location}
                       CardSubText2={numberWithCommas(Job.salary || 3000)}
                       displayNaira={Job.salary ? "" : "displayNaira"}
                       onClick={() => this.gotoJobDetails(Job._id)}
@@ -284,7 +282,6 @@ e.preventDefault()
             </h1>
           </div>
         )}
-       
 
         <Footer />
       </div>
