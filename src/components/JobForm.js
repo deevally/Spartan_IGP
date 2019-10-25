@@ -4,12 +4,17 @@ import axios from "axios";
 import Button from "../components/Button";
 // import BaseUrl from '../utils/baseUrl';
 import { withRouter } from "react-router-dom";
+<<<<<<< HEAD
 import Spinner from "./spinner";
+=======
+import Spinner from "./Spinner";
+>>>>>>> 9b916ccc3b2f40ccb7a315232505c41bdc3b44cb
 import Toast from "./Toast";
 import "../css/App.css";
 import "../css/addJob.css";
 
 const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
+// const url = `https://jsonplaceholder.typicode.com/posts`;
 class JobForm extends Component {
   state = {
     fields: {},
@@ -41,6 +46,7 @@ class JobForm extends Component {
       fields: {
         JobDescription: "",
         JobTitle: "",
+        location: "",
         salary: "",
         jobResponsibilities: "",
         companyInformation: ""
@@ -58,7 +64,7 @@ class JobForm extends Component {
       axios
         .post(url, fields)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           if ((res.status = 201)) {
             this.setState({
               loading: false,
@@ -84,7 +90,7 @@ class JobForm extends Component {
       this.setState({
         loading: false
       });
-      console.log("fields-two", fields);
+      // console.log("fields-two", fields);
     }
   };
 
@@ -125,7 +131,7 @@ class JobForm extends Component {
         errors["JobDescription"] = "*Enter alphabet characters only";
       }
     }
-
+    
     if (!fields["jobResponsibilities"]) {
       formIsValid = false;
       errors["jobResponsibilities"] = "*Enter job responsibilities";
@@ -174,6 +180,26 @@ class JobForm extends Component {
                         </div>
                       </div>
                       <div className="form-group">
+                        <label htmlFor="location">Location</label>
+                        <select
+                          className="form-control"
+                          value={this.state.fields.location}
+                          onChange={this.updateFormJob}
+                          name="location"
+                        >
+                          <option>Choose a location</option>
+                          <option>Lagos</option>
+                          <option>Abuja</option>
+                          <option>Imo</option>
+                          <option>Delta</option>
+                          <option>Edo</option>
+                          <option>Ekiti</option>
+                          <option>Ogun</option>
+                          <option>Ondo</option>
+                          <option>Oyo</option>
+                        </select>
+                      </div>
+                      <div className="form-group">
                         <label htmlFor="companyInfo">Company Name</label>
                         <input
                           type="text"
@@ -216,7 +242,11 @@ class JobForm extends Component {
                           {this.state.errors.salary}
                         </div>
                       </div>
+<<<<<<< HEAD
 
+=======
+                  
+>>>>>>> 9b916ccc3b2f40ccb7a315232505c41bdc3b44cb
                       <div className="form-group">
                         <label htmlFor="JobDescription">Job Description</label>
                         <textarea
