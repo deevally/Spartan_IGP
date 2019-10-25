@@ -39,8 +39,8 @@ class BlogDetails extends Component {
     }
     viewBlogs(){
 
-      const{BlogId} = this.props.match.params
-      let url = `${BaseUrl}/blog/${BlogId}`;
+      const{PostId} = this.props.match.params
+      let url = `${BaseUrl}/blog/${PostId}`;
       Axios.get(url)
       .then(res =>{
         this.setState({ blogAndComment:res.data });
