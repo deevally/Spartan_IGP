@@ -35,12 +35,14 @@
 .sign {
   font-size: 3rem;
   font-weight: 500;
-  margin-bottom: 7rem;
+  margin-bottom: 5rem;
+  padding-top: 2rem;
 }
 .log {
   font-size: 3rem;
   font-weight: 500;
   margin-bottom: 5rem;
+  padding-top: 2rem;
 }
 .fullname {
   padding: 1rem;
@@ -103,9 +105,10 @@
     outline: none;
 }
 
-.member {
+ .member {
   font-size: 1.5rem;
   margin-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .errordesign {
