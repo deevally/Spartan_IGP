@@ -18,16 +18,16 @@ const JobSidebar = ({
         </h4>
 
         <div className="d-flex">
-          <p className="card-title ">{FullTime} </p>
-          <span className="ml-auto ">{FullTimeNumbers}</span>
+          <p className="card-title ">{FullTime}</p>
+          <span className="ml-auto "><em>{FullTimeNumbers}</em></span>
         </div>
         <div className="d-flex">
           <p className="card-title">{PartTime}</p>
-          <span className="ml-auto ">{PartTimeNumbers}</span>
+          <span className="ml-auto"><em>{PartTimeNumbers}</em></span>
         </div>
         <div className="d-flex">
           <p className="card-title">{Remote} </p>
-          <span className="ml-auto ">{RemoteNumbers}</span>
+          <span className="ml-auto "><em>{RemoteNumbers}</em></span>
         </div>
       </div>
       {table}
