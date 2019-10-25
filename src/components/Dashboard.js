@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/JobsTable.css';
 import {BaseUrl} from '../utils/baseUrl';
-import Nav from './Nav';
+import {withRouter} from 'react-router-dom'
 
 class JobsTable extends React.Component {
   constructor(props) {
@@ -79,7 +79,11 @@ class JobsTable extends React.Component {
      })
   }
 
-
+  gotoHome=()=>{
+     const {history} = this.props
+     localStorage.clear()
+     history.push("/")
+  }
 
   render() {
      return (
@@ -87,10 +91,9 @@ class JobsTable extends React.Component {
         <div className='adminSidebar'>
             <a className='p-4 pt-5 text-white' href={'/'}><i className="fas fa-home"></i></a>
             <a className='p-4 pt-5 text-white' href={'/Add_Jobs'}><i className="fas fa-paste"></i></a>
-            <a className='p-4 pt-2 text-white' href='/'><i className="fas fa-power-off"></i></a>
+            <a className='p-4 pt-2 text-white' onClick ={this.gotoHome}><i className="fas fa-power-off"></i></a>
             <a className='p-4 pb-5 text-white' href='/'><i className="fas fa-key"></i></a>
         </div>
-         <Nav />
         <div className='tableBorder'>
            <h2 id='title'>Current Job Listing</h2>
            <table id='jobListing' className='mx-auto' >
@@ -105,4 +108,4 @@ class JobsTable extends React.Component {
   }
 }
 
-export default JobsTable;
+export default withRouter(JobsTable);

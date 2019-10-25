@@ -4,11 +4,10 @@ import axios from "axios";
 import Button from "../components/Button";
 // import BaseUrl from '../utils/baseUrl';
 import { withRouter } from "react-router-dom";
-import Spinner from "./spinner";
+import Spinner from "./Spinner";
 import Toast from "./Toast";
 import "../css/App.css";
 import "../css/addJob.css";
-
 const url = `https://vgg-career-portal.herokuapp.com/api/createjob`;
 // const url = `https://jsonplaceholder.typicode.com/posts`;
 class JobForm extends Component {
@@ -238,7 +237,6 @@ class JobForm extends Component {
                           {this.state.errors.salary}
                         </div>
                       </div>
-
                       <div className="form-group">
                         <label htmlFor="JobDescription">Job Description</label>
                         <textarea

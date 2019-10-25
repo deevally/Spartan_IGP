@@ -24,9 +24,15 @@ class Signup extends Component {
     userExists: {
       status: false,
       message: ""
-    }
+    },
+    submitting: ''
   };
 
+setRedirect = () =>{
+    this.setState({
+        submitting: 'Signing up...'
+    })
+}
   handleUserInput = event => {
     const name = event.target.name;
     const value = event.target.value;
@@ -46,8 +52,6 @@ class Signup extends Component {
     this.setState({ loading: true });
     try {
       const createUser = await Axios.post(url, user);
-      console.log(createUser);
-      this.setState({ loading: false });
       this.props.history.push("/login");
     } catch (error) {
       this.setState({
@@ -55,7 +59,8 @@ class Signup extends Component {
           ...this.state.userExists,
           status: true,
           message: error.response.data
-        }
+        },
+        submitting: ''
       });
     }
 
@@ -118,7 +123,7 @@ class Signup extends Component {
       formErrors,
       formValid,
       userExists,
-    //   loading
+      submitting
     } = this.state;
     return (
       <div className="container-parent">
@@ -174,8 +179,13 @@ class Signup extends Component {
                     value={password}
                   ></input>
                 </label>
-                <Button myBtnClass="form-btn" btnType="" disabled={!formValid}>
-                  Submit
+                <Button
+                  onClick={this.setRedirect}
+                  myBtnClass="form-btn"
+                  btnType=""
+                  disabled={!formValid}
+                >
+                  {submitting === "" ? "Signup" : "Signing up..."}
                 </Button>
               </form>
               <p className="member">

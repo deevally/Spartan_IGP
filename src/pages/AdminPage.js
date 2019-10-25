@@ -1,14 +1,11 @@
 import React from 'react'
 import Dashboard from '../components/Dashboard';
-import Header from "../components/Header"
+import Nav from '../components/Nav';
 
 const AdminPage = () => {
     return (
         <div>
-            <Header className="adminHeader" 
-                headerText="signHeaderText" 
-                HeaderText__first= "Admin" 
-            />
+            <Nav />
             <Dashboard />
         </div>
     )

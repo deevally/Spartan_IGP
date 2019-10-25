@@ -4,7 +4,7 @@ import Nav from "../components/Nav";
 import Header from "../components/Header";
 import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
-import Spinner from "../components/spinner";
+import Spinner from "../components/Spinner";
 import JobSidebar from "../components/JobSidebar";
 import Footer from "../components/Footer";
 
@@ -55,7 +55,7 @@ class JobDetails extends Component {
 
   render() {
     const value = this.state.singleJob;
-    const { Jobs, allJob, loading, err } = this.state;
+    const { Jobs, loading } = this.state;
 
     let fulltime = 0,
       partTime = 0,
