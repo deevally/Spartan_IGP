@@ -172,7 +172,7 @@ class Client extends Component {
           <div className="container">
             <div className="row single-post my-5 ">
               <div className={`details col-md-9`}>
-                {Jobs.map(Job => (
+                {Jobs.reverse().map(Job => (
                   <div
                     key={Job._id}
                     className={
