@@ -13,11 +13,7 @@ import JobSidebar from "../components/JobSidebar";
 import Pagination from "../components/Pagination";
 import { numberWithCommas } from "../components/searchedOptions";
 import JobSummartTable from "../components/JobSummaryTable";
-import { AllStates as JStates } from "../components/searchedOptions";
 import Button from "../components/Button";
-
-let Search = <Filter />;
-//let Search = <Filter />;
 
 class Client extends Component {
   constructor(props) {
@@ -151,21 +147,22 @@ class Client extends Component {
           headerText="headerText"
           searchForm={<Filter {...this.props} />}
           HeaderText__first="Search your dream job"
-          noOfJob={
-            Jobs.length >= 1 ? (
-              allJobLength
-            ) : (
-              <h3 className="text-white font-weight-bolder">
-                CHECK BACK FOR AVAILABLE JOBS
-              </h3>
-            )
-          }
-          SubHeaderText={
-            allJob !== null ? `Job${allJob > 1 ? "s" : ""} Available` : ""
-          }
+          noOfJob={allJobLength || ''}
+          
+          SubHeaderText={Jobs.length > 0 ?(Jobs!== null ? `Job${allJob > 1 ? "s" : ""} Available` : "") :'Check Your Network '}
           headerBorder="clientsheaderBorder"
         />
+        {Jobs && (
+          <div className ='container'>
+            <div className='row '>
+              <div className='col text-center pt-5'>
+                  <h1 className='font-weight-bolder'>Trending Jobs</h1>
+              </div>
 
+            </div>
+
+          </div>
+        )}
         {loading && <Spinner />}
 
         {Jobs && (
@@ -229,7 +226,7 @@ class Client extends Component {
             </div>
           </div>
         )}
-        {Jobs && (
+        {!err && Jobs && (
           <div className="container ml-auto pb-5 text-center">
             <Button
               btnType="btn-primary"
@@ -250,7 +247,7 @@ class Client extends Component {
           </div>
         )}
 
-        <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />
+        {!err && <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />}
 
         <Footer />
       </div>

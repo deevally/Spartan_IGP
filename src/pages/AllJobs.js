@@ -30,7 +30,8 @@ class AllJob extends Component {
         location: "",
         type: "",
         title: ""
-      }
+      },
+      noError:true,
     };
   }
 
@@ -160,16 +161,19 @@ class AllJob extends Component {
     history.push(`/jobdetails/${JobId}`);
   };
 
+  toggleHover() {
+    this.setState({hover: !this.state.hover})
+  }
+
   handleChange = e => {
     const SearchForm = this.state.SearchForm;
     SearchForm[e.target.name] = e.target.value;
     this.setState({ SearchForm });
   };
   render() {
-    const { location, type, title } = this.state.SearchForm;
+    const { location, type, title,noError } = this.state.SearchForm;
 
     const { Jobs, loading, err, searchJob, pageOfItems } = this.state;
-    console.log(pageOfItems);
     let fulltime = 0,
       partTime = 0,
       remote = 0,
@@ -264,7 +268,7 @@ class AllJob extends Component {
                 ))}
               </select>
             </div>
-            <div className="col-md-3 col-sm-6">
+            <div className="col-md-2 col-sm-6">
               <select
                 className="form-control form-control-lg my-3 searchInput"
                 name="type"
@@ -293,7 +297,7 @@ class AllJob extends Component {
             <h1 className="font-weight-bolder mb-5 ml-5 mx-auto pb-5">{err}</h1>
           </div>
         )}
-        {Jobs && (
+        {!err&&Jobs && (
           <div className="container">
             <div className="row single-post my-5 ">
               <div className="details col-md-8 alljobCards mr-3">
@@ -351,7 +355,7 @@ class AllJob extends Component {
             </h1>
           </div>
         )}
-        <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />
+       {!err && <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />}
         <Footer />
       </div>
     );
