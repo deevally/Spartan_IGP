@@ -175,7 +175,7 @@ class Signup extends Component {
                   ></input>
                 </label>
                 <Button myBtnClass="form-btn" btnType="" disabled={!formValid}>
-                  Submit
+                  Signup
                 </Button>
               </form>
               <p className="member">

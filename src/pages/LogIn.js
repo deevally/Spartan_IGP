@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Nav from "../components/Nav";
 import Button from "../components/Button";
 import FormErrors from "../components/formErrors";
@@ -174,7 +174,7 @@ class Login extends Component {
                   btnType=""
                   disabled={!formValid}
                 >
-                  Submit
+                  Login
                 </Button>
               </form>
               <p className="member">
