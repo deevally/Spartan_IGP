@@ -6,11 +6,13 @@ import Button from "../components/Button";
 import FormErrors from "../components/formErrors";
 import "../css/login-signup.css";
 import { BaseUrl } from "../utils/baseUrl";
+// import Spinner from "../components/Spinner";
 
 const url = `${BaseUrl}/createadmin`;
 
 class Signup extends Component {
   state = {
+    loading: false,
     fullname: "",
     email: "",
     password: "",
@@ -33,7 +35,7 @@ class Signup extends Component {
     });
   };
 
-  handleSubmit =  event => {
+  handleSubmit = async event => {
     event.preventDefault();
     const { fullname, email, password } = this.state;
     const user = {
@@ -41,33 +43,23 @@ class Signup extends Component {
       email,
       password
     };
-
-    // const createAdmin =  await Axios.post(url, user);
-    return Axios.post(url, user)
-      .then(() => {
-        console.log("ok");
-      })
-      .catch(err => {
-        console.log("Admin error", err.response.data);
-        this.setState({
+    this.setState({ loading: true });
+    try {
+      const createUser = await Axios.post(url, user);
+      console.log(createUser);
+      this.setState({ loading: false });
+      this.props.history.push("/login");
+    } catch (error) {
+      this.setState({
         userExists: {
           ...this.state.userExists,
           status: true,
-          message: err.response.data
+          message: error.response.data
         }
-        }, function(){
-            console.log(this.state)
-        });
       });
-    // console.log("cr",createAdmin)
-    // createAdmin
-    // .then(()=>{
-    //     console.log("ok")
-    // })
-    // .catch((err)=>{
-    //     console.log("error", err.response.data)
-    // })
-    // console.log(createAdmin.data);
+    }
+
+    
   };
   validateField(fieldName, value) {
     const { fullnameValid, emailValid, passwordValid, formErrors } = this.state;
@@ -110,22 +102,34 @@ class Signup extends Component {
 
   validateForm() {
     const { fullnameValid, emailValid, passwordValid } = this.state;
-    this.setState({ formValid: fullnameValid && emailValid && passwordValid });
+    this.setState({
+      formValid: fullnameValid && emailValid && passwordValid
+    });
   }
   errorClass(error) {
     return error.length === 0 ? "" : "alert alert-danger";
   }
 
   render() {
-    const { fullname, email, password, formErrors, formValid ,userExists} = this.state;
+    const {
+      fullname,
+      email,
+      password,
+      formErrors,
+      formValid,
+      userExists,
+    //   loading
+    } = this.state;
     return (
       <div className="container-parent">
         <Nav Blog="Blog" Jobs="Jobs" />
 
         <FormErrors formErrors={formErrors} />
-
+        {/* {loading === true ? <Spinner />: false} */}
         <div className="container-fluid login-parent-container">
-          {(userExists.status) && <div>{userExists.message}</div>}
+          {userExists.status && (
+            <div className="errordesign">{userExists.message}</div>
+          )}
 
           <div className="row ml-auto mr-auto login-container">
             <div className="login-img"></div>

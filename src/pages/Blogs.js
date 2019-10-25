@@ -7,14 +7,24 @@ import Footer from "../components/Footer";
 import "../css/Blogs.css";
 import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
+<<<<<<< HEAD
 import Pagination from "../components/Pagination";
+=======
+import Spinner from "../components/spinner";
+>>>>>>> 43b51f1652aec9fbc6dfef5abca5680c9fa94a69
 
 class Blog extends Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       pageOfItems: [],
       blogs: []
+=======
+      blogs: [],
+      err: "",
+      loading: false
+>>>>>>> 43b51f1652aec9fbc6dfef5abca5680c9fa94a69
     };
   }
 
@@ -23,11 +33,10 @@ class Blog extends Component {
     Axios.get(url)
       .then(res => {
         const blogs = res.data.docs;
-        console.log(blogs);
-        this.setState({ blogs });
+        this.setState({ blogs, loading:false });
       })
       .catch(error => {
-        console.log(error);
+        this.setState({ err:error });
       });
   }
 
@@ -36,17 +45,22 @@ class Blog extends Component {
   }
 
   componentDidMount() {
+    this.setState({ loading:true });
     this.getBlog();
   }
 
   viewmore = BlogId => {
     const { history } = this.props;
-    history.push(`/Blog/${BlogId}`);
+    history.push(`/Blogdetails/${BlogId}`);
   };
 
   render() {
+<<<<<<< HEAD
     const { blogs, pageOfItems } = this.state;
     console.log(pageOfItems);
+=======
+      const {blogs,err,loading} =this.state
+>>>>>>> 43b51f1652aec9fbc6dfef5abca5680c9fa94a69
     return (
       <div>
         <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
@@ -55,7 +69,7 @@ class Blog extends Component {
           headerText="blogHeaderText"
           HeaderText__first="Blog Posts"
         />
-        {/* <p>Blog</p> */}
+    
         <div className="container">
           <div className="row fullPage">
             <div className=" col-md-12">
@@ -69,7 +83,12 @@ class Blog extends Component {
                 <i className="fab fa-google-plus-g icon-6 icon"></i>
               </div>
 
+<<<<<<< HEAD
               {this.state.pageOfItems.map(blog => (
+=======
+                {loading && <Spinner/>}
+              {blogs.map(blog => (
+>>>>>>> 43b51f1652aec9fbc6dfef5abca5680c9fa94a69
                 <div className="single-post">
                   <div className="main-title" id="main-title">
                     <div className="blog-content">
@@ -115,7 +134,17 @@ class Blog extends Component {
             </div>
           </div>
         </div>
+<<<<<<< HEAD
 
+=======
+        {err && (
+          <div className="container mx-auto text-center mb-5">
+            <h1 className="font-weight-bolder mb-5 ml-5 mx-auto pb-5">
+              Check your Connection
+            </h1>
+          </div>
+        )}
+>>>>>>> 43b51f1652aec9fbc6dfef5abca5680c9fa94a69
         <Footer />
       </div>
     );
