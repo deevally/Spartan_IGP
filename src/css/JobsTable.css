@@ -56,6 +56,10 @@ body{
     text-decoration: none;
 
   }
+
+  .homeText{
+    font-size: 5px;
+  }
   @media only screen and (max-width: 1150px) {
     .adminSidebar{
       width: 100px;

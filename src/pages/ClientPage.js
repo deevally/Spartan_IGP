@@ -163,9 +163,9 @@ class Client extends Component {
 
           </div>
         )}
-        {loading && <Spinner />}
+        {/* {loading && <Spinner />} */}
 
-        {Jobs && (
+        {loading ? <Spinner /> : Jobs && (
           <div className="container">
             <div className="row single-post my-5 ">
               <div className={`details col-md-9`}>

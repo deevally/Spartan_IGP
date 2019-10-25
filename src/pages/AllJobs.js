@@ -291,13 +291,13 @@ class AllJob extends Component {
           </form>
         </div>
 
-        {loading && <Spinner />}
+        {/* {loading && <Spinner />} */}
         {err && (
           <div className="container mx-auto text-center mb-5">
             <h1 className="font-weight-bolder mb-5 ml-5 mx-auto pb-5">{err}</h1>
           </div>
         )}
-        {!err&&Jobs && (
+        {loading  ?  <Spinner /> : !err&&Jobs && (
           <div className="container">
             <div className="row single-post my-5 ">
               <div className="details col-md-8 alljobCards mr-3">
@@ -355,7 +355,7 @@ class AllJob extends Component {
             </h1>
           </div>
         )}
-       {!err && <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />}
+       {!err &&  <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />}
         <Footer />
       </div>
     );
