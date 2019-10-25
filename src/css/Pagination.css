@@ -1,0 +1,13 @@
+.pagination {
+    justify-content: center;
+    font-size: 16px;
+}
+
+.pagination li:first-child {
+    margin-right: 20px
+}
+
+
+.pagination li:last-child {
+    margin-left: 20px
+}

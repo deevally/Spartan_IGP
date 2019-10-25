@@ -5,14 +5,18 @@ import Card from "../components/Card";
 import Filter from "../components/Filter";
 import Footer from "../components/Footer";
 import "../css/Card.css";
+import "../css/Pagination.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
-import Spinner from "../components/Spinner";
+import Spinner from "../components/spinner";
 import JobSidebar from "../components/JobSidebar";
+import Pagination from "../components/Pagination";
 import { numberWithCommas } from "../components/searchedOptions";
 import JobSummartTable from "../components/JobSummaryTable";
 import { AllStates as JStates } from "../components/searchedOptions";
 import Button from "../components/Button";
+
+let Search = <Filter />;
 //let Search = <Filter />;
 
 class Client extends Component {
@@ -23,6 +27,7 @@ class Client extends Component {
       allJob: null,
       err: "",
       loading: false,
+      pageOfItems: [],
       allJobLength: null
     };
   }
@@ -48,6 +53,9 @@ class Client extends Component {
       loading: false
     });
   };
+  onChangePage(pageOfItems, pager) {
+    this.setState({ pageOfItems, pager });
+  }
 
   gotoJobDetails = JobId => {
     const { history } = this.props;
@@ -64,7 +72,16 @@ class Client extends Component {
     history.push({ pathname: "/allJobs", state: SearchForm });
   };
   render() {
-    const { Jobs, allJob, loading, err, allJobLength } = this.state;
+    const {
+      Jobs,
+      allJob,
+      loading,
+      err,
+      allJobLength,
+      pageOfItems
+    } = this.state;
+    console.log(pageOfItems);
+    console.log(Jobs);
     let fulltime = 0,
       partTime = 0,
       remote = 0,
@@ -77,7 +94,6 @@ class Client extends Component {
       Ogun = 0,
       Ondo = 0,
       Oyo = 0;
-      
 
     Jobs.forEach(Job => {
       switch (Job.JobType) {
@@ -122,7 +138,7 @@ class Client extends Component {
           break;
         case "Oyo":
           Oyo++;
-          break;  
+          break;
         default:
           break;
       }
@@ -197,15 +213,15 @@ class Client extends Component {
                     table={
                       <JobSummartTable
                         {...this.props}
-                        LagosNo ={Lagos || ""}
-                        OndoNo ={Ondo || ""}
-                        EdoNo ={Edo || ""}
-                        AbujaNo ={Abuja || ""}
-                        EkitiNo ={Ekiti || ""}
-                        OyoNo ={Oyo || ""}
-                        DeltaNo ={Delta || ""}
-                        OgunNo ={Ogun || ""}
-                        ImoNo ={Imo || ""}
+                        LagosNo={Lagos || ""}
+                        OndoNo={Ondo || ""}
+                        EdoNo={Edo || ""}
+                        AbujaNo={Abuja || ""}
+                        EkitiNo={Ekiti || ""}
+                        OyoNo={Oyo || ""}
+                        DeltaNo={Delta || ""}
+                        OgunNo={Ogun || ""}
+                        ImoNo={Imo || ""}
                       />
                     }
                   />
@@ -234,6 +250,8 @@ class Client extends Component {
             </h1>
           </div>
         )}
+
+        <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />
 
         <Footer />
       </div>
