@@ -182,15 +182,14 @@ e.preventDefault()
           break;
       }
     });
-
     return (
       <div>
         <Nav Blog="Blog" LogIn="Login" SignUp="SignUp" />
-        <div className="container mt-5 pt-5">
+        <div className="container-fluid mt-5 pt-5 allJobFormstyle">
         <form className="form-row filterRow p-5 align-items-center allJobformtext">
-          {/* <div className=" col-md-1 col-sm-6 font-weight-bolder">
+          <div className=" col-md-1 col-sm-6 font-weight-bolder">
             FIND A JOB
-          </div> */}
+          </div>
           <div className=" col-md-3 col-sm-6 ">
           {/* <AllFilter  titleInput ={title} typeInput ={type}/> */}
 
@@ -249,13 +248,14 @@ e.preventDefault()
         {Jobs && (
           <div className="container">
             <div className="row single-post my-5 ">
-              <div className="details col-md-9">
+              <div className="details col-md-8 alljobCards mr-3">
                 {Jobs.reverse().map(Job => (
                   <div key={Job._id}>
                     <Card
                       cardHeader={Job.JobTitle}
                       cardHeaderSub={Job.jobResponsibilities}
                       CardSubText={Job.JobType}
+                      CardSubText1 ={Job.location}
                       CardSubText2={numberWithCommas(Job.salary || 3000)}
                       displayNaira={Job.salary ? "" : "displayNaira"}
                       onClick={() => this.gotoJobDetails(Job._id)}

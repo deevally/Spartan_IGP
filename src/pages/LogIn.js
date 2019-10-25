@@ -54,6 +54,8 @@ class Login extends Component {
     try {
       const loginAdmin = await Axios.post(url, user);
       console.log(loginAdmin.data);
+      let token = loginAdmin.data.token;
+      localStorage.setItem('token', JSON.stringify(token))
       this.setState({
         // loading: false,
         Redirect: true
@@ -188,3 +190,6 @@ class Login extends Component {
 }
 
 export default Login;
+
+//Geraldmcqwean10@gmail.com
+//Wednesday2019
