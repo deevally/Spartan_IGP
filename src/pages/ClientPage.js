@@ -10,7 +10,8 @@ import Axios from "axios";
 import Spinner from "../components/spinner";
 import JobSidebar from "../components/JobSidebar";
 import {numberWithCommas} from '../components/searchedOptions'
-
+import JobSummartTable from "../components/JobSummaryTable";
+import {AllStates as JStates} from '../components/searchedOptions'
 //let Search = <Filter />;
 
 class Client extends Component {
@@ -52,6 +53,7 @@ class Client extends Component {
   
   render() {
     const { Jobs, allJob, loading, err } = this.state;
+    console.log(Jobs)
     let fulltime = 0,
       partTime = 0,
       remote = 0;
@@ -130,12 +132,17 @@ class Client extends Component {
               {!err && (
                 <div className={loading === true ? "sidebarShow" : "col-md-3 "}>
                   <JobSidebar
+                  typeTitle='Job By Type'
                     FullTime={"Full-Time"}
                     FullTimeNumbers={fulltime}
                     PartTime={"Part-Time"}
                     PartTimeNumbers={partTime}
                     Remote={"Remote"}
                     RemoteNumbers={remote}
+                  />
+                  <JobSidebar
+                   typeTitle='Job By Location'
+                   table= {<JobSummartTable {...this.props} States={JStates && JStates}/>}
                   />
                 </div>
               )}

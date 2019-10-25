@@ -79,3 +79,14 @@
 .allJobformtext{
     background-color: transparent !important;
 }
+ .stateList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.stateList li{
+    /* width:20px; */
+    
+} 
