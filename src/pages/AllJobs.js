@@ -8,7 +8,13 @@ import Axios from "axios";
 import Spinner from "../components/spinner";
 import Button from "../components/Button";
 import JobSidebar from "../components/JobSidebar";
-import { Options, Options2,numberWithCommas } from "../components/searchedOptions";
+import Pagination from "../components/Pagination";
+import {
+  Options,
+  Options2,
+  numberWithCommas
+} from "../components/searchedOptions";
+import JobSummartTable from "../components/JobSummaryTable";
 
 class AllJob extends Component {
   constructor(props) {
@@ -18,12 +24,13 @@ class AllJob extends Component {
       allJob: null,
       err: "",
       loading: false,
+      pageOfItems: [],
       searchJob: [],
       SearchForm: {
         location: "",
         type: "",
-        title: "",
-      },
+        title: ""
+      }
     };
   }
 
@@ -31,7 +38,7 @@ class AllJob extends Component {
     this.setState({ loading: true });
     let { location, title, type } = data;
     if (location === "" && title === "" && type === "") {
-      let url = `${BaseUrl}/jobs`;
+      let url = `${BaseUrl}/jobs?limit=${50}&page=${1}`;
       Axios(url)
         .then(res => {
           this.showJob(res.data);
@@ -57,11 +64,9 @@ class AllJob extends Component {
 
       Axios.post(url, SearchObj)
         .then(res => {
-          console.log(res.data);
           this.showJob(res.data);
         })
         .catch(err => {
-          
           if (err.response === undefined) {
             this.setState({
               err: "Check Your Network Connection",
@@ -85,10 +90,12 @@ class AllJob extends Component {
     // this.setState({loading: false });
   }
 
-  handleSubmit = (e) => {
-e.preventDefault()
+  handleSubmit = e => {
+    e.preventDefault();
     this.setState({ loading: true });
-    const { SearchForm:{location, title, type} } = this.state;
+    const {
+      SearchForm: { location, title, type }
+    } = this.state;
     if (location === "" && title === "" && type === "") {
       let url = `${BaseUrl}/jobs`;
       Axios(url)
@@ -120,7 +127,6 @@ e.preventDefault()
           this.showJob(res.data);
         })
         .catch(err => {
-          
           if (err.response === undefined) {
             this.setState({
               err: "Check Your Network Connection",
@@ -137,8 +143,6 @@ e.preventDefault()
     }
   };
 
- 
-
   showJob = data => {
     this.setState({
       Jobs: data.total ? data.docs : data,
@@ -147,27 +151,39 @@ e.preventDefault()
     });
   };
 
+  onChangePage(pageOfItems, pager) {
+    this.setState({ pageOfItems, pager });
+  }
+
   gotoJobDetails = JobId => {
     const { history } = this.props;
     history.push(`/jobdetails/${JobId}`);
   };
 
-
-  
   handleChange = e => {
     const SearchForm = this.state.SearchForm;
     SearchForm[e.target.name] = e.target.value;
     this.setState({ SearchForm });
   };
   render() {
-    const { location, type,title } = this.state.SearchForm;
+    const { location, type, title } = this.state.SearchForm;
 
-    const { Jobs, loading, err, searchJob } = this.state;
+    const { Jobs, loading, err, searchJob, pageOfItems } = this.state;
+    console.log(pageOfItems);
     let fulltime = 0,
       partTime = 0,
-      remote = 0;
+      remote = 0,
+      Lagos = 0,
+      Abuja = 0,
+      Imo = 0,
+      Delta = 0,
+      Edo = 0,
+      Ekiti = 0,
+      Ogun = 0,
+      Ondo = 0,
+      Oyo = 0;
 
-    Jobs.map(Job => {
+    Jobs.forEach(Job => {
       switch (Job.JobType) {
         case "Full-time":
           fulltime++;
@@ -182,61 +198,93 @@ e.preventDefault()
           break;
       }
     });
+
+    Jobs.forEach(Job => {
+      switch (Job.location) {
+        case "Lagos":
+          Lagos++;
+          break;
+        case "Abuja":
+          Abuja++;
+          break;
+        case "Imo":
+          Imo++;
+          break;
+        case "Delta":
+          Delta++;
+          break;
+        case "Edo":
+          Edo++;
+          break;
+        case "Ekiti":
+          Ekiti++;
+          break;
+        case "Ogun":
+          Ogun++;
+          break;
+        case "Ondo":
+          Ondo++;
+          break;
+        case "Oyo":
+          Oyo++;
+          break;
+        default:
+          break;
+      }
+    });
     return (
       <div>
         <Nav Blog="Blog" LogIn="Login" SignUp="SignUp" />
         <div className="container-fluid mt-5 pt-5 allJobFormstyle">
-        <form className="form-row filterRow p-5 align-items-center allJobformtext">
-          <div className=" col-md-1 col-sm-6 font-weight-bolder">
-            FIND A JOB
-          </div>
-          <div className=" col-md-3 col-sm-6 ">
-          {/* <AllFilter  titleInput ={title} typeInput ={type}/> */}
+          <form className="form-row filterRow p-5 align-items-center allJobformtext">
+            <div className=" col-md-1 col-sm-6 font-weight-bolder">
+              FIND A JOB
+            </div>
+            <div className=" col-md-3 col-sm-6 ">
+              {/* <AllFilter  titleInput ={title} typeInput ={type}/> */}
 
-          <input
-            type="text"
-            name="title"
-            value={title}
-            onChange={this.handleChange}
-            className="form-control my-3 searchInput"
-            placeholder="Job title, keywords..."
-          />
-        </div>
-          <div className=" col-md-3 col-sm-6">
-            <select
-              className="form-control searchInput my-3"
-              onChange={this.handleChange}
-              name="location"
-              value={location}
+              <input
+                type="text"
+                name="title"
+                value={title}
+                onChange={this.handleChange}
+                className="form-control my-3 searchInput"
+                placeholder="Job title, keywords..."
+              />
+            </div>
+            <div className=" col-md-3 col-sm-6">
+              <select
+                className="form-control searchInput my-3"
+                onChange={this.handleChange}
+                name="location"
+                value={location}
+              >
+                {Options.map((option, i) => (
+                  <option key={i}>{option}</option>
+                ))}
+              </select>
+            </div>
+            <div className="col-md-3 col-sm-6">
+              <select
+                className="form-control form-control-lg my-3 searchInput"
+                name="type"
+                value={type}
+                onChange={this.handleChange}
+              >
+                {Options2.map((option, i) => (
+                  <option key={i}>{option}</option>
+                ))}
+              </select>
+            </div>
+            <Button
+              type="submit"
+              onClick={this.handleSubmit}
+              btnType="btn-primary form-control my-3"
+              myBtnClass="myBtnClass"
             >
-              
-              {Options.map((option, i) => (
-                <option key={i}>{option}</option>
-              ))}
-            </select>
-          </div>
-          <div className="col-md-3 col-sm-6">
-            <select
-              className="form-control form-control-lg my-3 searchInput"
-              name="type"
-              value={type}
-              onChange={this.handleChange}
-            >
-              
-              {Options2.map((option, i) => (
-                <option key={i}>{option}</option>
-              ))}
-            </select>
-          </div>
-          <Button
-            type="submit"
-            onClick={this.handleSubmit}
-            btnType="btn-primary form-control my-3"
-            myBtnClass="myBtnClass"
-          >
-            Search Job
-          </Button>
-        </form>
+              Search Job
+            </Button>
+          </form>
         </div>
 
         {loading && <Spinner />}
@@ -249,13 +297,13 @@ e.preventDefault()
           <div className="container">
             <div className="row single-post my-5 ">
               <div className="details col-md-8 alljobCards mr-3">
-                {Jobs.reverse().map(Job => (
+                {this.state.pageOfItems.map(Job => (
                   <div key={Job._id}>
                     <Card
                       cardHeader={Job.JobTitle}
                       cardHeaderSub={Job.jobResponsibilities}
                       CardSubText={Job.JobType}
-                      CardSubText1 ={Job.location}
+                      CardSubText1={Job.location}
                       CardSubText2={numberWithCommas(Job.salary || 3000)}
                       displayNaira={Job.salary ? "" : "displayNaira"}
                       onClick={() => this.gotoJobDetails(Job._id)}
@@ -266,12 +314,30 @@ e.preventDefault()
               {!err && (
                 <div className={loading === true ? "sidebarShow" : "col-md-3 "}>
                   <JobSidebar
+                    typeTitle="Job By Type"
                     FullTime={"Full-Time"}
                     FullTimeNumbers={fulltime}
                     PartTime={"Part-Time"}
                     PartTimeNumbers={partTime}
                     Remote={"Remote"}
                     RemoteNumbers={remote}
+                  />
+                  <JobSidebar
+                    typeTitle="Job By Location"
+                    table={
+                      <JobSummartTable
+                        {...this.props}
+                        LagosNo={Lagos || ""}
+                        OndoNo={Ondo || ""}
+                        EdoNo={Edo || ""}
+                        AbujaNo={Abuja || ""}
+                        EkitiNo={Ekiti || ""}
+                        OyoNo={Oyo || ""}
+                        DeltaNo={Delta || ""}
+                        OgunNo={Ogun || ""}
+                        ImoNo={Imo || ""}
+                      />
+                    }
                   />
                 </div>
               )}
@@ -285,8 +351,7 @@ e.preventDefault()
             </h1>
           </div>
         )}
-       
-
+        <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />
         <Footer />
       </div>
     );
