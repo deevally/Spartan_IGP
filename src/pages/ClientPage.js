@@ -29,7 +29,7 @@ class Client extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    let url = `${BaseUrl}/jobs?limit=${4}&page=${1}`;
+    let url = `${BaseUrl}/jobs?limit=${4}&page=${4}`;
 
     Axios(url)
       .then(res => {
@@ -52,7 +52,6 @@ class Client extends Component {
   gotoJobDetails = JobId => {
     const { history } = this.props;
     history.push(`/jobdetails/${JobId}`);
-    console.log(history);
   };
 
   gotoAllJobs = () => {
@@ -71,7 +70,7 @@ class Client extends Component {
       remote = 0,
       Lagos = 0,
       Abuja = 0,
-      Bayelsa = 0,
+      Imo = 0,
       Delta = 0,
       Edo = 0,
       Ekiti = 0,
@@ -103,8 +102,8 @@ class Client extends Component {
         case "Abuja":
           Abuja++;
           break;
-        case "Bayelsa":
-          Bayelsa++;
+        case "Imo":
+          Imo++;
           break;
         case "Delta":
           Delta++;
@@ -136,7 +135,7 @@ class Client extends Component {
           className="landingPageHeader"
           headerText="headerText"
           searchForm={<Filter {...this.props} />}
-          HeaderText__first="Search for your dream job"
+          HeaderText__first="Search your dream job"
           noOfJob={
             Jobs.length >= 1 ? (
               allJobLength
@@ -198,8 +197,15 @@ class Client extends Component {
                     table={
                       <JobSummartTable
                         {...this.props}
-                        // States={JStates && JStates}
-                        // StateNo={Lagos}
+                        LagosNo ={Lagos || ""}
+                        OndoNo ={Ondo || ""}
+                        EdoNo ={Edo || ""}
+                        AbujaNo ={Abuja || ""}
+                        EkitiNo ={Ekiti || ""}
+                        OyoNo ={Oyo || ""}
+                        DeltaNo ={Delta || ""}
+                        OgunNo ={Ogun || ""}
+                        ImoNo ={Imo || ""}
                       />
                     }
                   />

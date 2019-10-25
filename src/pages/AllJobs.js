@@ -9,6 +9,7 @@ import Spinner from "../components/Spinner";
 import Button from "../components/Button";
 import JobSidebar from "../components/JobSidebar";
 import { Options, Options2,numberWithCommas } from "../components/searchedOptions";
+import JobSummartTable from "../components/JobSummaryTable";
 
 class AllJob extends Component {
   constructor(props) {
@@ -163,10 +164,19 @@ e.preventDefault()
 
     const { Jobs, loading, err, searchJob } = this.state;
     let fulltime = 0,
-      partTime = 0,
-      remote = 0;
+    partTime = 0,
+    remote = 0,
+    Lagos = 0,
+    Abuja = 0,
+    Imo = 0,
+    Delta = 0,
+    Edo = 0,
+    Ekiti = 0,
+    Ogun = 0,
+    Ondo = 0,
+    Oyo = 0;
 
-    Jobs.map(Job => {
+    Jobs.forEach(Job => {
       switch (Job.JobType) {
         case "Full-time":
           fulltime++;
@@ -177,6 +187,40 @@ e.preventDefault()
         case "Remote":
           remote++;
           break;
+        default:
+          break;
+      }
+    });
+
+    Jobs.forEach(Job => {
+      switch (Job.location) {
+        case "Lagos":
+          Lagos++;
+          break;
+        case "Abuja":
+          Abuja++;
+          break;
+        case "Imo":
+          Imo++;
+          break;
+        case "Delta":
+          Delta++;
+          break;
+        case "Edo":
+          Edo++;
+          break;
+        case "Ekiti":
+          Ekiti++;
+          break;
+        case "Ogun":
+          Ogun++;
+          break;
+        case "Ondo":
+          Ondo++;
+          break;
+        case "Oyo":
+          Oyo++;
+          break;  
         default:
           break;
       }
@@ -265,12 +309,30 @@ e.preventDefault()
               {!err && (
                 <div className={loading === true ? "sidebarShow" : "col-md-3 "}>
                   <JobSidebar
+                  typeTitle="Job By Type"
                     FullTime={"Full-Time"}
                     FullTimeNumbers={fulltime}
                     PartTime={"Part-Time"}
                     PartTimeNumbers={partTime}
                     Remote={"Remote"}
                     RemoteNumbers={remote}
+                  />
+                  <JobSidebar
+                    typeTitle="Job By Location"
+                    table={
+                      <JobSummartTable
+                        {...this.props}
+                        LagosNo ={Lagos || ""}
+                        OndoNo ={Ondo || ""}
+                        EdoNo ={Edo || ""}
+                        AbujaNo ={Abuja || ""}
+                        EkitiNo ={Ekiti || ""}
+                        OyoNo ={Oyo || ""}
+                        DeltaNo ={Delta || ""}
+                        OgunNo ={Ogun || ""}
+                        ImoNo ={Imo || ""}
+                      />
+                    }
                   />
                 </div>
               )}
