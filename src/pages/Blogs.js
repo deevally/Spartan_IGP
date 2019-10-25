@@ -93,7 +93,7 @@ class Blog extends Component {
                         </em>
                       </p>
                       <Button
-                        btnType="btn-primary"
+                        btnType="btn-primary py-2 px-2"
                         onClick={() => this.viewmore(blog._id)}
                       >
                         View More
