@@ -237,11 +237,6 @@ class JobForm extends Component {
                           {this.state.errors.salary}
                         </div>
                       </div>
-<<<<<<< HEAD
-
-=======
-                  
->>>>>>> 9b916ccc3b2f40ccb7a315232505c41bdc3b44cb
                       <div className="form-group">
                         <label htmlFor="JobDescription">Job Description</label>
                         <textarea
