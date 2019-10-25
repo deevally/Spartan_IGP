@@ -16,6 +16,8 @@ class JobsTable extends React.Component {
            salary: 'Salary',
            action: 'Action'
         },
+        isHovering:false
+
      }
   }
 
@@ -85,7 +87,18 @@ class JobsTable extends React.Component {
      history.push("/")
   }
 
+ 
+
+ 
+
+ handleMouseHover =()=> {
+   this.setState({isHovering:!this.state.isHovering});
+ }
+
+ 
   render() {
+
+   
      return (
         <React.Fragment>
         <div className='adminSidebar'>
