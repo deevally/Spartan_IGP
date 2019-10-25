@@ -16,6 +16,7 @@ class JobsTable extends React.Component {
            salary: 'Salary',
            action: 'Action'
         },
+
      }
   }
 
@@ -85,11 +86,20 @@ class JobsTable extends React.Component {
      history.push("/")
   }
 
+ 
+
+ toggleHoverState() {
+   this.setState({isHovering :!this.state.isHovering})
+ }
+
   render() {
      return (
         <React.Fragment>
         <div className='adminSidebar'>
-            <a className='p-4 pt-5 text-white' href={'/'}><i className="fas fa-home"></i></a>
+            <a className='p-4 pt-5 text-white' href={'/'}><i className="fas fa-home"></i>
+            
+            </a>
+           {this.state.isHovering && <div>Home</div>}
             <a className='p-4 pt-5 text-white' href={'/Add_Jobs'}><i className="fas fa-paste"></i></a>
             <a className='p-4 pt-2 text-white' onClick ={this.gotoHome}><i className="fas fa-power-off"></i></a>
             <a className='p-4 pb-5 text-white' href='/'><i className="fas fa-key"></i></a>
