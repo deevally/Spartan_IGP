@@ -21,7 +21,6 @@ class Login extends Component {
     emailValid: false,
     passwordValid: false,
     formValid: false,
-    Redirect: false,
     loading: false
   };
 
