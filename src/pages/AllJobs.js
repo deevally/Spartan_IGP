@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import "../css/Card.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
-import Spinner from "../components/spinner";
+import Spinner from "../components/Spinner";
 import Button from "../components/Button";
 import JobSidebar from "../components/JobSidebar";
 import { Options, Options2,numberWithCommas } from "../components/searchedOptions";
@@ -31,7 +31,7 @@ class AllJob extends Component {
     this.setState({ loading: true });
     let { location, title, type } = data;
     if (location === "" && title === "" && type === "") {
-      let url = `${BaseUrl}/jobs`;
+      let url = `${BaseUrl}/jobs?limit=${50}&page=${1}`;
       Axios(url)
         .then(res => {
           this.showJob(res.data);
@@ -57,7 +57,6 @@ class AllJob extends Component {
 
       Axios.post(url, SearchObj)
         .then(res => {
-          console.log(res.data);
           this.showJob(res.data);
         })
         .catch(err => {
@@ -249,7 +248,7 @@ e.preventDefault()
           <div className="container">
             <div className="row single-post my-5 ">
               <div className="details col-md-8 alljobCards mr-3">
-                {Jobs.reverse().map(Job => (
+                {Jobs.map(Job => (
                   <div key={Job._id}>
                     <Card
                       cardHeader={Job.JobTitle}
