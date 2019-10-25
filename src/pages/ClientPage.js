@@ -34,7 +34,7 @@ class Client extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    let url = `${BaseUrl}/jobs?limit=${4}&page=${4}`;
+    let url = `${BaseUrl}/jobs?limit=5&page=1`;
 
     Axios(url)
       .then(res => {
@@ -80,8 +80,7 @@ class Client extends Component {
       allJobLength,
       pageOfItems
     } = this.state;
-    console.log(pageOfItems);
-    console.log(Jobs);
+    
     let fulltime = 0,
       partTime = 0,
       remote = 0,
