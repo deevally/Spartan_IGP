@@ -8,6 +8,7 @@ import Axios from "axios";
 import Spinner from "../components/spinner";
 import Button from "../components/Button";
 import JobSidebar from "../components/JobSidebar";
+import Pagination from "../components/Pagination";
 import {
   Options,
   Options2,
@@ -22,6 +23,7 @@ class AllJob extends Component {
       allJob: null,
       err: "",
       loading: false,
+      pageOfItems: [],
       searchJob: [],
       SearchForm: {
         location: "",
@@ -148,6 +150,10 @@ class AllJob extends Component {
     });
   };
 
+  onChangePage(pageOfItems, pager) {
+    this.setState({ pageOfItems, pager });
+  }
+
   gotoJobDetails = JobId => {
     const { history } = this.props;
     history.push(`/jobdetails/${JobId}`);
@@ -161,7 +167,8 @@ class AllJob extends Component {
   render() {
     const { location, type, title } = this.state.SearchForm;
 
-    const { Jobs, loading, err, searchJob } = this.state;
+    const { Jobs, loading, err, searchJob, pageOfItems } = this.state;
+    console.log(pageOfItems);
     let fulltime = 0,
       partTime = 0,
       remote = 0;
@@ -246,7 +253,7 @@ class AllJob extends Component {
           <div className="container">
             <div className="row single-post my-5 ">
               <div className="details col-md-8 alljobCards mr-3">
-                {Jobs.map(Job => (
+                {this.state.pageOfItems.map(Job => (
                   <div key={Job._id}>
                     <Card
                       cardHeader={Job.JobTitle}
@@ -282,7 +289,7 @@ class AllJob extends Component {
             </h1>
           </div>
         )}
-
+        <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />
         <Footer />
       </div>
     );
