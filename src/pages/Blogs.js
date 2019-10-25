@@ -7,11 +7,13 @@ import Footer from "../components/Footer";
 import "../css/Blogs.css";
 import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
+import Pagination from "../components/Pagination";
 
 class Blog extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      pageOfItems: [],
       blogs: []
     };
   }
@@ -29,6 +31,10 @@ class Blog extends Component {
       });
   }
 
+  onChangePage(pageOfItems, pager) {
+    this.setState({ pageOfItems, pager });
+  }
+
   componentDidMount() {
     this.getBlog();
   }
@@ -39,6 +45,8 @@ class Blog extends Component {
   };
 
   render() {
+    const { blogs, pageOfItems } = this.state;
+    console.log(pageOfItems);
     return (
       <div>
         <Nav Jobs="Jobs" SignUp="SignUp" LogIn="LogIn" />
@@ -61,7 +69,7 @@ class Blog extends Component {
                 <i className="fab fa-google-plus-g icon-6 icon"></i>
               </div>
 
-              {this.state.blogs.map(blog => (
+              {this.state.pageOfItems.map(blog => (
                 <div className="single-post">
                   <div className="main-title" id="main-title">
                     <div className="blog-content">
@@ -100,9 +108,14 @@ class Blog extends Component {
                   </div>
                 </div>
               ))}
+              <Pagination
+                items={blogs}
+                onChangePage={this.onChangePage.bind(this)}
+              />
             </div>
           </div>
         </div>
+
         <Footer />
       </div>
     );

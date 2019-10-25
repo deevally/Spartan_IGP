@@ -5,10 +5,12 @@ import Card from "../components/Card";
 import Filter from "../components/Filter";
 import Footer from "../components/Footer";
 import "../css/Card.css";
+import "../css/Pagination.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
 import Spinner from "../components/Spinner";
 import JobSidebar from "../components/JobSidebar";
+import Pagination from "../components/Pagination";
 
 let Search = <Filter />;
 
@@ -19,7 +21,8 @@ class Client extends Component {
       Jobs: [],
       allJob: null,
       err: "",
-      loading: false
+      loading: false,
+      pageOfItems: []
     };
   }
 
@@ -42,6 +45,9 @@ class Client extends Component {
       loading: false
     });
   };
+  onChangePage(pageOfItems, pager) {
+    this.setState({ pageOfItems, pager });
+  }
 
   gotoJobDetails = JobId => {
     const { history } = this.props;
@@ -50,7 +56,8 @@ class Client extends Component {
   };
 
   render() {
-    const { Jobs, allJob, loading, err } = this.state;
+    const { Jobs, allJob, loading, err, pageOfItems } = this.state;
+    console.log(pageOfItems);
 
     let fulltime = 0,
       partTime = 0,
@@ -95,7 +102,7 @@ class Client extends Component {
           <div className="container">
             <div className="row single-post my-5 ">
               <div className="details col-md-9">
-                {Jobs.map(Job => (
+                {this.state.pageOfItems.map(Job => (
                   <div key={Job._id}>
                     <Card
                       cardHeader={Job.JobTitle}
@@ -127,6 +134,8 @@ class Client extends Component {
             </h1>
           </div>
         )}
+
+        <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />
 
         <Footer />
       </div>
