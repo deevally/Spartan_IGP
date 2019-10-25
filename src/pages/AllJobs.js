@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import "../css/Card.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
-import Spinner from "../components/spinner";
+import Spinner from "../components/Spinner";
 import Button from "../components/Button";
 import JobSidebar from "../components/JobSidebar";
 import Pagination from "../components/Pagination";
