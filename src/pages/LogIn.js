@@ -57,7 +57,7 @@ class Login extends Component {
           message: error.response.data.error
         },
         loading: false,
-        submitting: ''
+        submitting: false
       });
     }
 
