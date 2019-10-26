@@ -51,7 +51,7 @@ setRedirect = () =>{
     };
     this.setState({ loading: true });
     try {
-      const createUser = await Axios.post(url, user);
+      await Axios.post(url, user);
       this.props.history.push("/login");
     } catch (error) {
       this.setState({
