@@ -25,14 +25,10 @@ class Signup extends Component {
       status: false,
       message: ""
     },
-    submitting: ''
+    submitting: false
   };
 
-setRedirect = () =>{
-    this.setState({
-        submitting: 'Signing up...'
-    })
-}
+
   handleUserInput = event => {
     const name = event.target.name;
     const value = event.target.value;
@@ -49,9 +45,10 @@ setRedirect = () =>{
       email,
       password
     };
-    this.setState({ loading: true });
+    this.setState({ loading: true,
+    submitting: true });
     try {
-      const createUser = await Axios.post(url, user);
+      await Axios.post(url, user);
       this.props.history.push("/login");
     } catch (error) {
       this.setState({
@@ -60,7 +57,7 @@ setRedirect = () =>{
           status: true,
           message: error.response.data
         },
-        submitting: ''
+        submitting: false
       });
     }
 
@@ -185,7 +182,7 @@ setRedirect = () =>{
                   btnType=""
                   disabled={!formValid}
                 >
-                  {submitting === "" ? "Signup" : "Signing up..."}
+                  {submitting === false ? "Signup" : "Signing up..."}
                 </Button>
               </form>
               <p className="member">

@@ -22,7 +22,7 @@ class Login extends Component {
     passwordValid: false,
     formValid: false,
     loading: false,
-    submitting: ""
+    submitting: false
   };
 
   handleUserInput = event => {
@@ -32,20 +32,11 @@ class Login extends Component {
       this.validateField(name, value);
     });
   };
-  setRedirect = () => {
-    this.setState({
-      submitting: "Logging in"
-    });
-  };
-  // renderRedirect = () => {
-  //   if (this.state.redirect) {
-  //     return <Redirect to="/Admin" />;
-  //   }
-  // };
+ 
   handleSubmit = async event => {
     event.preventDefault();
     const { email, password } = this.state;
-    this.setState({ submitting: "Logging in" });
+    this.setState({ submitting: true });
     const user = {
       email,
       password
@@ -56,14 +47,7 @@ class Login extends Component {
       console.log(loginAdmin.data);
       let token = loginAdmin.data.token;
       localStorage.setItem("token", JSON.stringify(token));
-      this.setState({
-        // loading: false,
-        Redirect: true,
-        submitting: "Logging in"
-      });
-      // if (this.state.Redirect === true) {
-      //   return <Redirect to="/Admin" />;
-      // }
+   
       this.props.history.push("/Admin");
     } catch (error) {
       this.setState({
@@ -73,7 +57,7 @@ class Login extends Component {
           message: error.response.data.error
         },
         loading: false,
-        submitting: ''
+        submitting: false
       });
     }
 
@@ -174,7 +158,7 @@ class Login extends Component {
                   btnType=""
                   disabled={!formValid}
                 >
-                  {submitting === '' ? 'Login' : 'Logging in' }
+                  {submitting === false ? 'Login' : 'Logging in...' }
                 </Button>
               </form>
               <p className="member">
