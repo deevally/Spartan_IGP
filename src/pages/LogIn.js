@@ -44,17 +44,17 @@ class Login extends Component {
 
     try {
       const loginAdmin = await Axios.post(url, user);
-      console.log(loginAdmin.data);
       let token = loginAdmin.data.token;
       localStorage.setItem("token", JSON.stringify(token));
    
       this.props.history.push("/Admin");
     } catch (error) {
+      console.log(error.response);
       this.setState({
         inValidLoginCredentials: {
           ...this.state.inValidLoginCredentials,
           status: true,
-          message: error.response.data.error
+          message: !error.response ? "Network error" : error.response.data.error
         },
         loading: false,
         submitting: false
