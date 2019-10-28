@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Nav from "../components/Nav";
 import Card from "../components/Card";
+import {withRouter} from 'react-router-dom';
 import Footer from "../components/Footer";
 import "../css/Card.css";
 import { BaseUrl } from "../utils/baseUrl";
@@ -38,6 +39,8 @@ class AllJob extends Component {
   getAllJob = data => {
     this.setState({ loading: true });
     let { location, title, type } = data;
+
+    
     if (location === "" && title === "" && type === "") {
       let url = `${BaseUrl}/jobs?limit=${50}&page=${1}`;
       Axios(url)
@@ -85,7 +88,26 @@ class AllJob extends Component {
   };
 
   componentDidMount() {
+
     let data = this.props.location.state;
+    if(data === undefined){
+      data = ''
+      let url = `${BaseUrl}/jobs`;
+      Axios(url)
+        .then(res => {
+          this.showJob(res.data);
+        })
+        .catch(err => {
+          if (err.response === undefined) {
+            this.setState({
+              err: "Check Your Network Connection",
+              loading: false
+            });
+            return;
+          }
+        });
+      
+    }
     this.getAllJob(data);
 
     // this.setState({loading: false });
@@ -362,4 +384,4 @@ class AllJob extends Component {
   }
 }
 
-export default AllJob;
+export default withRouter(AllJob);

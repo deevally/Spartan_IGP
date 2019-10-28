@@ -23,8 +23,8 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <PrivateRoute path="/Admin" component={AdminPage} />
-        <Route path="/View_Jobs" component={AdminPage} />
-        <Route path="/Add_Jobs" component={AddJobs} />
+        <PrivateRoute path="/View_Jobs" component={AdminPage} />
+        <PrivateRoute path="/Add_Jobs" component={AddJobs} />
         <Route path="/allJobs" component={Alljobs} />
         <Route path="/Blog" component={Blog} />
         <Route path="/Blogdetails/:PostId" component={Blogdetails} />

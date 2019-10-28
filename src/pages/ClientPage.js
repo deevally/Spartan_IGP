@@ -163,7 +163,6 @@ class Client extends Component {
 
           </div>
         )}
-        {/* {loading && <Spinner />} */}
 
         {loading ? <Spinner /> : Jobs && (
           <div className="container">
