@@ -1,16 +1,18 @@
-import React from 'react'
+import React from "react";
 import Nav from "../components/Nav";
-import Header from "../components/Header"
+import Header from "../components/Header";
+import JobForm from "../components/JobForm";
+import Footer from '../components/Footer'
+
 
 const AddJobs = () => {
-    return (
-        <div>
-           <Nav ViewJobs="All Jobs" AddJobs ='AddJobs' />
-           <Header className="adminHeader" headerText="adminHeaderText" HeaderText__first= "Admin"   />
-
-            <p>Add Jobs</p>
-        </div>
-    )
-}
-
-export default AddJobs
+  return (
+    <div>
+      <Nav ViewJobs="All Jobs" AddJobs="AddJobs" />
+       <Header/>
+      <JobForm  callbackurl ="/View_Jobs" />
+      <Footer />
+    </div>
+  );
+};
+export default AddJobs;

@@ -2,7 +2,7 @@
   width: 200px;
   font-size: 1.5rem;
   height: 40px;
-  background-color:#013444 !important;
+  background-color:#2992d0 !important;
 }
 .myBtnClass{
 border:none;
@@ -14,7 +14,7 @@ outline:none;
     height: 40px;
 }
 .filterRow{
-  background-color:rgba(0, 0, 0, .4);;
+  background-color:rgba(0, 0, 0, .4);
   text-align:center;
 }
 .searchInput::placeholder{
@@ -22,4 +22,7 @@ outline:none;
 }
 .searchInput{
   font-size: 1.4rem;
+}
+.allJobformtext{
+font-size: 1.2rem;
 }

@@ -1,0 +1,159 @@
+
+ * {
+  box-sizing: border-box;
+ }
+ body{
+   padding: 0;
+   margin: 0;
+   line-height: 1.6em;
+   font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+ } 
+  .Mainform{
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 15px;
+    width: 100%;
+  }
+  /* .container{
+    margin-top: 6rem;
+  } */
+.PostImg{
+    width: 100%;
+}
+.CommentDetails{
+    padding: 1rem 0;
+}
+.CommentSection{
+  display: flex;
+  padding: 1rem;
+}
+.Comment-section{
+  padding: 1rem;
+  background-color: whitesmoke;
+}
+.Mainform{
+  padding:  2rem 0; 
+}
+ .Mainform textarea{
+  display: block;
+  font-size: 14px;
+  width: 100%;
+  border: none;
+  height: 15vh;
+  padding: 1rem;
+  }
+ .Mainform input{
+  display: block;
+  font-size: 14px;
+  width: 100%;
+  border: none;
+  height: 5vh;
+  padding: 1rem;
+  }
+
+.ViewblogBtn{
+    width: 10%;
+    height: 5vh;
+    color: #fff;
+    border-radius: .4rem;
+    -webkit-border-radius: .4rem;
+    -moz-border-radius: .4rem;
+    -ms-border-radius: .4rem;
+    -o-border-radius: .4rem;
+}
+.ViewblogBtn:hover{
+  animation-name: animation1;
+  animation-duration: .2s;
+  box-shadow: 0 1px 1px 2px #ccc;
+  transition: 1s ease-in-out;
+  -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  -ms-transition: 1s ease-in-out;
+  -o-transition: 1s ease-in-out;
+}
+
+  .Mainform h4{
+    margin-left: 0;
+  }
+  
+  .Mainform input.Send:hover{
+    background-color: rgba(20, 161, 20, 0.897);
+    border: none;
+    box-shadow:0 1px 0 2px rgba(147, 197, 160, 0.932);
+  }
+
+   i.fas.fa-thumbs-down{
+    margin-left: 1rem; 
+  }
+  i.fas.fa-reply{
+    margin-left: 1rem;  
+  }
+
+  i.fas.fa-user-circle{
+    font-size: 5rem;
+    padding: 1rem;
+    vertical-align: middle
+    ;object-fit: cover;
+    overflow: hidden;
+  }
+  .offset-md-1.col-md-10{
+    padding: 1rem 0 1rem;
+  }
+  .offset-md-1.col-md-10 h3{
+    font-weight: bolder;
+    font-size: 1.8rem;
+    word-spacing: .3rem;
+    margin-top: 1rem;  
+  }
+  .Mainform h3{
+    font-weight: 600;
+  }
+  form{
+    padding-top: 1rem;
+  }
+  label{
+    font-weight: bolder;
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+  .UserComent{
+padding: 2rem;
+    width: 100%;
+  }
+  .H{
+    font-weight: bolder;
+    font-size: 1.5rem;
+  }
+  
+  @media (min-width: 998px) and(max-width:  1172px) {
+    .Mainform input.Send{
+      min-width: 30%;
+    }
+  }
+  @media only screen and (max-width: 999px) {
+    .RealFooter {
+      width: auto;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .RealFooter {
+      width: auto;
+      margin: auto;
+      grid-template-columns: 1fr ;
+      grid-template-rows: 1fr ;
+      margin-left: 5rem;
+    }
+  }
+    @keyframes animation1{
+  /* from{
+    width:2rem;
+  } */
+  to{
+    width: 10rem;
+  }
+    }
+  

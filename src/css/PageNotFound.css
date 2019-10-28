@@ -1,0 +1,23 @@
+.error{
+margin: 20rem auto;
+text-align: center;
+}
+
+.error > h1{
+    font-size: 10rem;
+    padding-bottom: 3rem;
+}
+.error > h3{
+    font-size: 3rem;
+}
+
+.error-link{
+    cursor: pointer;
+    text-decoration: none !important;
+    color:var(--color-lightGreen) ;
+
+}
+
+.error-link:hover{
+    color:var(--color-lightGreen) ;
+}

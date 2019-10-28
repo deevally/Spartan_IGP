@@ -1,15 +1,14 @@
 import React from 'react'
-import Nav from "../components/Nav";
-import Header from "../components/Header"
+import Dashboard from '../components/Dashboard';
+import Nav from '../components/Nav';
 
 const AdminPage = () => {
     return (
         <div>
-            <Nav ViewJobs="All Jobs" AddJobs ="Add Jobs"  />
-            <Header className="adminHeader" headerText="signHeaderText" HeaderText__first= "Admin" SubHeaderText="Job offers available"   />
-
+            <Nav />
+            <Dashboard />
         </div>
     )
 }
 
-export default AdminPage
+export default AdminPage;
