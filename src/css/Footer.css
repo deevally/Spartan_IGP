@@ -22,47 +22,41 @@ footer {
 .footerList_coopyright {
   letter-spacing: 0.2rem;
   font-size: 1.3rem;
+  padding: 2rem;
 }
 
 .social_icon {
   display: flex;
 }
-
-.myBtnClassFooter {
-  width: 70px;
+.myBtnClassFooter{
+  width: 90px;
   height: 26px;
-  background-color: #2992d0;
-  border: none;
-  border: 0;
-  box-shadow: none;
-  outline: none;
+  background-color:  #2992d0;
+  border:none;
+  border:0;
+  box-shadow:none;
+  outline:none;
   margin-top: -1px !important;
 }
-
-.footerSec {
+.footerSec{
   border-top: .2px solid gray;
 }
-
-.subscribeEmail {
-  height: 25px;
-  width: 200px;
-  margin-top: -1px !important;
+.subscribeEmail{
+    height: 26px;
+    width: 200px;
+    margin-top: -1px !important;
 }
-
-.labelHeader {
+.labelHeader{
   font-size: 1.5rem;
 }
-
-.footerHeaderText {
-  color: #51b64b;
-  letter-spacing: .2rem;
+.footerHeaderText{
+    color:#51b64b;
+    letter-spacing: .2rem;
 }
-
-.labelHeaderText {
-  letter-spacing: .2rem;
+.labelHeaderText{
+    letter-spacing: .2rem; 
 }
-
-.phoneNo {
-  letter-spacing: .2rem;
-  font-size: 1.2rem;
+.phoneNo{
+    letter-spacing: .2rem;
+    font-size: 1.2rem;
 }

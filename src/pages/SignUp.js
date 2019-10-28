@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import FormErrors from "../components/formErrors";
 import "../css/login-signup.css";
 import { BaseUrl } from "../utils/baseUrl";
-import Spinner from "../components/Spinner";
+// import Spinner from "../components/Spinner";
 
 const url = `${BaseUrl}/createadmin`;
 
@@ -24,8 +24,10 @@ class Signup extends Component {
     userExists: {
       status: false,
       message: ""
-    }
+    },
+    submitting: false
   };
+
 
   handleUserInput = event => {
     const name = event.target.name;
@@ -35,7 +37,7 @@ class Signup extends Component {
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
     const { fullname, email, password } = this.state;
     const user = {
@@ -43,28 +45,23 @@ class Signup extends Component {
       email,
       password
     };
-
-    // const createAdmin =  await Axios.post(url, user);
-    return Axios.post(url, user)
-      .then(() => {
-        console.log("ok");
-      })
-      .catch(err => {
-        console.log("Admin error", err.response.data);
-        this.setState(
-          {
-            userExists: {
-              ...this.state.userExists,
-              status: true,
-              message: err.response.data
-            }
-          },
-          function() {
-            console.log(this.state);
-          }
-        );
+    this.setState({ loading: true,
+    submitting: true });
+    try {
+      await Axios.post(url, user);
+      this.props.history.push("/login");
+    } catch (error) {
+      this.setState({
+        userExists: {
+          ...this.state.userExists,
+          status: true,
+          message: error.response.data
+        },
+        submitting: false
       });
-  
+    }
+
+    
   };
   validateField(fieldName, value) {
     const { fullnameValid, emailValid, passwordValid, formErrors } = this.state;
@@ -100,7 +97,6 @@ class Signup extends Component {
         fullnameValid: validateFullname,
         emailValid: validateEmail,
         passwordValid: validatePassword
-        
       },
       this.validateForm
     );
@@ -109,8 +105,7 @@ class Signup extends Component {
   validateForm() {
     const { fullnameValid, emailValid, passwordValid } = this.state;
     this.setState({
-      formValid: fullnameValid && emailValid && passwordValid,
-   
+      formValid: fullnameValid && emailValid && passwordValid
     });
   }
   errorClass(error) {
@@ -125,14 +120,14 @@ class Signup extends Component {
       formErrors,
       formValid,
       userExists,
-      loading
+      submitting
     } = this.state;
     return (
       <div className="container-parent">
         <Nav Blog="Blog" Jobs="Jobs" />
 
         <FormErrors formErrors={formErrors} />
-        {loading && <Spinner />}
+        {/* {loading === true ? <Spinner />: false} */}
         <div className="container-fluid login-parent-container">
           {userExists.status && (
             <div className="errordesign">{userExists.message}</div>
@@ -181,8 +176,13 @@ class Signup extends Component {
                     value={password}
                   ></input>
                 </label>
-                <Button myBtnClass="form-btn" btnType="" disabled={!formValid}>
-                  Submit
+                <Button
+                  onClick={this.setRedirect}
+                  myBtnClass="form-btn"
+                  btnType=""
+                  disabled={!formValid}
+                >
+                  {submitting === false ? "Signup" : "Signing up..."}
                 </Button>
               </form>
               <p className="member">

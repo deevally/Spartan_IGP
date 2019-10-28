@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Nav from "../components/Nav";
 import Button from "../components/Button";
 import FormErrors from "../components/formErrors";
 import "../css/login-signup.css";
 import { BaseUrl } from "../utils/baseUrl";
+// import Spinner from "../components/Spinner";
 
 const url = `${BaseUrl}/loginadmin`;
 class Login extends Component {
@@ -20,7 +21,8 @@ class Login extends Component {
     emailValid: false,
     passwordValid: false,
     formValid: false,
-    Redirect: false
+    loading: false,
+    submitting: false
   };
 
   handleUserInput = event => {
@@ -30,19 +32,11 @@ class Login extends Component {
       this.validateField(name, value);
     });
   };
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    });
-  };
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to="/Admin" />;
-    }
-  };
+ 
   handleSubmit = async event => {
     event.preventDefault();
     const { email, password } = this.state;
+    this.setState({ submitting: true });
     const user = {
       email,
       password
@@ -50,14 +44,23 @@ class Login extends Component {
 
     try {
       const loginAdmin = await Axios.post(url, user);
-      console.log(loginAdmin.data);
+      let token = loginAdmin.data.token;
+      localStorage.setItem("token", JSON.stringify(token));
+   
+      this.props.history.push("/Admin");
     } catch (error) {
-      console.log(error.message);
+      console.log(error.response);
+      this.setState({
+        inValidLoginCredentials: {
+          ...this.state.inValidLoginCredentials,
+          status: true,
+          message: !error.response ? "Network error" : error.response.data.error
+        },
+        loading: false,
+        submitting: false
+      });
     }
 
-    this.setState({
-      Redirect: true
-    });
   };
   validateField(fieldName, value) {
     const { emailValid, passwordValid, formErrors } = this.state;
@@ -104,15 +107,18 @@ class Login extends Component {
       password,
       formErrors,
       formValid,
-      inValidLoginCredentials
+      inValidLoginCredentials,
+      submitting
+      // loading
     } = this.state;
 
     return (
       <div className="container-parent">
-        {this.renderRedirect()}
+        {/* {this.renderRedirect()} */}
         <Nav Blog="Blog" Jobs="Jobs" />
         <FormErrors formErrors={formErrors} />
         <div className="container-fluid login-parent-container">
+          {/* {loading === true ? <Spinner spin="spinning" /> : false} */}
           {inValidLoginCredentials.status && (
             <div className="errordesign">{inValidLoginCredentials.message}</div>
           )}
@@ -147,12 +153,12 @@ class Login extends Component {
                   ></input>
                 </label>
                 <Button
-                  // onClick={this.setRedirect}
+                  onClick={this.setRedirect}
                   myBtnClass="form-btn"
                   btnType=""
                   disabled={!formValid}
                 >
-                  Submit
+                  {submitting === false ? 'Login' : 'Logging in...' }
                 </Button>
               </form>
               <p className="member">
@@ -168,3 +174,6 @@ class Login extends Component {
 }
 
 export default Login;
+
+//Geraldmcqwean10@gmail.com
+//Wednesday2019
