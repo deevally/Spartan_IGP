@@ -18,6 +18,7 @@ class Toast extends React.Component {
 
   render() {
     let { caption } = this.state;
+    
     return (
       <div id="toast">
         <div id="img">Done!</div>
