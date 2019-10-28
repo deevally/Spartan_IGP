@@ -12,7 +12,6 @@ import Blogdetails from "./Blogdetails";
 import jobdetails from "./JobDetails";
 import Apply from './Apply';
 import {PrivateRoute} from './PrivateRoute';
-import PageNotFound from "../pages/NotFoundPage";
 import CreateBlogs from "../pages/CreateBlogs";
 
 
@@ -33,7 +32,6 @@ function App() {
         <Route path="/Create_Blogs" component={CreateBlogs} />
         <Route path="/jobdetails/:JobId" component={jobdetails} />
         <Route path="/Apply" component={Apply}/>
-        <Route path="*" component={PageNotFound}/>
       </Switch>
     </Router>
   );
