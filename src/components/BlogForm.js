@@ -94,12 +94,7 @@ class BlogForm extends Component {
       formIsValid = false;
       errors["BlogDescription"] = "*Enter the blog description";
     }
-    if (typeof fields["BlogDescription"] !== "undefined") {
-      if (!fields["BlogDescription"].match(/^[a-zA-Z ]*$/)) {
-        formIsValid = false;
-        errors["BlogDescription"] = "*Enter alphabet characters only";
-      }
-    }
+    
     this.setState({
       errors: errors
     });
