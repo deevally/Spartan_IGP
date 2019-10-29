@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/JobsTable.css';
 import {BaseUrl} from '../utils/baseUrl';
 import {withRouter} from 'react-router-dom'
+import HoverEffect from './HoverEffect';
 
 class JobsTable extends React.Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class JobsTable extends React.Component {
    DeleteId = id => {
       const DeleteID = this.state.jobListing.filter(job => job._id !== id)
       this.setState({
-         jobListing:DeleteID
+         jobListing: DeleteID
       })
    }
 
