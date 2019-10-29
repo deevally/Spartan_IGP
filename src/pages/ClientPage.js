@@ -8,16 +8,12 @@ import "../css/Card.css";
 import "../css/Pagination.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
-import Spinner from "../components/spinner";
+import Spinner from "../components/Spinner";
 import JobSidebar from "../components/JobSidebar";
 import Pagination from "../components/Pagination";
 import { numberWithCommas } from "../components/searchedOptions";
 import JobSummartTable from "../components/JobSummaryTable";
-import { AllStates as JStates } from "../components/searchedOptions";
 import Button from "../components/Button";
-
-let Search = <Filter />;
-//let Search = <Filter />;
 
 class Client extends Component {
   constructor(props) {
@@ -34,7 +30,7 @@ class Client extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    let url = `${BaseUrl}/jobs?limit=${4}&page=${4}`;
+    let url = `${BaseUrl}/jobs?limit=5&page=1`;
 
     Axios(url)
       .then(res => {
@@ -80,8 +76,7 @@ class Client extends Component {
       allJobLength,
       pageOfItems
     } = this.state;
-    console.log(pageOfItems);
-    console.log(Jobs);
+    
     let fulltime = 0,
       partTime = 0,
       remote = 0,
@@ -152,24 +147,24 @@ class Client extends Component {
           headerText="headerText"
           searchForm={<Filter {...this.props} />}
           HeaderText__first="Search your dream job"
-          noOfJob={
-            Jobs.length >= 1 ? (
-              allJobLength
-            ) : (
-              <h3 className="text-white font-weight-bolder">
-                CHECK BACK FOR AVAILABLE JOBS
-              </h3>
-            )
-          }
-          SubHeaderText={
-            allJob !== null ? `Job${allJob > 1 ? "s" : ""} Available` : ""
-          }
+          noOfJob={allJobLength || ''}
+          
+          SubHeaderText={Jobs.length > 0 ?(Jobs!== null ? `Job${allJob > 1 ? "s" : ""} Available` : "") :'Check Your Network '}
           headerBorder="clientsheaderBorder"
         />
-
-        {loading && <Spinner />}
-
         {Jobs && (
+          <div className ='container'>
+            <div className='row '>
+              <div className='col text-center pt-5'>
+                  <h1 className='font-weight-bolder'>Trending Jobs</h1>
+              </div>
+
+            </div>
+
+          </div>
+        )}
+
+        {loading ? <Spinner /> : Jobs && (
           <div className="container">
             <div className="row single-post my-5 ">
               <div className={`details col-md-9`}>
@@ -230,7 +225,7 @@ class Client extends Component {
             </div>
           </div>
         )}
-        {Jobs && (
+        {!err && Jobs && (
           <div className="container ml-auto pb-5 text-center">
             <Button
               btnType="btn-primary"
@@ -251,7 +246,7 @@ class Client extends Component {
           </div>
         )}
 
-        <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />
+        {!err && <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />}
 
         <Footer />
       </div>

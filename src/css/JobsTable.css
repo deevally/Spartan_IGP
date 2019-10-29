@@ -56,6 +56,10 @@ body{
     text-decoration: none;
 
   }
+
+  .homeText{
+    font-size: 5px;
+  }
   @media only screen and (max-width: 1150px) {
     .adminSidebar{
       width: 100px;
@@ -63,3 +67,10 @@ body{
 
     }
   } 
+  .notFound{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25rem;
+   }

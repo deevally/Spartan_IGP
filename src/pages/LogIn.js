@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Nav from "../components/Nav";
 import Button from "../components/Button";
 import FormErrors from "../components/formErrors";
@@ -21,8 +21,8 @@ class Login extends Component {
     emailValid: false,
     passwordValid: false,
     formValid: false,
-    Redirect: false,
-    loading: false
+    loading: false,
+    submitting: false
   };
 
   handleUserInput = event => {
@@ -32,20 +32,11 @@ class Login extends Component {
       this.validateField(name, value);
     });
   };
-  // setRedirect = () => {
-  //   this.setState({
-  //     redirect: true
-  //   });
-  // };
-  // renderRedirect = () => {
-  //   if (this.state.redirect) {
-  //     return <Redirect to="/Admin" />;
-  //   }
-  // };
+ 
   handleSubmit = async event => {
     event.preventDefault();
     const { email, password } = this.state;
-    this.setState({ loading: true });
+    this.setState({ submitting: true });
     const user = {
       email,
       password
@@ -53,31 +44,23 @@ class Login extends Component {
 
     try {
       const loginAdmin = await Axios.post(url, user);
-      console.log(loginAdmin.data);
       let token = loginAdmin.data.token;
-      localStorage.setItem('token', JSON.stringify(token))
-      this.setState({
-        // loading: false,
-        Redirect: true
-      });
-      // if (this.state.Redirect === true) {
-      //   return <Redirect to="/Admin" />;
-      // }
+      localStorage.setItem("token", JSON.stringify(token));
+   
       this.props.history.push("/Admin");
     } catch (error) {
+      console.log(error.response);
       this.setState({
         inValidLoginCredentials: {
           ...this.state.inValidLoginCredentials,
           status: true,
-          message: error.response.data.error
+          message: !error.response ? "Network error" : error.response.data.error
         },
-        loading: false
+        loading: false,
+        submitting: false
       });
     }
 
-    this.setState({
-      Redirect: true
-    });
   };
   validateField(fieldName, value) {
     const { emailValid, passwordValid, formErrors } = this.state;
@@ -125,6 +108,7 @@ class Login extends Component {
       formErrors,
       formValid,
       inValidLoginCredentials,
+      submitting
       // loading
     } = this.state;
 
@@ -169,12 +153,12 @@ class Login extends Component {
                   ></input>
                 </label>
                 <Button
-                  // onClick={this.setRedirect}
+                  onClick={this.setRedirect}
                   myBtnClass="form-btn"
                   btnType=""
                   disabled={!formValid}
                 >
-                  Submit
+                  {submitting === false ? 'Login' : 'Logging in...' }
                 </Button>
               </form>
               <p className="member">

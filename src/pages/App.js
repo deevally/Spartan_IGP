@@ -12,6 +12,7 @@ import Blogdetails from "./Blogdetails";
 import jobdetails from "./JobDetails";
 import Apply from './Apply';
 import {PrivateRoute} from './PrivateRoute';
+import PageNotFound from "./PageNotFound";
 
 //`/allJobs/${title}/${type}
 function App() {
@@ -22,13 +23,14 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <PrivateRoute path="/Admin" component={AdminPage} />
-        <Route path="/View_Jobs" component={AdminPage} />
-        <Route path="/Add_Jobs" component={AddJobs} />
+        <PrivateRoute path="/View_Jobs" component={AdminPage} />
+        <PrivateRoute path="/Add_Jobs" component={AddJobs} />
         <Route path="/allJobs" component={Alljobs} />
         <Route path="/Blog" component={Blog} />
         <Route path="/Blogdetails/:PostId" component={Blogdetails} />
         <Route path="/jobdetails/:JobId" component={jobdetails} />
         <Route path="/Apply" component={Apply}/>
+        <Route path="*" component={PageNotFound}/>
       </Switch>
     </Router>
   );

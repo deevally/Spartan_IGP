@@ -8,7 +8,7 @@ import "../css/Blogs.css";
 import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
 import Pagination from "../components/Pagination";
-import Spinner from "../components/spinner";
+import Spinner from "../components/Spinner";
 
 class Blog extends Component {
   constructor(props) {
