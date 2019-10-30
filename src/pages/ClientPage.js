@@ -8,7 +8,7 @@ import "../css/Card.css";
 import "../css/Pagination.css";
 import { BaseUrl } from "../utils/baseUrl";
 import Axios from "axios";
-import Spinner from "../components/spinner";
+import Spinner from "../components/Spinner";
 import JobSidebar from "../components/JobSidebar";
 import Pagination from "../components/Pagination";
 import { numberWithCommas } from "../components/searchedOptions";
@@ -156,10 +156,10 @@ class Client extends Component {
             Jobs.length >= 1 ? (
               allJobLength
             ) : (
-              <h3 className="text-white font-weight-bolder">
-                CHECK BACK FOR AVAILABLE JOBS
+                <h3 className="text-white font-weight-bolder">
+                  CHECK BACK FOR AVAILABLE JOBS
               </h3>
-            )
+              )
           }
           SubHeaderText={
             allJob !== null ? `Job${allJob > 1 ? "s" : ""} Available` : ""
@@ -178,9 +178,9 @@ class Client extends Component {
                     key={Job._id}
                     className={
                       !Job.jobResponsibilities &&
-                      !Job.JobTitle &&
-                      !Job.JobType &&
-                      !Job.salary
+                        !Job.JobTitle &&
+                        !Job.JobType &&
+                        !Job.salary
                         ? "sidebarShow"
                         : ""
                     }

@@ -4,7 +4,7 @@ import Nav from "../components/Nav";
 import Header from "../components/Header";
 import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
-import Spinner from "../components/spinner";
+import Spinner from "../components/Spinner";
 import JobSidebar from "../components/JobSidebar";
 import Footer from "../components/Footer";
 
