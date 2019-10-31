@@ -19,6 +19,7 @@ class Blog extends Component {
       err: "",
       loading: false
     };
+    console.log('ayoooooooo')
   }
 
   getBlog() {
@@ -26,6 +27,7 @@ class Blog extends Component {
     Axios.get(url)
       .then(res => {
         const blogs = res.data.docs;
+        
         this.setState({ blogs, loading: false });
       })
       .catch(error => {
@@ -75,7 +77,7 @@ class Blog extends Component {
 
               {loading && <Spinner />}
               {this.state.pageOfItems.map(blog => (
-                <div className="single-post">
+                <div className="single-post" key={blog._id}>
                   <div className="main-title" id="main-title">
                     <div className="blog-content">
                       <h4 className="blog-title">

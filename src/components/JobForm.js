@@ -313,7 +313,7 @@ class JobForm extends Component {
                       </Button>
                       {canCreate === true && callerror && (
                         <p className="text-danger text-center font-weight-bolder">
-                          {"Check Connect"}
+                          {"Check Connection"}
                         </p>
                       )}
                     </form>
