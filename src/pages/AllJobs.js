@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Nav from "../components/Nav";
 import Card from "../components/Card";
+import {withRouter} from 'react-router-dom';
 import Footer from "../components/Footer";
 import "../css/Card.css";
 import { BaseUrl } from "../utils/baseUrl";
@@ -30,13 +31,16 @@ class AllJob extends Component {
         location: "",
         type: "",
         title: ""
-      }
+      },
+      noError:true,
     };
   }
 
   getAllJob = data => {
     this.setState({ loading: true });
     let { location, title, type } = data;
+
+    
     if (location === "" && title === "" && type === "") {
       let url = `${BaseUrl}/jobs?limit=${50}&page=${1}`;
       Axios(url)
@@ -84,7 +88,26 @@ class AllJob extends Component {
   };
 
   componentDidMount() {
+
     let data = this.props.location.state;
+    if(data === undefined){
+      data = ''
+      let url = `${BaseUrl}/jobs`;
+      Axios(url)
+        .then(res => {
+          this.showJob(res.data);
+        })
+        .catch(err => {
+          if (err.response === undefined) {
+            this.setState({
+              err: "Check Your Network Connection",
+              loading: false
+            });
+            return;
+          }
+        });
+      
+    }
     this.getAllJob(data);
 
     // this.setState({loading: false });
@@ -160,16 +183,19 @@ class AllJob extends Component {
     history.push(`/jobdetails/${JobId}`);
   };
 
+  toggleHover() {
+    this.setState({hover: !this.state.hover})
+  }
+
   handleChange = e => {
     const SearchForm = this.state.SearchForm;
     SearchForm[e.target.name] = e.target.value;
     this.setState({ SearchForm });
   };
   render() {
-    const { location, type, title } = this.state.SearchForm;
+    const { location, type, title,noError } = this.state.SearchForm;
 
     const { Jobs, loading, err, searchJob, pageOfItems } = this.state;
-    console.log(pageOfItems);
     let fulltime = 0,
       partTime = 0,
       remote = 0,
@@ -264,7 +290,7 @@ class AllJob extends Component {
                 ))}
               </select>
             </div>
-            <div className="col-md-3 col-sm-6">
+            <div className="col-md-2 col-sm-6">
               <select
                 className="form-control form-control-lg my-3 searchInput"
                 name="type"
@@ -287,13 +313,13 @@ class AllJob extends Component {
           </form>
         </div>
 
-        {loading && <Spinner />}
+        {/* {loading && <Spinner />} */}
         {err && (
           <div className="container mx-auto text-center mb-5">
             <h1 className="font-weight-bolder mb-5 ml-5 mx-auto pb-5">{err}</h1>
           </div>
         )}
-        {Jobs && (
+        {loading  ?  <Spinner /> : !err&&Jobs && (
           <div className="container">
             <div className="row single-post my-5 ">
               <div className="details col-md-8 alljobCards mr-3">
@@ -351,11 +377,11 @@ class AllJob extends Component {
             </h1>
           </div>
         )}
-        <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />
+       {!err &&  <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />}
         <Footer />
       </div>
     );
   }
 }
 
-export default AllJob;
+export default withRouter(AllJob);

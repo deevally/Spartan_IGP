@@ -9,6 +9,11 @@ import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
 import Pagination from "../components/Pagination";
 import Spinner from "../components/Spinner";
+import img1 from "../assets/images2/undraw_location_search_bqps.png"
+import img2 from "../assets/images2/undraw_os_upgrade_nj2m.png"
+import img3 from "../assets/images2/undraw_personal_goals_edgd.png"
+import img4 from "../assets/images2/undraw_pull_request_gld8.png"
+import img5 from "../assets/images2/undraw_things_to_say_ewwb.png"
 
 class Blog extends Component {
     constructor(props) {
@@ -19,13 +24,17 @@ class Blog extends Component {
             err: "",
             loading: false
         };
+        console.log('ayoooooooo')
     }
+
+    photo = [img1, img2, img3, img4, img5]
 
     getBlog() {
         let url = `${BaseUrl}/blogs`;
         Axios.get(url)
             .then(res => {
                 const blogs = res.data.docs;
+
                 this.setState({ blogs, loading: false });
             })
             .catch(error => {
@@ -63,7 +72,7 @@ class Blog extends Component {
                 <div className="container">
                     <div className="row fullPage">
                         <div className=" col-md-12">
-                            <h2 className="news-and-articles">NEWS AND ARTICLES</h2>
+                            <h2 className="news-and-articles"><b>NEWS AND ARTICLES</b></h2>
                             <div className="icons-div">
                                 <i className="fab fa-facebook-f icon-1 icon"></i>
                                 <i className="fab fa-twitter icon-2 icon"></i>
@@ -74,8 +83,8 @@ class Blog extends Component {
                             </div>
 
                             {loading && <Spinner />}
-                            {this.state.pageOfItems.map(blog => (
-                                <div className="single-post">
+                            {this.state.pageOfItems.map((blog, i) => (
+                                <div className="single-post" key={blog._id}>
                                     <div className="main-title" id="main-title">
                                         <div className="blog-content">
                                             <h2 className="blog-title">
@@ -83,7 +92,7 @@ class Blog extends Component {
                                             </h2>
                                             <p>
                                                 {blog.BlogDescription}
-                      </p>
+                                            </p>
                                             {/* <p>by <span className="lorem">Lorem ipsum</span></p> */}
                                             <p>
                                                 <em>
@@ -98,7 +107,7 @@ class Blog extends Component {
                       </Button>
                                         </div>
                                         <div id="image">
-                                            <img src={photo} alt="cardphoto" className="indexImage" />
+                                            <img src={photo[i]} alt="cardphoto" className="indexImage" />
                                         </div>
                                     </div>
                                 </div>
