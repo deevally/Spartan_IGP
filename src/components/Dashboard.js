@@ -2,7 +2,6 @@ import React from 'react';
 import '../css/JobsTable.css';
 import {BaseUrl} from '../utils/baseUrl';
 import {withRouter} from 'react-router-dom'
-import HoverEffect from './HoverEffect';
 
 class JobsTable extends React.Component {
   constructor(props) {
@@ -17,7 +16,6 @@ class JobsTable extends React.Component {
            salary: 'Salary',
            action: 'Action'
         },
-        isHovering:false
 
      }
   }
@@ -82,31 +80,22 @@ class JobsTable extends React.Component {
      })
   }
 
-  gotoHome=()=>{
+  gotoHome = () => {
      const {history} = this.props
      localStorage.clear()
      history.push("/")
   }
 
  
-
- 
-
- handleMouseHover =()=> {
-   this.setState({isHovering:!this.state.isHovering});
- }
-
- 
   render() {
-
-   
+ 
      return (
         <React.Fragment>
         <div className='adminSidebar'>
-            <a className='p-4 pt-5 text-white' href={'/'}><i className="fas fa-home"></i></a>
-            <a className='p-4 pt-5 text-white' href={'/Add_Jobs'}><i className="fas fa-paste"></i></a>
-            <a className='p-4 pt-2 text-white' onClick ={this.gotoHome}><i className="fas fa-power-off"></i></a>
-            <a className='p-4 pb-5 text-white' href='/'><i className="fas fa-key"></i></a>
+            <a className='p-4 pt-5 text-white text' href={'/'}><i className="fas fa-home mr-4"></i>Home</a>
+            <a className='p-4 pt-5 text-white text' href={'/Add_Jobs'}><i className="fas fa-folder-open mr-4"></i>Add Jobs</a>
+            <a className='p-4 pt-2 text-white text' onClick ={this.gotoHome}><i className="fas fa-power-off mr-4"></i>Logout</a>
+            <a className='p-4 pb-5 text-white text' href='/'><i className="fas fa-unlock-alt mr-4"></i>Change Password</a>
         </div>
         <div className='tableBorder'>
            <h2 id='title'>Current Job Listing</h2>

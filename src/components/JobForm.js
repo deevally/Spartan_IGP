@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "../components/Button";
 // import BaseUrl from '../utils/baseUrl';
 import { withRouter } from "react-router-dom";
-import Spinner from "./Spinner";
+import Spinner from "./spinner";
 import Toast from "./Toast";
 import "../css/App.css";
 import "../css/addJob.css";
@@ -270,10 +270,6 @@ class JobForm extends Component {
                           {this.state.errors.salary}
                         </div>
                       </div>
-<<<<<<< HEAD
-                  
-=======
->>>>>>> 1f3b8713654d434dabac597c8c1a5f6dfb33b296
                       <div className="form-group">
                         <label htmlFor="JobDescription">Job Description</label>
                         <textarea
