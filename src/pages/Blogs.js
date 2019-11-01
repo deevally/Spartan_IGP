@@ -9,11 +9,11 @@ import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
 import Pagination from "../components/Pagination";
 import Spinner from "../components/Spinner";
-import img1 from "../assets/images2/undraw_location_search_bqps.png"
-import img2 from "../assets/images2/undraw_os_upgrade_nj2m.png"
-import img3 from "../assets/images2/undraw_personal_goals_edgd.png"
-import img4 from "../assets/images2/undraw_pull_request_gld8.png"
-import img5 from "../assets/images2/undraw_things_to_say_ewwb.png"
+import img1 from "../assets/images2/rizoneOil.jpg"
+import img2 from "../assets/images2/graduateTr.jpg"
+import img3 from "../assets/images2/oPay.png"
+import img4 from "../assets/images2/Alan-Grant.jpg"
+import img5 from "../assets/images2/atlanticHall.jpg"
 
 class Blog extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class Blog extends Component {
         console.log('ayoooooooo')
     }
 
-    photo = [img1, img2, img3, img4, img5]
+
 
     getBlog() {
         let url = `${BaseUrl}/blogs`;
@@ -58,6 +58,7 @@ class Blog extends Component {
 
     render() {
         const { blogs, pageOfItems, err, loading } = this.state;
+        const photo = [img1, img2, img3, img4, img5];
         console.log(pageOfItems);
 
         return (
