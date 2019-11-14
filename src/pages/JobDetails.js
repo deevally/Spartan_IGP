@@ -4,7 +4,6 @@ import Nav from "../components/Nav";
 import Header from "../components/Header";
 import { BaseUrl } from "../utils/baseUrl.js";
 import Axios from "axios";
-
 import JobSidebar from "../components/JobSidebar";
 import Footer from "../components/Footer";
 

@@ -14,6 +14,8 @@ import Pagination from "../components/Pagination";
 import { numberWithCommas } from "../components/searchedOptions";
 import JobSummartTable from "../components/JobSummaryTable";
 import Button from "../components/Button";
+import Frame from "../components/Frame"
+import Statistics from "../components/Statistics"
 
 class Client extends Component {
   constructor(props) {
@@ -173,9 +175,9 @@ class Client extends Component {
                     key={Job._id}
                     className={
                       !Job.jobResponsibilities &&
-                      !Job.JobTitle &&
-                      !Job.JobType &&
-                      !Job.salary
+                        !Job.JobTitle &&
+                        !Job.JobType &&
+                        !Job.salary
                         ? "sidebarShow"
                         : ""
                     }
@@ -247,7 +249,8 @@ class Client extends Component {
         )}
 
         {!err && <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />}
-
+        <Statistics />  
+          <Frame />
         <Footer />
       </div>
     );

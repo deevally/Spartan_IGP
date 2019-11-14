@@ -1,0 +1,33 @@
+.frameContainer{
+    height: 50vh;
+    margin-top:  30px;
+    margin-bottom:  30px;
+    padding: 60px 45px;
+    
+}
+
+.frameText{
+    height: 400px;
+}
+
+.frameText p{
+    margin-top: 25px;
+    font-size:  13px;
+    margin-bottom: 20px;
+    word-spacing:  2px;
+}
+
+.frameText h1{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.frameText hr{
+    width: 200px;
+    border: 2px solid #2992d0;
+}
+
+.frameText Button{
+    background-color: #51b64b;
+}
+
