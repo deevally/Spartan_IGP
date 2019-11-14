@@ -27,7 +27,7 @@ const Frame = () => {
                     <h1> JOIN THOUSANDS OF PEOPLE THAT RELY ON VGG</h1>
                     <hr />
                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.available, but the majority have suffered alteration in some form,</p>
-                   <Button  btnType= "btn-primary"  children="GET STARTED"  /> 
+                   <Button  btnType= "btn-primary px-3"   children="GET STARTED"  /> 
                 </div>
 
             </div>
