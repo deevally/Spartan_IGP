@@ -1,0 +1,8 @@
+.statContent {
+    display:flex;
+    justify-content: space-around;
+    text-align: center;
+    height: 50vh;
+    background-color: #ccc;
+    padding-top: 100px;
+}
