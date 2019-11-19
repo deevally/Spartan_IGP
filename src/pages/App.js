@@ -13,7 +13,6 @@ import jobdetails from "./JobDetails";
 import Apply from './Apply';
 import {PrivateRoute} from './PrivateRoute';
 import CreateBlogs from "../pages/CreateBlogs";
-
 import PageNotFound from "./PageNotFound";
 
 //`/allJobs/${title}/${type}
