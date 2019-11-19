@@ -28,7 +28,6 @@ class Signup extends Component {
     submitting: false
   };
 
-
   handleUserInput = event => {
     const name = event.target.name;
     const value = event.target.value;
@@ -45,8 +44,7 @@ class Signup extends Component {
       email,
       password
     };
-    this.setState({ loading: true,
-    submitting: true });
+    this.setState({ loading: true, submitting: true });
     try {
       await Axios.post(url, user);
       this.props.history.push("/login");
@@ -60,9 +58,10 @@ class Signup extends Component {
         submitting: false
       });
     }
-
-    
   };
+  // componentDidMount() {
+  //   this.handleSubmit();
+  // }
   validateField(fieldName, value) {
     const { fullnameValid, emailValid, passwordValid, formErrors } = this.state;
     let validationFormErrors = formErrors;

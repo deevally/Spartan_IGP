@@ -32,7 +32,7 @@ class Login extends Component {
       this.validateField(name, value);
     });
   };
- 
+
   handleSubmit = async event => {
     event.preventDefault();
     const { email, password } = this.state;
@@ -46,7 +46,7 @@ class Login extends Component {
       const loginAdmin = await Axios.post(url, user);
       let token = loginAdmin.data.token;
       localStorage.setItem("token", JSON.stringify(token));
-   
+
       this.props.history.push("/Admin");
     } catch (error) {
       console.log(error.response);
@@ -60,8 +60,11 @@ class Login extends Component {
         submitting: false
       });
     }
-
   };
+
+  // componentDidMount() {
+  //   this.handleSubmit();
+  // }
   validateField(fieldName, value) {
     const { emailValid, passwordValid, formErrors } = this.state;
     let validationFormErrors = formErrors;
@@ -158,7 +161,7 @@ class Login extends Component {
                   btnType=""
                   disabled={!formValid}
                 >
-                  {submitting === false ? 'Login' : 'Logging in...' }
+                  {submitting === false ? "Login" : "Logging in..."}
                 </Button>
               </form>
               <p className="member">
