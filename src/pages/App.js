@@ -12,6 +12,9 @@ import Blogdetails from "./Blogdetails";
 import jobdetails from "./JobDetails";
 import Apply from './Apply';
 import {PrivateRoute} from './PrivateRoute';
+import CreateBlogs from "../pages/CreateBlogs";
+
+import PageNotFound from "./PageNotFound";
 
 //`/allJobs/${title}/${type}
 function App() {
@@ -27,8 +30,10 @@ function App() {
         <Route path="/allJobs" component={Alljobs} />
         <Route path="/Blog" component={Blog} />
         <Route path="/Blogdetails/:PostId" component={Blogdetails} />
+        <Route path="/Create_Blogs" component={CreateBlogs} />
         <Route path="/jobdetails/:JobId" component={jobdetails} />
         <Route path="/Apply" component={Apply}/>
+        <Route path='*' component={PageNotFound}/>
       </Switch>
     </Router>
   );
