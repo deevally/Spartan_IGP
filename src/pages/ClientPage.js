@@ -14,6 +14,8 @@ import Pagination from "../components/Pagination";
 import { numberWithCommas } from "../components/searchedOptions";
 import JobSummartTable from "../components/JobSummaryTable";
 import Button from "../components/Button";
+import Frame from "../components/Frame"
+import Statistics from "../components/Statistics"
 
 class Client extends Component {
   constructor(props) {
@@ -141,89 +143,98 @@ class Client extends Component {
 
     return (
       <div>
-        <Nav Blog="Blog" LogIn="Login" SignUp="SignUp" />
+        <Nav Blog="Blog" LogIn="Login" SignUp="SignUp" join="join" />
         <Header
           className="landingPageHeader"
           headerText="headerText"
           searchForm={<Filter {...this.props} />}
           HeaderText__first="Search your dream job"
-          noOfJob={allJobLength || ''}
-          
-          SubHeaderText={Jobs.length > 0 ?(Jobs!== null ? `Job${allJob > 1 ? "s" : ""} Available` : "") :'Check Your Network '}
+          noOfJob={allJobLength || ""}
+          SubHeaderText={
+            Jobs.length > 0
+              ? Jobs !== null
+                ? `Job${allJob > 1 ? "s" : ""} Available`
+                : ""
+              : "Check Your Network "
+          }
           headerBorder="clientsheaderBorder"
         />
         {Jobs && (
-          <div className ='container'>
-            <div className='row '>
-              <div className='col text-center pt-5'>
-                  <h1 className='font-weight-bolder'>Trending Jobs</h1>
+          <div className="container">
+            <div className="row ">
+              <div className="col text-center pt-5">
+                <h1 className="font-weight-bolder">Trending Jobs</h1>
               </div>
-
             </div>
-
           </div>
         )}
 
-        {loading ? <Spinner /> : Jobs && (
-          <div className="container">
-            <div className="row single-post my-5 ">
-              <div className={`details col-md-9`}>
-                {Jobs.map(Job => (
+        {loading ? (
+          <Spinner />
+        ) : (
+          Jobs && (
+            <div className="container">
+              <div className="row single-post my-5 ">
+                <div className={`details col-md-9`}>
+                  {Jobs.map(Job => (
+                    <div
+                      key={Job._id}
+                      className={
+                        !Job.jobResponsibilities &&
+                        !Job.JobTitle &&
+                        !Job.JobType &&
+                        !Job.salary
+                          ? "sidebarShow"
+                          : ""
+                      }
+                    >
+                      <Card
+                        cardHeader={Job.JobTitle}
+                        cardHeaderSub={Job.jobResponsibilities}
+                        CardSubText1={Job.location}
+                        CardSubText={Job.JobType}
+                        CardSubText2={numberWithCommas(Job.salary || 3000)}
+                        displayNaira={Job.salary ? "" : "displayNaira"}
+                        onClick={() => this.gotoJobDetails(Job._id)}
+                      />
+                    </div>
+                  ))}
+                </div>
+                {!err && (
                   <div
-                    key={Job._id}
-                    className={
-                      !Job.jobResponsibilities &&
-                      !Job.JobTitle &&
-                      !Job.JobType &&
-                      !Job.salary
-                        ? "sidebarShow"
-                        : ""
-                    }
+                    className={loading === true ? "sidebarShow" : "col-md-3 "}
                   >
-                    <Card
-                      cardHeader={Job.JobTitle}
-                      cardHeaderSub={Job.jobResponsibilities}
-                      CardSubText1={Job.location}
-                      CardSubText={Job.JobType}
-                      CardSubText2={numberWithCommas(Job.salary || 3000)}
-                      displayNaira={Job.salary ? "" : "displayNaira"}
-                      onClick={() => this.gotoJobDetails(Job._id)}
+                    <JobSidebar
+                      typeTitle="Job By Type"
+                      FullTime={"Full-Time"}
+                      FullTimeNumbers={fulltime}
+                      PartTime={"Part-Time"}
+                      PartTimeNumbers={partTime}
+                      Remote={"Remote"}
+                      RemoteNumbers={remote}
+                    />
+                    <JobSidebar
+                      typeTitle="Job By Location"
+                      table={
+                        <JobSummartTable
+                          {...this.props}
+                          LagosNo={Lagos || ""}
+                          OndoNo={Ondo || ""}
+                          EdoNo={Edo || ""}
+                          AbujaNo={Abuja || ""}
+                          EkitiNo={Ekiti || ""}
+                          OyoNo={Oyo || ""}
+                          DeltaNo={Delta || ""}
+                          OgunNo={Ogun || ""}
+                          ImoNo={Imo || ""}
+                        />
+                      }
                     />
                   </div>
-                ))}
+                )}
               </div>
-              {!err && (
-                <div className={loading === true ? "sidebarShow" : "col-md-3 "}>
-                  <JobSidebar
-                    typeTitle="Job By Type"
-                    FullTime={"Full-Time"}
-                    FullTimeNumbers={fulltime}
-                    PartTime={"Part-Time"}
-                    PartTimeNumbers={partTime}
-                    Remote={"Remote"}
-                    RemoteNumbers={remote}
-                  />
-                  <JobSidebar
-                    typeTitle="Job By Location"
-                    table={
-                      <JobSummartTable
-                        {...this.props}
-                        LagosNo={Lagos || ""}
-                        OndoNo={Ondo || ""}
-                        EdoNo={Edo || ""}
-                        AbujaNo={Abuja || ""}
-                        EkitiNo={Ekiti || ""}
-                        OyoNo={Oyo || ""}
-                        DeltaNo={Delta || ""}
-                        OgunNo={Ogun || ""}
-                        ImoNo={Imo || ""}
-                      />
-                    }
-                  />
-                </div>
-              )}
             </div>
-          </div>
+          )
         )}
         {!err && Jobs && (
           <div className="container ml-auto pb-5 text-center">
@@ -246,8 +257,14 @@ class Client extends Component {
           </div>
         )}
 
-        {!err && <Pagination items={Jobs} onChangePage={this.onChangePage.bind(this)} />}
-
+        {!err && (
+          <Pagination
+            items={Jobs}
+            onChangePage={this.onChangePage.bind(this)}
+          />
+        )}
+        <Statistics />
+        <Frame />
         <Footer />
       </div>
     );

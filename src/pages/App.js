@@ -31,8 +31,8 @@ function App() {
         <Route path="/Blogdetails/:PostId" component={Blogdetails} />
         <Route path="/Create_Blogs" component={CreateBlogs} />
         <Route path="/jobdetails/:JobId" component={jobdetails} />
-        <Route path="/Apply" component={Apply}/>
-        <Route path='*' component={PageNotFound}/>
+        <Route path="/Apply" component={Apply} />
+        <Route path="*" component={PageNotFound} />
       </Switch>
     </Router>
   );
