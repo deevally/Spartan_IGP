@@ -15,7 +15,8 @@ const Frame = () => {
                         height : '230px'
                 }}></iframe> */}
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_3_klf4NuT4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen  style={{
+<iframe 
+title="This is a unique title" width="560" height="315" src="https://www.youtube.com/embed/_3_klf4NuT4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen  style={{
  border: 'none',
  borderRadius: '4px',
  width: '500px',

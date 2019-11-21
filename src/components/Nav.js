@@ -4,7 +4,6 @@ import "../css/App.css";
 import imglogo from "../assets/images/logo.png";
 import "../css/Nav.css";
 const Nav = ({
-  openLoginModal,
   Jobs,
   Blog,
   SignUp,
@@ -68,6 +67,7 @@ const Nav = ({
                   {ViewJobs} <span className="sr-only">(current)</span>
                 </NavLink>
               </li>
+              
               <li className="nav-item">
                 <NavLink
                   to="/Add_Jobs"
