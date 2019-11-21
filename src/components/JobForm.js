@@ -50,22 +50,6 @@ class JobForm extends Component {
     });
   };
 
-
-  clearFields =() =>{
-
-    this.setState({
-      fields:{
-        JobDescription :'',
-        JobTitle :'',
-        salary :'',
-        jobResponsibilities:'',
-        companyInformation:''
-        
-      },
-      canCreate:false,
-    })
-  }
-
   handleSubmit = e => {
     this.setState({ loading: true });
     e.preventDefault({ toast: true });
@@ -103,7 +87,6 @@ class JobForm extends Component {
       });
       // console.log("fields-two", fields);
     }
-   
   };
 
   validateForm = () => {
@@ -114,59 +97,44 @@ class JobForm extends Component {
     if (!fields["JobTitle"]) {
       formIsValid = false;
       errors["JobTitle"] = "*Enter a job title";
-      
     }
     if (typeof fields["JobTitle"] !== "undefined") {
       if (!fields["JobTitle"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
         errors["JobTitle"] = "*Enter alphabet characters only";
-        
-
       }
     }
 
     if (!fields["companyInformation"]) {
       formIsValid = false;
       errors["companyInformation"] = "*Enter a company info";
-      
-
     }
     if (typeof fields["companyInformation"] !== "undefined") {
       if (!fields["companyInformation"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
         errors["companyInformation"] = "*Enter alphabet characters only";
-        
-
       }
     }
 
     if (!fields["JobDescription"]) {
       formIsValid = false;
       errors["JobDescription"] = "*Enter a job description";
-      
-
     }
     if (typeof fields["JobDescription"] !== "undefined") {
       if (!fields["JobDescription"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
         errors["JobDescription"] = "*Enter alphabet characters only";
-        
-
       }
     }
     
     if (!fields["jobResponsibilities"]) {
       formIsValid = false;
       errors["jobResponsibilities"] = "*Enter job responsibilities";
-      
-
     }
     if (typeof fields["jobResponsibilities"] !== "undefined") {
       if (!fields["jobResponsibilities"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
         errors["jobResponsibilities"] = "*Enter alphabet characters only";
-        
-
       }
     }
 
@@ -184,7 +152,6 @@ class JobForm extends Component {
       <div>
         <Fragment>
           <section className="jobListView">
-          
             <div className="container">
               <div className="row">
                 <div className="col-md-10 mx-auto">

@@ -13,8 +13,7 @@ import jobdetails from "./JobDetails";
 import Apply from './Apply';
 import {PrivateRoute} from './PrivateRoute';
 import CreateBlogs from "../pages/CreateBlogs";
-
-import PageNotFound from "./PageNotFound";
+import PageNotFound from "./pagenotFound.js";
 
 //`/allJobs/${title}/${type}
 function App() {

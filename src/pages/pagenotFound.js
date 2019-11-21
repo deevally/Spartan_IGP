@@ -5,11 +5,11 @@ import PageNotFound from "../components/NotFound";
 const NotFound = () => {
   return (
     <div>
-            
+            
       <Nav />
-            
+            
       <PageNotFound />
-          
+          
     </div>
   );
 };
